@@ -67,8 +67,10 @@
                         <span class="mr-2">🏠</span> Društvo u Fokusu
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-stone-600 dark:text-slate-400 hover:text-amber-600 px-1 py-2 transition-colors font-medium">Lekcije</a>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html" class="text-stone-600 dark:text-slate-400 hover:text-amber-600 px-1 py-2 transition-colors font-medium">Lekcije</a>
+                    </div>
                     <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -81,16 +83,16 @@
     <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         
         <!-- Welcome Screen -->
-        <div id="welcome-screen" class="bg-white dark:bg-slate-800 rounded-3xl p-10 md:p-16 shadow-xl border border-stone-100 dark:border-slate-700 text-center relative overflow-hidden">
+        <div id="welcome-screen" class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-16 shadow-xl border border-stone-100 dark:border-slate-700 text-center relative overflow-hidden">
             <div class="absolute -top-24 -right-24 w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
             
             <div class="relative z-10">
-                <div class="text-7xl mb-6">🎓</div>
-                <h1 class="text-4xl font-extrabold text-stone-800 dark:text-white mb-4">Kviz Znanja</h1>
-                <p class="text-lg text-stone-600 dark:text-slate-400 mb-10 max-w-xl mx-auto">
+                <div class="text-6xl md:text-7xl mb-4 md:mb-6">🎓</div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-4">Kviz Znanja</h1>
+                <p class="text-base md:text-lg text-stone-600 dark:text-slate-400 mb-8 md:mb-10 max-w-xl mx-auto">
                     Od teorija do metoda istraživanja. Računalo nudi nasumičnih 10 pitanja iz naše baze od 30 pitanja. Znaš li dovoljno da preživiš pravi sociološki ispit?
                 </p>
-                <button id="start-btn" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-lg transition-transform transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                <button id="start-btn" class="px-6 py-3 md:px-8 md:py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-base md:text-lg transition-transform transform hover:scale-105 shadow-lg shadow-amber-500/30">
                     Započni Kviz →
                 </button>
             </div>
@@ -109,8 +111,8 @@
             </div>
 
             <!-- Question Container -->
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-md border border-stone-100 dark:border-slate-700 mb-6">
-                <h2 class="text-2xl font-bold text-stone-800 dark:text-white mb-8 leading-relaxed" id="question-text">Ovdje ide tekst pitanja?</h2>
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl shadow-md border border-stone-100 dark:border-slate-700 mb-6">
+                <h2 class="text-xl md:text-2xl font-bold text-stone-800 dark:text-white mb-6 md:mb-8 leading-relaxed" id="question-text">Ovdje ide tekst pitanja?</h2>
                 
                 <div class="space-y-3 flex flex-col" id="options-container">
                     <!-- Buttons generated dynamically -->
@@ -130,22 +132,24 @@
         </div>
 
         <!-- Result Screen -->
-        <div id="result-screen" class="hidden text-center bg-white dark:bg-slate-800 p-10 py-16 rounded-3xl shadow-xl border border-stone-100 dark:border-slate-700">
-            <div id="result-emoji" class="text-7xl mb-4">🏆</div>
-            <h2 class="text-4xl font-extrabold text-stone-800 dark:text-white mb-2">Gotovo!</h2>
-            <p class="text-xl text-stone-600 dark:text-slate-400 mb-8">Tvoj rezultat je: <strong class="text-amber-600 dark:text-amber-400 text-3xl ml-2" id="final-score">0/10</strong></p>
+        <div id="result-screen" class="hidden text-center bg-white dark:bg-slate-800 p-6 py-10 md:p-10 md:py-16 rounded-3xl shadow-xl border border-stone-100 dark:border-slate-700">
+            <div id="result-emoji" class="text-6xl md:text-7xl mb-4">🏆</div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-2">Gotovo!</h2>
+            <p class="text-lg md:text-xl text-stone-600 dark:text-slate-400 mb-8">Tvoj rezultat je: <strong class="text-amber-600 dark:text-amber-400 text-2xl md:text-3xl ml-2" id="final-score">0/10</strong></p>
             
-            <div class="bg-stone-50 dark:bg-slate-900 p-6 rounded-xl border border-stone-200 dark:border-slate-700 max-w-lg mx-auto mb-10 text-left">
-                <h4 class="text-sm font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-2">Presuda sociologa:</h4>
-                <p class="text-lg font-medium text-stone-800 dark:text-slate-200" id="final-message">Ovdje ide poruka.</p>
+            <div class="bg-stone-50 dark:bg-slate-900 p-6 rounded-xl border border-stone-200 dark:border-slate-700 max-w-lg mx-auto mb-8 md:mb-10 text-left">
+                <h4 class="text-xs md:text-sm font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-2">Presuda sociologa:</h4>
+                <p class="text-base md:text-lg font-medium text-stone-800 dark:text-slate-200" id="final-message">Ovdje ide poruka.</p>
             </div>
 
-            <button id="restart-btn" class="px-8 py-3 bg-stone-100 hover:bg-stone-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-stone-800 dark:text-white font-bold border border-stone-300 dark:border-slate-600 rounded-xl transition-colors mr-3 mt-3">
-                Igraj ponovno (Nova pitanja!)
-            </button>
-            <a href="index.html" class="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors mt-3">
-                Povratak na izbornik
-            </a>
+            <div class="flex flex-col md:flex-row justify-center gap-3">
+                <button id="restart-btn" class="px-6 py-3 md:px-8 bg-stone-100 hover:bg-stone-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-stone-800 dark:text-white font-bold border border-stone-300 dark:border-slate-600 rounded-xl transition-colors">
+                    Igraj ponovno (Nova pitanja!)
+                </button>
+                <a href="index.html" class="inline-flex justify-center items-center px-6 py-3 md:px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors">
+                    Povratak na izbornik
+                </a>
+            </div>
         </div>
 
     </main>

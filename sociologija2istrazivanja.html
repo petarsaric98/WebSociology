@@ -54,12 +54,14 @@
                         <span class="mr-2">🏠</span> Društvo u Fokusu
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Uvod</a>
-                    <a href="#faze" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Faze</a>
-                    <a href="#metode" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Metode</a>
-                    <a href="#podaci" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Vrste podataka</a>
-                    <a href="#simulacija" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Simulacija</a>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Uvod</a>
+                        <a href="#faze" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Faze</a>
+                        <a href="#metode" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Metode</a>
+                        <a href="#podaci" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Vrste podataka</a>
+                        <a href="#simulacija" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors">Simulacija</a>
+                    </div>
                     <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -72,17 +74,17 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
 
         <section id="uvod" class="scroll-mt-20 pt-8">
-            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] flex items-center justify-start p-8 md:p-14">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[450px] flex items-center justify-start p-6 md:p-14">
                 <!-- Background Image with Overlay -->
                 <div class="absolute inset-0 z-0 bg-stone-900">
                     <img src="assets/research_hero.png" alt="Research Hero Image" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
                 </div>
                 
                 <!-- Glassmorphism Content Box -->
-                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-12 rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
-                    <div class="inline-block px-5 py-2 bg-white/20 text-white rounded-full text-xs font-bold tracking-widest mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 2</div>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow-md">Zamisli da si detektiv za društvo</h1>
-                    <p class="text-lg md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 2</div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">Zamisli da si detektiv za društvo</h1>
+                    <p class="text-base md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
                         Ovdje ćeš saznati što zapravo znači "istraživati društvo" i zašto to nije samo puko nagađanje. Sociološko istraživanje je proces u kojem pokušavamo razumjeti kako ljudi funkcioniraju u grupama, zašto se ponašaju na određeni način i što utječe na njihove odluke.
                     </p>
                 </div>

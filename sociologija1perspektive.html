@@ -49,12 +49,14 @@
                         <span class="mr-2">🏠</span> Društvo u Fokusu
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Uvod</a>
-                    <a href="#korijeni" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tranzicija</a>
-                    <a href="#teorije" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tri Teorije</a>
-                    <a href="#primjer" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Primjer: Škola</a>
-                    <a href="#makromikro" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Makro vs Mikro</a>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Uvod</a>
+                        <a href="#korijeni" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tranzicija</a>
+                        <a href="#teorije" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tri Teorije</a>
+                        <a href="#primjer" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Primjer: Škola</a>
+                        <a href="#makromikro" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Makro vs Mikro</a>
+                    </div>
                     <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -67,17 +69,17 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
 
         <section id="uvod" class="scroll-mt-20 pt-8">
-            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] flex items-center justify-start p-8 md:p-14">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[450px] flex items-center justify-start p-6 md:p-14">
                 <!-- Background Image with Overlay -->
                 <div class="absolute inset-0 z-0 bg-stone-900">
                     <img src="assets/perspectives_hero.png" alt="Perspectives Hero Image" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
                 </div>
                 
                 <!-- Glassmorphism Content Box -->
-                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-12 rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
-                    <div class="inline-block px-5 py-2 bg-white/20 text-white rounded-full text-xs font-bold tracking-widest mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 1</div>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow-md">Sociološke Perspektive</h1>
-                    <p class="text-lg md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 1</div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">Sociološke Perspektive</h1>
+                    <p class="text-base md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
                         Kada gledate vijesti, školu ili društvene mreže, što točno zapažate? Sociolozi koriste različite teorijske perspektive kako bi objasnili iste događaje na potpuno drugačije načine. Poznavanje ovih različitih kutova gledanja ključno je za razumijevanje šire slike društvenih procesa.
                     </p>
                 </div>
@@ -144,9 +146,9 @@
                     </div>
                     
                     <!-- Content Right -->
-                    <div class="md:w-2/3 p-8 md:p-12 flex items-center justify-center bg-white dark:bg-slate-800 min-h-[350px]">
+                    <div class="md:w-2/3 p-6 md:p-12 flex items-center justify-center bg-white dark:bg-slate-800 min-h-[350px]">
                         <div id="pers-content" class="w-full text-center transition-all duration-300">
-                            <div id="pers-emoji" class="text-7xl mb-6">⚙️</div>
+                            <div id="pers-emoji" class="text-5xl md:text-7xl mb-4 md:mb-6">⚙️</div>
                             <h3 id="pers-title" class="text-3xl font-extrabold text-stone-800 dark:text-white mb-4">Funkcionalizam</h3>
                             <p id="pers-desc" class="text-stone-600 dark:text-slate-300 text-lg leading-relaxed mb-6">Društvo je kao ljudsko tijelo.</p>
                             
@@ -176,10 +178,10 @@
                     Kako bi tri različita sociologa opisala tvoju školu? Zamislimo da su sva trojica došla na tvoj sat.
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left px-2 md:px-4">
                     
                     <!-- Kartica 1 -->
-                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-6 md:p-8 rounded-2xl hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors">
                         <div class="text-3xl mb-4">⚙️ <span class="text-xl font-bold text-stone-100 ml-2">Funkcionalist</span></div>
                         <p class="text-stone-300 italic mb-4">"Ova škola je super! Održava red."</p>
                         <p class="text-stone-400 text-sm">
@@ -188,7 +190,7 @@
                     </div>
 
                     <!-- Kartica 2 -->
-                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-rose-400 dark:hover:border-rose-400 transition-colors md:-translate-y-4 shadow-xl shadow-black/50">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-6 md:p-8 rounded-2xl hover:border-rose-400 dark:hover:border-rose-400 transition-colors md:-translate-y-4 shadow-xl shadow-black/50">
                         <div class="text-3xl mb-4">🥊 <span class="text-xl font-bold text-stone-100 ml-2">Konfliktni</span></div>
                         <p class="text-stone-300 italic mb-4">"Ova škola stvara poslušne radnike!"</p>
                         <p class="text-stone-400 text-sm">
@@ -197,7 +199,7 @@
                     </div>
 
                     <!-- Kartica 3 -->
-                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-purple-400 dark:hover:border-purple-400 transition-colors">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-6 md:p-8 rounded-2xl hover:border-purple-400 dark:hover:border-purple-400 transition-colors">
                         <div class="text-3xl mb-4">🗣️ <span class="text-xl font-bold text-stone-100 ml-2">Interakcionist</span></div>
                         <p class="text-stone-300 italic mb-4">"Gle kako profa razgovara s onim učenikom nazad."</p>
                         <p class="text-stone-400 text-sm">
