@@ -6,17 +6,25 @@
     <title>Sociološke Perspektive: Teorijski Pristupi Društvu</title>
     <meta name="description" content="Lekcija 1: Funkcionalizam, konfliktna teorija i simbolički interakcionizam. Jednostavan vodič za srednjoškolce.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fafaf9;
-            color: #292524;
+            font-family: 'Inter', sans-serif;
         }
         .nav-link.active {
-            border-bottom: 2px solid #3b82f6; /* blue-500 */
+            border-bottom: 2px solid #3b82f6;
             color: #3b82f6;
             font-weight: 600;
+        }
+        .dark .nav-link.active {
+            border-bottom: 2px solid #60a5fa;
+            color: #60a5fa;
         }
         .pers-btn.active {
             background-color: #eff6ff; /* blue-50 */
@@ -31,22 +39,26 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
 
-    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex items-center text-xl font-bold text-indigo-900">
+                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
                     <a href="index.html" class="flex items-center hover:opacity-80">
                         <span class="mr-2">🏠</span> Društvo u Fokusu
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#uvod" class="nav-link active text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Uvod</a>
-                    <a href="#korijeni" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Tranzicija</a>
-                    <a href="#teorije" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Tri Teorije</a>
-                    <a href="#primjer" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Primjer: Škola</a>
-                    <a href="#makromikro" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Makro vs Mikro</a>
+                    <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Uvod</a>
+                    <a href="#korijeni" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tranzicija</a>
+                    <a href="#teorije" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Tri Teorije</a>
+                    <a href="#primjer" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Primjer: Škola</a>
+                    <a href="#makromikro" class="nav-link text-stone-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2 transition-colors">Makro vs Mikro</a>
+                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -55,14 +67,17 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
 
         <section id="uvod" class="scroll-mt-20 pt-8">
-            <div class="bg-blue-600 rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden">
-                <!-- Background decoration -->
-                <div class="absolute -right-20 -top-20 opacity-10 text-[20rem]">🏛️</div>
+            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] flex items-center justify-start p-8 md:p-14">
+                <!-- Background Image with Overlay -->
+                <div class="absolute inset-0 z-0 bg-stone-900">
+                    <img src="assets/perspectives_hero.png" alt="Perspectives Hero Image" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
+                </div>
                 
-                <div class="relative z-10 text-center md:text-left">
-                    <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-bold tracking-wider mb-6 backdrop-blur-sm shadow-sm ring-1 ring-white/30">LEKCIJA 1</div>
-                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Sociološke Perspektive</h1>
-                    <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl">
+                <!-- Glassmorphism Content Box -->
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-12 rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-5 py-2 bg-white/20 text-white rounded-full text-xs font-bold tracking-widest mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 1</div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow-md">Sociološke Perspektive</h1>
+                    <p class="text-lg md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
                         Kada gledate vijesti, školu ili društvene mreže, što točno zapažate? Sociolozi koriste različite teorijske perspektive kako bi objasnili iste događaje na potpuno drugačije načine. Poznavanje ovih različitih kutova gledanja ključno je za razumijevanje šire slike društvenih procesa.
                     </p>
                 </div>
@@ -71,47 +86,43 @@
 
         <section id="korijeni" class="scroll-mt-20">
             <div class="mb-10 text-center md:text-left">
-                <div class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Kako je sve počelo?</div>
-                <h2 class="text-3xl font-bold text-stone-800 mb-4">Prijelaz iz Tradicionalnog u Moderno</h2>
-                <p class="text-lg text-stone-600 max-w-3xl">
+                <div class="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Kako je sve počelo?</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Prijelaz iz Tradicionalnog u Moderno</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl">
                     Sociologija je nastala kao pokušaj shvaćanja kaosa Industrijske i Francuske revolucije. Stari svijet (tradicija) se rušio, a rađao se novi (modernost). Klasični sociolozi pokušali su objasniti tu golemu tranziciju:
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Comte -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-blue-300 transition-colors">
-                    <h3 class="text-xl font-bold text-stone-800 mb-2">Auguste Comte</h3>
-                    <p class="text-stone-600 text-sm mb-3">Koncept "Zakona triju stadija". Objašnjavanje svijeta evoluira.</p>
-                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
-                        <span class="font-semibold text-rose-700">Teološko društvo</span> (vjera/religija) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-blue-700">Pozitivno društvo</span> (znanost).
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-blue-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-2">Auguste Comte</h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm mb-3">Koncept "Zakona triju stadija". Objašnjavanje svijeta evoluira.</p>
+                    <div class="bg-stone-50 dark:bg-slate-900 p-3 rounded-lg border border-stone-100 dark:border-slate-700 text-sm">
+                        <span class="font-semibold text-rose-700 dark:text-rose-400">Teološko društvo</span> (vjera/religija) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-blue-700 dark:text-blue-400">Pozitivno društvo</span> (znanost).
                     </div>
                 </div>
 
-                <!-- Durkheim -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-emerald-300 transition-colors">
-                    <h3 class="text-xl font-bold text-stone-800 mb-2">Émile Durkheim</h3>
-                    <p class="text-stone-600 text-sm mb-3">Fokusirao se na ono što ljude drži zajedno (solidarnost).</p>
-                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
-                        <span class="font-semibold text-rose-700">Mehanička solidarnost</span> (sličnosti u tradicionalnim selima) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-emerald-700">Organska solidarnost</span> (međusobna ovisnost/podjela rada u modernom društvu).
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-emerald-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-2">Émile Durkheim</h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm mb-3">Fokusirao se na ono što ljude drži zajedno (solidarnost).</p>
+                    <div class="bg-stone-50 dark:bg-slate-900 p-3 rounded-lg border border-stone-100 dark:border-slate-700 text-sm">
+                        <span class="font-semibold text-rose-700 dark:text-rose-400">Mehanička solidarnost</span> (sličnosti u tradicionalnim selima) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-emerald-700 dark:text-emerald-400">Organska solidarnost</span> (međusobna ovisnost/podjela rada u modernom društvu).
                     </div>
                 </div>
 
-                <!-- Marx -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-red-300 transition-colors">
-                    <h3 class="text-xl font-bold text-stone-800 mb-2">Karl Marx</h3>
-                    <p class="text-stone-600 text-sm mb-3">Promjena ovisi isključivo o načinu materijalne proizvodnje u društvu.</p>
-                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
-                        <span class="font-semibold text-rose-700">Feudalizam</span> (zemljoposjednik i kmet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-red-700">Kapitalizam</span> (tvorničar i radnik).
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-red-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-2">Karl Marx</h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm mb-3">Promjena ovisi isključivo o načinu materijalne proizvodnje u društvu.</p>
+                    <div class="bg-stone-50 dark:bg-slate-900 p-3 rounded-lg border border-stone-100 dark:border-slate-700 text-sm">
+                        <span class="font-semibold text-rose-700 dark:text-rose-400">Feudalizam</span> (zemljoposjednik i kmet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-red-700 dark:text-red-400">Kapitalizam</span> (tvorničar i radnik).
                     </div>
                 </div>
 
-                <!-- Weber -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-purple-300 transition-colors">
-                    <h3 class="text-xl font-bold text-stone-800 mb-2">Max Weber</h3>
-                    <p class="text-stone-600 text-sm mb-3">Promjena u načinu društvenog razmišljanja i postupanju (Racionalizacija).</p>
-                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
-                        <span class="font-semibold text-rose-700">Začarani svijet</span> (magijski, tradicionalni autoritet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-purple-700">Raščarani svijet</span> (birokracija, proračunljivost i razum).
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-purple-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-2">Max Weber</h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm mb-3">Promjena u načinu društvenog razmišljanja i postupanju (Racionalizacija).</p>
+                    <div class="bg-stone-50 dark:bg-slate-900 p-3 rounded-lg border border-stone-100 dark:border-slate-700 text-sm">
+                        <span class="font-semibold text-rose-700 dark:text-rose-400">Začarani svijet</span> (magijski, tradicionalni autoritet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-purple-700 dark:text-purple-400">Raščarani svijet</span> (birokracija, proračunljivost i razum).
                     </div>
                 </div>
             </div>
@@ -119,34 +130,34 @@
 
         <section id="teorije" class="scroll-mt-20">
             <div class="mb-10 text-center md:text-left">
-                <h2 class="text-3xl font-bold text-stone-800 mb-4">Tri Glavna Teorijska Pravca</h2>
-                <p class="text-lg text-stone-600 max-w-2xl">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Tri Glavna Teorijska Pravca</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-2xl">
                     Postoje tri glavna pristupa. Kliknite na svaki od njih s lijeve strane kako biste vidjeli na što se fokusiraju i koja im je glavna odlika.
                 </p>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-lg border border-stone-100 overflow-hidden">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-stone-100 dark:border-slate-700 overflow-hidden">
                 <div class="flex flex-col md:flex-row">
                     <!-- Nav Left -->
-                    <div class="md:w-1/3 bg-stone-50 border-r border-stone-100" id="pers-buttons">
+                    <div class="md:w-1/3 bg-stone-50 dark:bg-slate-900/50 border-r border-stone-100 dark:border-slate-700" id="pers-buttons">
                         <!-- Buttons injected via JS -->
                     </div>
                     
                     <!-- Content Right -->
-                    <div class="md:w-2/3 p-8 md:p-12 flex items-center justify-center bg-white min-h-[350px]">
+                    <div class="md:w-2/3 p-8 md:p-12 flex items-center justify-center bg-white dark:bg-slate-800 min-h-[350px]">
                         <div id="pers-content" class="w-full text-center transition-all duration-300">
                             <div id="pers-emoji" class="text-7xl mb-6">⚙️</div>
-                            <h3 id="pers-title" class="text-3xl font-extrabold text-stone-800 mb-4">Funkcionalizam</h3>
-                            <p id="pers-desc" class="text-stone-600 text-lg leading-relaxed mb-6">Društvo je kao ljudsko tijelo.</p>
+                            <h3 id="pers-title" class="text-3xl font-extrabold text-stone-800 dark:text-white mb-4">Funkcionalizam</h3>
+                            <p id="pers-desc" class="text-stone-600 dark:text-slate-300 text-lg leading-relaxed mb-6">Društvo je kao ljudsko tijelo.</p>
                             
                             <div class="mt-2 mb-6">
-                                <span class="font-bold uppercase tracking-wider text-xs text-stone-400 mr-2">Glavni predstavnici:</span>
-                                <span id="pers-authors" class="font-medium text-stone-700">Émile Durkheim</span>
+                                <span class="font-bold uppercase tracking-wider text-xs text-stone-400 dark:text-slate-500 mr-2">Glavni predstavnici:</span>
+                                <span id="pers-authors" class="font-medium text-stone-700 dark:text-slate-300">Émile Durkheim</span>
                             </div>
 
-                            <div class="bg-stone-50 p-4 rounded-xl inline-block text-left w-full max-w-md mx-auto ring-1 ring-stone-900/5">
-                                <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block mb-1">Glavno pitanje:</span>
-                                <span class="text-stone-800 font-medium" id="pers-question">Kako ovaj dio pomaže cijelom sistemu da preživi?</span>
+                            <div class="bg-stone-50 dark:bg-slate-700/50 p-4 rounded-xl inline-block text-left w-full max-w-md mx-auto ring-1 ring-stone-900/5 dark:ring-white/10">
+                                <span class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-wider block mb-1">Glavno pitanje:</span>
+                                <span class="text-stone-800 dark:text-slate-200 font-medium" id="pers-question">Kako ovaj dio pomaže cijelom sistemu da preživi?</span>
                             </div>
                         </div>
                     </div>
@@ -157,7 +168,7 @@
         <!-- Stvarni Primjer Section -->
         <section id="primjer" class="scroll-mt-20 relative">
             
-            <div class="absolute inset-0 bg-stone-900 -mx-4 sm:-mx-6 lg:-mx-8 skew-y-2 z-0 transform translate-y-12 h-[120%]"></div>
+            <div class="absolute inset-0 bg-stone-900 dark:bg-slate-950 -mx-4 sm:-mx-6 lg:-mx-8 skew-y-2 z-0 transform translate-y-12 h-[120%] transition-colors duration-300"></div>
 
             <div class="relative z-10 py-16 text-white text-center">
                 <h2 class="text-4xl font-bold mb-6">Promatrajući isti problem: <span class="text-blue-400">Škola</span></h2>
@@ -168,7 +179,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left px-4">
                     
                     <!-- Kartica 1 -->
-                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-emerald-400 transition-colors">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors">
                         <div class="text-3xl mb-4">⚙️ <span class="text-xl font-bold text-stone-100 ml-2">Funkcionalist</span></div>
                         <p class="text-stone-300 italic mb-4">"Ova škola je super! Održava red."</p>
                         <p class="text-stone-400 text-sm">
@@ -177,7 +188,7 @@
                     </div>
 
                     <!-- Kartica 2 -->
-                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-rose-400 transition-colors md:-translate-y-4 shadow-xl shadow-black/50">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-rose-400 dark:hover:border-rose-400 transition-colors md:-translate-y-4 shadow-xl shadow-black/50">
                         <div class="text-3xl mb-4">🥊 <span class="text-xl font-bold text-stone-100 ml-2">Konfliktni</span></div>
                         <p class="text-stone-300 italic mb-4">"Ova škola stvara poslušne radnike!"</p>
                         <p class="text-stone-400 text-sm">
@@ -186,7 +197,7 @@
                     </div>
 
                     <!-- Kartica 3 -->
-                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-purple-400 transition-colors">
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-8 rounded-2xl hover:border-purple-400 dark:hover:border-purple-400 transition-colors">
                         <div class="text-3xl mb-4">🗣️ <span class="text-xl font-bold text-stone-100 ml-2">Interakcionist</span></div>
                         <p class="text-stone-300 italic mb-4">"Gle kako profa razgovara s onim učenikom nazad."</p>
                         <p class="text-stone-400 text-sm">
@@ -201,39 +212,39 @@
         <!-- MAKRO VS MIKRO -->
         <section id="makromikro" class="scroll-mt-20 pt-32 pb-20">
              <div class="mb-12 text-center">
-                <h2 class="text-3xl font-bold text-stone-800 mb-4">Makrosociologija vs Mikrosociologija</h2>
-                <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Makrosociologija vs Mikrosociologija</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-2xl mx-auto">
                     Dvije od ovih teorija gledaju na društvo "iz helikoptera" (Makro), dok se jedna spušta "na razinu ulice" (Mikro). Pogledajmo radar grafikon koji to vizualizira.
                 </p>
             </div>
 
-            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg border border-stone-200">
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-10 rounded-3xl shadow-lg border border-stone-200 dark:border-slate-700">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     
                     <div>
                         <ul class="space-y-6">
                             <li class="flex items-start">
-                                <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl mt-1 mr-4">🚁</div>
+                                <div class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 p-3 rounded-xl mt-1 mr-4">🚁</div>
                                 <div>
-                                    <h4 class="text-xl font-bold text-stone-800 mb-1">Makro level (Velika slika)</h4>
-                                    <p class="text-stone-600 text-sm">
+                                    <h4 class="text-xl font-bold text-stone-800 dark:text-white mb-1">Makro level (Velika slika)</h4>
+                                    <p class="text-stone-600 dark:text-slate-400 text-sm">
                                         Funkcionalizam i Konfliktna teorija. Proučavaju cijele institucije (školstvo, religiju, državu), zakone, ratove, velike društvene promjene. Ne bave se pojedincem.
                                     </p>
                                 </div>
                             </li>
                             <li class="flex items-start">
-                                <div class="bg-purple-100 text-purple-600 p-3 rounded-xl mt-1 mr-4">🔬</div>
+                                <div class="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 p-3 rounded-xl mt-1 mr-4">🔬</div>
                                 <div>
-                                    <h4 class="text-xl font-bold text-stone-800 mb-1">Mikro level (Mala slika)</h4>
-                                    <p class="text-stone-600 text-sm">
+                                    <h4 class="text-xl font-bold text-stone-800 dark:text-white mb-1">Mikro level (Mala slika)</h4>
+                                    <p class="text-stone-600 dark:text-slate-400 text-sm">
                                         Simbolički interakcionizam. Proučava male grupe, svakodnevnu komunikaciju, govor tijela, simbole po kojima pripadamo grupama (npr. nošenje određene marke tenisica na odmoru).
                                     </p>
                                 </div>
                             </li>
                         </ul>
 
-                        <div class="mt-10 p-5 bg-blue-50 text-blue-900 rounded-xl border border-blue-100 text-sm">
-                            <strong class="block mb-2">💡 Zašto je ovo važno znati?</strong>
+                        <div class="mt-10 p-5 bg-blue-50 dark:bg-slate-700/50 text-blue-900 dark:text-slate-200 rounded-xl border border-blue-100 dark:border-slate-600 text-sm">
+                            <strong class="block mb-2 text-stone-800 dark:text-white">💡 Zašto je ovo važno znati?</strong>
                             Zato što, ako te zanima zašto je izbio Drugi svjetski rat, koristit ćeš makro-perspektivu. Ali ako te zanima zašto si se jučer posvađao/la s najboljim prijateljem zbog pročitane, a neodgovorene poruke (simbol!), koristit ćeš mikro-perspektivu.
                         </div>
                     </div>
@@ -248,7 +259,7 @@
 
     </main>
 
-    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+    <footer class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm">
         <p>Interaktivni vodič za uvod u sociologiju &copy; 2026</p>
     </footer>
 
@@ -420,6 +431,40 @@
             });
 
         })();
+    </script>
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (themeToggleDarkIcon && themeToggleLightIcon && themeToggleBtn) {
+            if (localStorage.getItem('color-theme') === 'dark') {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                document.documentElement.classList.remove('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+        }
     </script>
 </body>
 </html>
