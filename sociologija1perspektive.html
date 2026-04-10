@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociološke Perspektive: Teorijski Pristupi Društvu</title>
+    <meta name="description" content="Lekcija 1: Funkcionalizam, konfliktna teorija i simbolički interakcionizam. Jednostavan vodič za srednjoškolce.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fafaf9;
+            color: #292524;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #3b82f6; /* blue-500 */
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .pers-btn.active {
+            background-color: #eff6ff; /* blue-50 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+        }
+        .chart-container-large {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 350px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#uvod" class="nav-link active text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Uvod</a>
+                    <a href="#korijeni" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Tranzicija</a>
+                    <a href="#teorije" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Tri Teorije</a>
+                    <a href="#primjer" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Primjer: Škola</a>
+                    <a href="#makromikro" class="nav-link text-stone-600 hover:text-blue-600 px-1 py-2 transition-colors">Makro vs Mikro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="bg-blue-600 rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden">
+                <!-- Background decoration -->
+                <div class="absolute -right-20 -top-20 opacity-10 text-[20rem]">🏛️</div>
+                
+                <div class="relative z-10 text-center md:text-left">
+                    <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-bold tracking-wider mb-6 backdrop-blur-sm shadow-sm ring-1 ring-white/30">LEKCIJA 1</div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Sociološke Perspektive</h1>
+                    <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl">
+                        Kada gledate vijesti, školu ili društvene mreže, što točno zapažate? Sociolozi koriste različite teorijske perspektive kako bi objasnili iste događaje na potpuno drugačije načine. Poznavanje ovih različitih kutova gledanja ključno je za razumijevanje šire slike društvenih procesa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="korijeni" class="scroll-mt-20">
+            <div class="mb-10 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Kako je sve počelo?</div>
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Prijelaz iz Tradicionalnog u Moderno</h2>
+                <p class="text-lg text-stone-600 max-w-3xl">
+                    Sociologija je nastala kao pokušaj shvaćanja kaosa Industrijske i Francuske revolucije. Stari svijet (tradicija) se rušio, a rađao se novi (modernost). Klasični sociolozi pokušali su objasniti tu golemu tranziciju:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Comte -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-blue-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">Auguste Comte</h3>
+                    <p class="text-stone-600 text-sm mb-3">Koncept "Zakona triju stadija". Objašnjavanje svijeta evoluira.</p>
+                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
+                        <span class="font-semibold text-rose-700">Teološko društvo</span> (vjera/religija) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-blue-700">Pozitivno društvo</span> (znanost).
+                    </div>
+                </div>
+
+                <!-- Durkheim -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-emerald-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">Émile Durkheim</h3>
+                    <p class="text-stone-600 text-sm mb-3">Fokusirao se na ono što ljude drži zajedno (solidarnost).</p>
+                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
+                        <span class="font-semibold text-rose-700">Mehanička solidarnost</span> (sličnosti u tradicionalnim selima) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-emerald-700">Organska solidarnost</span> (međusobna ovisnost/podjela rada u modernom društvu).
+                    </div>
+                </div>
+
+                <!-- Marx -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-red-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">Karl Marx</h3>
+                    <p class="text-stone-600 text-sm mb-3">Promjena ovisi isključivo o načinu materijalne proizvodnje u društvu.</p>
+                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
+                        <span class="font-semibold text-rose-700">Feudalizam</span> (zemljoposjednik i kmet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-red-700">Kapitalizam</span> (tvorničar i radnik).
+                    </div>
+                </div>
+
+                <!-- Weber -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:border-purple-300 transition-colors">
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">Max Weber</h3>
+                    <p class="text-stone-600 text-sm mb-3">Promjena u načinu društvenog razmišljanja i postupanju (Racionalizacija).</p>
+                    <div class="bg-stone-50 p-3 rounded-lg border border-stone-100 text-sm">
+                        <span class="font-semibold text-rose-700">Začarani svijet</span> (magijski, tradicionalni autoritet) <span class="mx-2 opacity-50">➡️</span> <span class="font-semibold text-purple-700">Raščarani svijet</span> (birokracija, proračunljivost i razum).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teorije" class="scroll-mt-20">
+            <div class="mb-10 text-center md:text-left">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Tri Glavna Teorijska Pravca</h2>
+                <p class="text-lg text-stone-600 max-w-2xl">
+                    Postoje tri glavna pristupa. Kliknite na svaki od njih s lijeve strane kako biste vidjeli na što se fokusiraju i koja im je glavna odlika.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-stone-100 overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <!-- Nav Left -->
+                    <div class="md:w-1/3 bg-stone-50 border-r border-stone-100" id="pers-buttons">
+                        <!-- Buttons injected via JS -->
+                    </div>
+                    
+                    <!-- Content Right -->
+                    <div class="md:w-2/3 p-8 md:p-12 flex items-center justify-center bg-white min-h-[350px]">
+                        <div id="pers-content" class="w-full text-center transition-all duration-300">
+                            <div id="pers-emoji" class="text-7xl mb-6">⚙️</div>
+                            <h3 id="pers-title" class="text-3xl font-extrabold text-stone-800 mb-4">Funkcionalizam</h3>
+                            <p id="pers-desc" class="text-stone-600 text-lg leading-relaxed mb-6">Društvo je kao ljudsko tijelo.</p>
+                            
+                            <div class="mt-2 mb-6">
+                                <span class="font-bold uppercase tracking-wider text-xs text-stone-400 mr-2">Glavni predstavnici:</span>
+                                <span id="pers-authors" class="font-medium text-stone-700">Émile Durkheim</span>
+                            </div>
+
+                            <div class="bg-stone-50 p-4 rounded-xl inline-block text-left w-full max-w-md mx-auto ring-1 ring-stone-900/5">
+                                <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block mb-1">Glavno pitanje:</span>
+                                <span class="text-stone-800 font-medium" id="pers-question">Kako ovaj dio pomaže cijelom sistemu da preživi?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stvarni Primjer Section -->
+        <section id="primjer" class="scroll-mt-20 relative">
+            
+            <div class="absolute inset-0 bg-stone-900 -mx-4 sm:-mx-6 lg:-mx-8 skew-y-2 z-0 transform translate-y-12 h-[120%]"></div>
+
+            <div class="relative z-10 py-16 text-white text-center">
+                <h2 class="text-4xl font-bold mb-6">Promatrajući isti problem: <span class="text-blue-400">Škola</span></h2>
+                <p class="text-lg text-stone-300 mb-12 max-w-2xl mx-auto">
+                    Kako bi tri različita sociologa opisala tvoju školu? Zamislimo da su sva trojica došla na tvoj sat.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left px-4">
+                    
+                    <!-- Kartica 1 -->
+                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-emerald-400 transition-colors">
+                        <div class="text-3xl mb-4">⚙️ <span class="text-xl font-bold text-stone-100 ml-2">Funkcionalist</span></div>
+                        <p class="text-stone-300 italic mb-4">"Ova škola je super! Održava red."</p>
+                        <p class="text-stone-400 text-sm">
+                            Vidi školu kao organ koji vrši funkciju: uči vas redu, radu, priprema vas za posao i, brutalno iskreno, čuva vas s ulice dok su vam roditelji na poslu.
+                        </p>
+                    </div>
+
+                    <!-- Kartica 2 -->
+                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-rose-400 transition-colors md:-translate-y-4 shadow-xl shadow-black/50">
+                        <div class="text-3xl mb-4">🥊 <span class="text-xl font-bold text-stone-100 ml-2">Konfliktni</span></div>
+                        <p class="text-stone-300 italic mb-4">"Ova škola stvara poslušne radnike!"</p>
+                        <p class="text-stone-400 text-sm">
+                            Vidi školu kao aparat koji održava nejednakost. Bogata djeca idu u bolje školy, a škola nas uči poslušnosti sustavu. Mjesto borbe i kontrole!
+                        </p>
+                    </div>
+
+                    <!-- Kartica 3 -->
+                    <div class="bg-stone-800 border border-stone-700 p-8 rounded-2xl hover:border-purple-400 transition-colors">
+                        <div class="text-3xl mb-4">🗣️ <span class="text-xl font-bold text-stone-100 ml-2">Interakcionist</span></div>
+                        <p class="text-stone-300 italic mb-4">"Gle kako profa razgovara s onim učenikom nazad."</p>
+                        <p class="text-stone-400 text-sm">
+                            Njega ne zanima sustav. On gleda mikrosvijet: kako klikanje kemijskom iritira profesora, kako se formiraju školske "bande" i kako etiketiranje učenika kao "lošeg" utječe na njegove ocjene.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MAKRO VS MIKRO -->
+        <section id="makromikro" class="scroll-mt-20 pt-32 pb-20">
+             <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Makrosociologija vs Mikrosociologija</h2>
+                <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                    Dvije od ovih teorija gledaju na društvo "iz helikoptera" (Makro), dok se jedna spušta "na razinu ulice" (Mikro). Pogledajmo radar grafikon koji to vizualizira.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg border border-stone-200">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <ul class="space-y-6">
+                            <li class="flex items-start">
+                                <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl mt-1 mr-4">🚁</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-stone-800 mb-1">Makro level (Velika slika)</h4>
+                                    <p class="text-stone-600 text-sm">
+                                        Funkcionalizam i Konfliktna teorija. Proučavaju cijele institucije (školstvo, religiju, državu), zakone, ratove, velike društvene promjene. Ne bave se pojedincem.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-purple-100 text-purple-600 p-3 rounded-xl mt-1 mr-4">🔬</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-stone-800 mb-1">Mikro level (Mala slika)</h4>
+                                    <p class="text-stone-600 text-sm">
+                                        Simbolički interakcionizam. Proučava male grupe, svakodnevnu komunikaciju, govor tijela, simbole po kojima pripadamo grupama (npr. nošenje određene marke tenisica na odmoru).
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="mt-10 p-5 bg-blue-50 text-blue-900 rounded-xl border border-blue-100 text-sm">
+                            <strong class="block mb-2">💡 Zašto je ovo važno znati?</strong>
+                            Zato što, ako te zanima zašto je izbio Drugi svjetski rat, koristit ćeš makro-perspektivu. Ali ako te zanima zašto si se jučer posvađao/la s najboljim prijateljem zbog pročitane, a neodgovorene poruke (simbol!), koristit ćeš mikro-perspektivu.
+                        </div>
+                    </div>
+
+                    <div class="chart-container-large">
+                        <canvas id="macroMicroChart"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+        <p>Interaktivni vodič za uvod u sociologiju &copy; 2026</p>
+    </footer>
+
+    <script>
+        (function() {
+            // --- Navigation Highlighting ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // --- Perspectives Data ---
+            const perspectives = [
+                {
+                    id: 'func',
+                    emoji: '⚙️',
+                    colorClass: 'text-emerald-500',
+                    borderClass: 'border-emerald-500',
+                    title: 'Funkcionalizam',
+                    desc: 'Zamislite društvo kao ljudsko organizam. Medicina (medicina), policija (imunološki sustav), škola (živčani sustav). Sve ima svoju funkciju i razlog postojanja, čak i stvari koje smatramo lošima (poput kriminala, jer nas podsjeća na naša pravila). \n\nCilj društva je: **Stabilnost i Harmonija**.',
+                    authors: 'Émile Durkheim, Talcott Parsons, Robert K. Merton',
+                    question: 'Kako ovaj dio pomaže cijelom sistemu preživjeti?'
+                },
+                {
+                    id: 'konfl',
+                    emoji: '🥊',
+                    colorClass: 'text-rose-500',
+                    borderClass: 'border-rose-500',
+                    title: 'Konfliktna (/Kritička) Teorija',
+                    desc: 'Društvo nije skladan organizam, nego bojno polje! Resursa (novca, moći, prestiža) je malo i grupe se oko njih otimaju. Neki imaju puno, većina nema ništa. Oni koji imaju moć donose zakone da bi je zadržali (npr. Marxovo poimanje bogatih i siromašnih).\n\nCilj društva je: **Nejednakost i Sukob klasa**.',
+                    authors: 'Karl Marx',
+                    question: 'Tko ovdje ima moć i tko izvlači korist na štetu drugih?'
+                },
+                {
+                    id: 'inter',
+                    emoji: '🗣️',
+                    colorClass: 'text-purple-500',
+                    borderClass: 'border-purple-500',
+                    title: 'Simbolički Interakcionizam',
+                    desc: 'Zaboravi na ogromne sustave i bitke oko moći. Društvo je zapravo samo milijarda malih, svakodnevnih interakcija među ljudima. Ljudi stvaraju društvo na način kako dodjeljuju "ZNAČENJE" stvarima. Npr. tetovaža ili probušeno uho nekad su značili bunt, a danas su samo ukras.\n\nFiltar: **Mikro-razina i Značenja**.',
+                    authors: 'George Herbert Mead, Erving Goffman',
+                    question: 'Kako ovi pojedinci interpretiraju ono što im se događa i koje simbole koriste?'
+                }
+            ];
+
+            const persContainer = document.getElementById('pers-buttons');
+            const pEmoji = document.getElementById('pers-emoji');
+            const pTitle = document.getElementById('pers-title');
+            const pDesc = document.getElementById('pers-desc');
+            const pAuthors = document.getElementById('pers-authors');
+            const pQuestion = document.getElementById('pers-question');
+
+            function stripMarkdown(text) {
+                return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            }
+
+            perspectives.forEach((p, index) => {
+                const btn = document.createElement('button');
+                btn.className = `pers-btn w-full text-left p-5 transition-all text-stone-600 font-semibold border-l-4 border-transparent hover:bg-stone-100 ${index === 0 ? 'active' : ''} border-b border-stone-100`;
+                btn.innerHTML = `<span class="mr-3 text-xl">${p.emoji}</span> ${p.title}`;
+                
+                btn.onclick = () => {
+                    document.querySelectorAll('.pers-btn').forEach(b => {
+                        b.classList.remove('active');
+                        // b.classList.remove(p.borderClass);
+                    });
+                    btn.classList.add('active');
+                    
+                    
+                    // Simple animation reflow
+                    const contentDiv = document.getElementById('pers-content');
+                    contentDiv.style.opacity = '0';
+                    contentDiv.style.transform = 'translateY(10px)';
+                    
+                    setTimeout(() => {
+                        pEmoji.innerText = p.emoji;
+                        pTitle.innerText = p.title;
+                        pTitle.className = `text-3xl font-extrabold mb-4 ${p.colorClass}`;
+                        pDesc.innerHTML = stripMarkdown(p.desc.replace(/\n\n/g, '<br><br>'));
+                        pAuthors.innerText = p.authors;
+                        pQuestion.innerText = p.question;
+                        
+                        contentDiv.style.opacity = '1';
+                        contentDiv.style.transform = 'translateY(0)';
+                    }, 150);
+                };
+                persContainer.appendChild(btn);
+            });
+            
+            // Trigger first click visually
+            persContainer.firstChild.onclick();
+
+            // --- Radar Chart: Macro vs Micro Focus ---
+            const ctxMacro = document.getElementById('macroMicroChart').getContext('2d');
+            new Chart(ctxMacro, {
+                type: 'radar',
+                data: {
+                    labels: ['Briga za cijeli sustav', 'Borba oko moći', 'Institucije (škole, država)', 'Mala grupa prijatelja', 'Face-to-Face Komunikacija', 'Davanje značenja simbolima'],
+                    datasets: [
+                        {
+                            label: 'Funkcionalizam (Makro)',
+                            data: [10, 2, 9, 1, 1, 3],
+                            fill: true,
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)', // emerald
+                            borderColor: 'rgb(16, 185, 129)',
+                            pointBackgroundColor: 'rgb(16, 185, 129)',
+                            pointBorderColor: '#fff',
+                        },
+                        {
+                            label: 'Konfliktna Teorija (Makro)',
+                            data: [6, 10, 8, 2, 2, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(244, 63, 94, 0.2)', // rose
+                            borderColor: 'rgb(244, 63, 94)',
+                            pointBackgroundColor: 'rgb(244, 63, 94)',
+                            pointBorderColor: '#fff',
+                        },
+                        {
+                            label: 'Interakcionizam (Mikro)',
+                            data: [1, 2, 1, 10, 10, 9],
+                            fill: true,
+                            backgroundColor: 'rgba(168, 85, 247, 0.2)', // purple
+                            borderColor: 'rgb(168, 85, 247)',
+                            pointBackgroundColor: 'rgb(168, 85, 247)',
+                            pointBorderColor: '#fff',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true, color: 'rgba(0,0,0,0.05)' },
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            pointLabels: {
+                                font: { size: 11, family: "'Segoe UI', Tahoma, sans-serif", weight: 'bold' },
+                                color: '#57534e'
+                            },
+                            ticks: { display: false, min: 0, max: 10 }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                            }
+                        },
+                        tooltip: { backgroundColor: 'rgba(28, 25, 23, 0.9)', padding: 12 }
+                    }
+                }
+            });
+
+        })();
+    </script>
+</body>
+</html>

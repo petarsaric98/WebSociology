@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociološko Istraživanje: Vodič za Srednjoškolce</title>
+    <meta name="description" content="Interaktivni vodič za uvod u sociološko istraživanje. Saznajte o fazama istraživanja, metodama, kvantitativnim i kvalitativnim podacima.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fafaf9;
+            color: #292524;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        @media (max-width: 640px) {
+            .chart-container { height: 250px; }
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .method-btn.active {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#uvod" class="nav-link active text-stone-600 hover:text-indigo-600 px-1 py-2 transition-colors">Uvod</a>
+                    <a href="#faze" class="nav-link text-stone-600 hover:text-indigo-600 px-1 py-2 transition-colors">Faze</a>
+                    <a href="#metode" class="nav-link text-stone-600 hover:text-indigo-600 px-1 py-2 transition-colors">Metode</a>
+                    <a href="#podaci" class="nav-link text-stone-600 hover:text-indigo-600 px-1 py-2 transition-colors">Vrste podataka</a>
+                    <a href="#simulacija" class="nav-link text-stone-600 hover:text-indigo-600 px-1 py-2 transition-colors">Simulacija</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="bg-indigo-600 rounded-3xl p-8 md:p-12 text-white shadow-xl">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Zamisli da si detektiv za društvo</h1>
+                <p class="text-lg md:text-xl leading-relaxed opacity-90">
+                    Ovaj odjeljak te uvodi u osnovnu ideju sociologije. Ovdje ćeš saznati što zapravo znači "istraživati društvo" i zašto to nije samo puko nagađanje. Sociološko istraživanje je proces u kojem pokušavamo razumjeti kako ljudi funkcioniraju u grupama, zašto se ponašaju na određeni način i što utječe na njihove odluke.
+                </p>
+                <div class="mt-8 bg-white/20 p-6 rounded-xl backdrop-blur-sm">
+                    <p class="text-xl font-semibold mb-2">Što nije sociološko istraživanje?</p>
+                    <p class="opacity-90">Sjedenje na kavi i donošenje zaključaka poput "svi su danas ovisni o mobitelima jer ja to tako vidim". Sociologija zahtijeva <strong>dokaze, metodu i sustavan pristup</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faze" class="scroll-mt-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Kako uopće početi? Faze istraživanja</h2>
+                <p class="text-lg text-stone-600">
+                    U ovom dijelu prolazimo kroz korake koje svaki sociolog mora proći. Poput kuhanja prema receptu, preskakanje koraka može rezultirati katastrofom. Klikaj kroz korake ispod da vidiš logičan slijed od ideje do zaključka.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-6 md:p-10 border border-stone-200">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3 border-r border-stone-100 pr-4 flex flex-col justify-center space-y-4" id="phase-buttons">
+                    </div>
+                    <div class="md:w-2/3 flex items-center">
+                        <div id="phase-content" class="bg-stone-50 p-8 rounded-xl w-full border border-stone-200 transition-all duration-300">
+                            <h3 id="phase-title" class="text-2xl font-bold text-indigo-700 mb-3">...</h3>
+                            <p id="phase-desc" class="text-stone-600 text-lg">Odaberi fazu s lijeve strane.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metode" class="scroll-mt-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Alati zanata: Metode istraživanja</h2>
+                <p class="text-lg text-stone-600">
+                    Ovaj odjeljak prikazuje različite načine na koje prikupljamo informacije. Ne odgovara svaka metoda svakom pitanju. Ako želiš znati što misli 1000 učenika, nećeš s njima piti 1000 kava. Odaberi metodu ispod da saznaš kada se koristi i koje su joj prednosti.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-4 flex flex-col space-y-2" id="method-list">
+                </div>
+                
+                <div class="md:col-span-8">
+                    <div id="method-display" class="bg-white p-8 rounded-2xl shadow-md border border-stone-200 h-full">
+                        <div class="text-5xl mb-4" id="method-icon">📝</div>
+                        <h3 class="text-2xl font-bold text-stone-800 mb-2" id="method-title">Odaberi metodu</h3>
+                        <p class="text-stone-600 mb-6" id="method-desc">Ovdje će se pojaviti objašnjenje metode.</p>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                            <p class="text-sm font-bold text-indigo-800 uppercase tracking-wider mb-1">Primjer iz srednje škole:</p>
+                            <p class="text-indigo-900" id="method-example">...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="podaci" class="scroll-mt-20">
+             <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Kvantitativno vs. Kvalitativno</h2>
+                <p class="text-lg text-stone-600">
+                    Ovdje učimo razlikovati dvije glavne vrste podataka. To je razlika između brojanja nečega i dubokog razumijevanja nečega. Obje vrste su važne i često se koriste zajedno.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-teal-500 hover:-translate-y-1 transition-transform">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4 flex items-center">🔢 Kvantitativni podaci</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li class="flex items-start"><span class="mr-2 text-teal-500">▶</span> Fokus na brojevima, postocima i statistikama.</li>
+                        <li class="flex items-start"><span class="mr-2 text-teal-500">▶</span> Odgovaraju na pitanja: "Koliko?", "Koliko često?".</li>
+                        <li class="flex items-start"><span class="mr-2 text-teal-500">▶</span> Dobivamo ih anketama s ponuđenim odgovorima (A, B, C).</li>
+                        <li class="flex items-start"><span class="mr-2 text-teal-500">▶</span> Lako se prikazuju grafikonima.</li>
+                    </ul>
+                    <div class="mt-6 p-4 bg-stone-50 rounded-lg italic text-sm border-l-4 border-teal-500">
+                        "75% učenika u školi koristi TikTok više od 2 sata dnevno."
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-amber-500 hover:-translate-y-1 transition-transform">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4 flex items-center">🗣️ Kvalitativni podaci</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li class="flex items-start"><span class="mr-2 text-amber-500">▶</span> Fokus na riječima, značenjima, osjećajima i motivima.</li>
+                        <li class="flex items-start"><span class="mr-2 text-amber-500">▶</span> Odgovaraju na pitanja: "Zašto?", "Kako?".</li>
+                        <li class="flex items-start"><span class="mr-2 text-amber-500">▶</span> Dobivamo ih intervjuima ili promatranjem.</li>
+                        <li class="flex items-start"><span class="mr-2 text-amber-500">▶</span> Pomažu nam razumjeti "priču" iza brojeva.</li>
+                    </ul>
+                    <div class="mt-6 p-4 bg-stone-50 rounded-lg italic text-sm border-l-4 border-amber-500">
+                        "Učenici kažu da koriste TikTok jer im pomaže pobjeći od stresa zbog nadolazećih ispita."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulacija" class="scroll-mt-20 pb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Simulacija: Prijavljujemo rezultate</h2>
+                <p class="text-lg text-stone-600">
+                    Ovaj odjeljak služi kao interaktivni primjer. Zamisli da si proveo/la istraživanje na temu: <strong>"Utjecaj korištenja mobitela na koncentraciju u školi"</strong>. Ovdje su vizualizirani tvoji zamišljeni (kvantitativni) podaci. Interaktiraj s grafikonima!
+                </p>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-stone-200">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    
+                    <div class="flex flex-col">
+                        <h3 class="text-xl font-bold text-stone-800 mb-2 text-center">Razlozi korištenja mobitela pod satom</h3>
+                        <p class="text-sm text-stone-500 mb-4 text-center">Anketa: Pitanje s višestrukim izborom (N=200 učenika)</p>
+                        <div class="chart-container">
+                            <canvas id="reasonsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <h3 class="text-xl font-bold text-stone-800 mb-2 text-center">Vrijeme na mobitelu vs. Samoprocjena koncentracije</h3>
+                        <p class="text-sm text-stone-500 mb-4 text-center">Ocjena koncentracije od 1 (loše) do 5 (odlično)</p>
+                        <div class="chart-container">
+                            <canvas id="focusChart"></canvas>
+                        </div>
+                        <div class="mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-900 border border-indigo-100">
+                            <strong>Zaključak analize:</strong> Grafikon pokazuje negativnu korelaciju. Što više sati učenici provode na mobitelu prije spavanja, to u prosjeku slabije procjenjuju svoju koncentraciju na nastavi idući dan.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+        <p>Interaktivni vodič za uvod u sociologiju &copy; 2026</p>
+    </footer>
+
+    <script>
+        (function() {
+            // --- Navigation highlighting ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // --- Phases Data & Logic ---
+            const phases = [
+                { id: 1, title: "1. Odabir problema", desc: "Sve počinje pitanjem. Što te zanima? Nešto mora biti problematično ili nejasno. Npr. 'Zašto moji vršnjaci piju energetska pića iako znaju da su nezdrava?'" },
+                { id: 2, title: "2. Pregled literature", desc: "Prije nego kreneš, moraš provjeriti je li netko već to istražio. Čitaš članke, knjige. Možda netko već ima odgovor, pa samo nadogradiš njihovo istraživanje." },
+                { id: 3, title: "3. Postavljanje hipoteze", desc: "Hipoteza je tvoja pametna pretpostavka. 'Pretpostavljam da piju energetska pića jer misle da im pomažu u učenju noću.' Ovo ćeš kasnije pokušati dokazati ili opovrgnuti." },
+                { id: 4, title: "4. Izrada nacrta (Plan)", desc: "Kako ćeš prikupiti podatke? Koga ćeš pitati? Koliko ljudi? Kojom metodom? Ovdje radiš plan akcije." },
+                { id: 5, title: "5. Prikupljanje podataka", desc: "Akcija! Dijeliš ankete, radiš intervjue, promatraš. Skupiš gomilu materijala (brojeva ili snimaka razgovora)." },
+                { id: 6, title: "6. Analiza podataka", desc: "Sada tu gomilu materijala trebaš srediti. Baciš matematiku na brojeve (statistika) ili tražiš uzorke u odgovorima iz intervjua." },
+                { id: 7, title: "7. Zaključak", desc: "Je li tvoja hipoteza bila točna? Što si otkrio? Ovdje pišeš izvještaj (poput ovog koji sada čitaš!)" }
+            ];
+
+            const phaseContainer = document.getElementById('phase-buttons');
+            const phaseTitle = document.getElementById('phase-title');
+            const phaseDesc = document.getElementById('phase-desc');
+
+            phases.forEach((phase, index) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-4 py-3 rounded-lg font-medium transition-colors border border-transparent hover:bg-stone-100 ${index === 0 ? 'bg-indigo-600 text-white shadow hover:bg-indigo-700' : 'text-stone-600'}`;
+                btn.innerText = phase.title;
+                btn.onclick = () => {
+                    // Reset all buttons
+                    Array.from(phaseContainer.children).forEach(c => {
+                        c.className = 'w-full text-left px-4 py-3 rounded-lg font-medium transition-colors border border-transparent hover:bg-stone-100 text-stone-600';
+                    });
+                    // Set active button
+                    btn.className = 'w-full text-left px-4 py-3 rounded-lg font-medium transition-colors border border-transparent bg-indigo-600 text-white shadow hover:bg-indigo-700';
+                    
+                    // Update content
+                    phaseTitle.innerText = phase.title;
+                    phaseDesc.innerText = phase.desc;
+                };
+                phaseContainer.appendChild(btn);
+            });
+            // Init first phase
+            phaseTitle.innerText = phases[0].title;
+            phaseDesc.innerText = phases[0].desc;
+
+
+            // --- Methods Data & Logic ---
+            const methods = [
+                {
+                    id: 'anketa', icon: '📝', title: 'Anketa (Upitnik)',
+                    desc: 'Najčešća metoda. Sastaviš listu pitanja (najčešće na zaokruživanje) i podijeliš velikom broju ljudi. Odlično za dobivanje brzih odgovora i puno kvantitativnih podataka (postotaka).',
+                    example: 'Pošalješ Google Formu cijeloj školi da saznaš koliko sati tjedno uče za testove.'
+                },
+                {
+                    id: 'intervju', icon: '🗣️', title: 'Intervju',
+                    desc: 'Razgovor uživo (ili preko kamere). Umjesto zaokruživanja A, B, C, osoba ti objašnjava SVOJIM riječima. Odlično kada želiš duboko razumjeti ZAŠTO netko nešto misli.',
+                    example: 'Razgovaraš 45 minuta sa 5 učenika koji imaju loše ocjene kako bi saznao koje konkretne prepreke imaju kod kuće.'
+                },
+                {
+                    id: 'promatranje', icon: '👀', title: 'Promatranje',
+                    desc: 'Doslovno gledanje ljudi u njihovom prirodnom okruženju, često bez da oni znaju da ih se proučava (kako bi se ponašali prirodno). Bilježiš što rade, a ne što govore da rade.',
+                    example: 'Sjediš u kantini i bilježiš koliko često grupe učenika miješaju razrede (npr. sjede li prvašići ikad s maturantima).'
+                },
+                {
+                    id: 'eksperiment', icon: '🧪', title: 'Eksperiment',
+                    desc: 'Rjeđe u sociologiji nego u psihologiji, ali se koristi. Kontroliraš uvjete kako bi vidio reakciju. Dijeliš ljude u grupe i jednoj grupi promijeniš neki uvjet.',
+                    example: 'Zamoliš jedan razred da tjedan dana ugasi mobitele u 20:00, a drugi razred da ih koristi normalno, te na kraju tjedna testiraš razinu stresa u oba razreda.'
+                },
+                {
+                    id: 'analizasadrzaja', icon: '📄', title: 'Analiza sadržaja',
+                    desc: 'Proučavanje proizvoda ljudske komunikacije umjesto samih ljudi. To mogu biti novinski članci, objave na društvenim mrežama, pjesme ili povijesni dokumenti. Tražiš obrasce i skrivena značenja u tekstu ili slici.',
+                    example: 'Analiziraš najpopularnije TikTok videe u tvojoj školi u zadnjih mjesec dana kako bi otkrio koji se točno trendovi najviše cijene (humor, ples ili izgled).'
+                }
+            ];
+
+            const methodList = document.getElementById('method-list');
+            const mIcon = document.getElementById('method-icon');
+            const mTitle = document.getElementById('method-title');
+            const mDesc = document.getElementById('method-desc');
+            const mExample = document.getElementById('method-example');
+
+            methods.forEach((method, index) => {
+                const btn = document.createElement('button');
+                btn.className = `method-btn text-left p-4 rounded-r-lg border-y border-r border-transparent bg-stone-50 hover:bg-stone-100 transition-colors font-medium text-stone-700 ${index === 0 ? 'active' : ''}`;
+                btn.innerHTML = `<span class="mr-2">${method.icon}</span> ${method.title}`;
+                
+                btn.onclick = () => {
+                    document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    mIcon.innerText = method.icon;
+                    mTitle.innerText = method.title;
+                    mDesc.innerText = method.desc;
+                    mExample.innerText = method.example;
+                };
+                methodList.appendChild(btn);
+            });
+            // Init first method
+            mIcon.innerText = methods[0].icon;
+            mTitle.innerText = methods[0].title;
+            mDesc.innerText = methods[0].desc;
+            mExample.innerText = methods[0].example;
+
+
+            // --- Chart.js Implementations ---
+            
+            // Chart 1: Doughnut (Reasons)
+            const ctxReasons = document.getElementById('reasonsChart').getContext('2d');
+            new Chart(ctxReasons, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Dosada', 'Dopisivanje', 'Provjera vremena', 'Guglanje za nastavu', 'Ostalo'],
+                    datasets: [{
+                        data: [45, 30, 15, 5, 5],
+                        backgroundColor: [
+                            '#4f46e5', // indigo-600
+                            '#818cf8', // indigo-400
+                            '#14b8a6', // teal-500
+                            '#f59e0b', // amber-500
+                            '#d6d3d1'  // stone-300
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Bar (Screen time vs Focus)
+            const ctxFocus = document.getElementById('focusChart').getContext('2d');
+            new Chart(ctxFocus, {
+                type: 'bar',
+                data: {
+                    labels: ['< 1 sat', '1-2 sata', '2-3 sata', '3-4 sata', '> 4 sata'],
+                    datasets: [{
+                        label: 'Prosječna ocjena koncentracije (1-5)',
+                        data: [4.2, 3.9, 3.1, 2.4, 1.8],
+                        backgroundColor: '#4f46e5',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            title: {
+                                display: true,
+                                text: 'Ocjena koncentracije'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Sati na mobitelu prije spavanja'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Ocjena: ' + context.parsed.y;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
