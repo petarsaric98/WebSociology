@@ -90,7 +90,7 @@
                 <div class="text-6xl md:text-7xl mb-4 md:mb-6">🎓</div>
                 <h1 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-4">Kviz Znanja</h1>
                 <p class="text-base md:text-lg text-stone-600 dark:text-slate-400 mb-8 md:mb-10 max-w-xl mx-auto">
-                    Od teorija do metoda istraživanja. Računalo nudi nasumičnih 10 pitanja iz naše baze od 30 pitanja. Znaš li dovoljno da preživiš pravi sociološki ispit?
+                    Od teorija do metoda istraživanja i teorije elita. Računalo nudi nasumičnih 10 pitanja iz naše baze od 38 pitanja. Znaš li dovoljno da preživiš pravi sociološki ispit?
                 </p>
                 <button id="start-btn" class="px-6 py-3 md:px-8 md:py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-base md:text-lg transition-transform transform hover:scale-105 shadow-lg shadow-amber-500/30">
                     Započni Kviz →
@@ -155,7 +155,7 @@
     </main>
 
     <footer class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm transition-colors duration-300 w-full mt-auto">
-        <p>Interaktivni vodič za uvod u sociologiju &copy; 2026</p>
+        <p>Interaktivni vodič za sociologiju &copy; 2026</p>
     </footer>
 
     <script>
@@ -190,7 +190,15 @@
             { q: "Upitnik u kojem svatko zaokruži broj od 1 do 10 ovisno o boli - je li on kvalitativan ili kvantitativan?", opts: ["Subjektivan i nevalidan", "Kvalitativan", "Kvantitativan", "Eksplorativan"], ans: 2, exp: "Čim forsiraš nekog da umjesto opisa svoj osjećaj prebaci u ocjenu kojom raspolažu matematički alati, pretvorio si podatak u kvantitativni." },
             { q: "Zato sociolozi vrlo, vrlo ali uistinu RRRiJETKO izoliraju ljude zatvarajući golihe i u kaveze unutar labosa radi socijalnih eksperimentata?", opts: ["Nema dovoljno novca u društvenim djelatostima", "Rigorozno pridržavanje moralnih i etičkih zakona kojih se moraju pridržavati", "Radi nemogućnosti dobivanja opreme", "Jer se tim isključivo zamaraju psiholozi."], ans: 1, exp: "Znanost, pa ni sociološki eksperimenti vezani za ponašanje, NE smiju narušavati slobodu niti uzrokovati traume ispitanicima – prate etički kodeks." },
             { q: "Dok te gleda sa svog satelita, funkcionalistički profesor zamišlja kako:", opts: ["Svijet ispravno diše i funkcionira upravo zbog podjele uloga na institucije koje o sebi paze i stabiliziraju se.", "Netko trenutno broji novac oštećenog podređenika.", "Dvoje ljubavnika stvaraju značenje veze putem simbola.", "Državna kontrola gubi svoj utjecaj te se lomi."], ans: 0, exp: "Da nema institucija u kojoj i svaka ima neku funkciju, svijet bi po njemu implodirao i prestao živjeti." },
-            { q: "Ako hoćeš samo brojanje specifičnih psovki izrečenih u 23. albumu rock pjevaza, uzimaš", opts: ["Teorijsku matematiku i interakciju", "Eksperiment u studiju", "Analizu tekstova obožavatelja", "Kvantitativnu analizu sadržaja i prebrojavaš."], ans: 3, exp: "Analiza materijala te brojanje učestalosti znakova u istoj. Ključ na bravu." }
+            { q: "Ako hoćeš samo brojanje specifičnih psovki izrečenih u 23. albumu rock pjevaza, uzimaš", opts: ["Teorijsku matematiku i interakciju", "Eksperiment u studiju", "Analizu tekstova obožavatelja", "Kvantitativnu analizu sadržaja i prebrojavaš."], ans: 3, exp: "Analiza materijala te brojanje učestalosti znakova u istoj. Ključ na bravu." },
+            { q: "Vilfredo Pareto je otkrio da u Italiji 20% ljudi posjeduje 80% bogatstva. Kako se taj obrazac danas naziva?", opts: ["Marxov zakon", "Pareto princip (80/20)", "Weberova krivulja", "Durkheimova raspodjela"], ans: 1, exp: "Pareto princip (ili 80/20 pravilo) kaže da 20% uzroka stvara 80% posljedica – u ekonomiji, društvu, pa čak i na društvenim mrežama." },
+            { q: "Prema Paretovoj teoriji elita, društvom uvijek vlada:", opts: ["Narod kroz demokraciju", "Mala skupina ljudi na vrhu (elita)", "Srednja klasa", "Vojska i crkva zajedno"], ans: 1, exp: "Pareto je tvrdio da je demokracija mit – u svakom sustavu (monarhiji, demokraciji, diktaturi) uvijek vlada mala elita na vrhu." },
+            { q: "Pareto je elite podijelio na dvije vrste prema načinu vladanja. Koje su to?", opts: ["Bogati i siromašni", "Lisice i lavovi", "Konzervativci i liberali", "Vladari i svećenici"], ans: 1, exp: "Lisice vladaju lukavstvom, diplomacijom i manipulacijom, dok lavovi vladaju silom, odlučnošću i autoritetom. Inspiracija dolazi od Machiavellija." },
+            { q: "Što znači Paretov pojam 'kruženje elita' (cirkulacija)?", opts: ["Elite se nikada ne mijenjaju", "Vladajuća elita se neprestano smjenjuje novom elitom", "Narod bira elite svake 4 godine", "Elite kruže po različitim državama"], ans: 1, exp: "Nijedna vladajuća skupina nije vječna – kad oslabi, zamjenjuje je nova, energičnija elita. 'Povijest je groblje aristokracija.'" },
+            { q: "Čiji je poznati citat: 'Povijest je groblje aristokracija'?", opts: ["Karl Marx", "Max Weber", "Vilfredo Pareto", "Auguste Comte"], ans: 2, exp: "Pareto je ovim citatom sažeo svoju ključnu ideju – sve vladajuće klase na kraju propadnu i budu zamijenjene novim." },
+            { q: "U Paretovoj piramidi društva, 'nevladajuća elita' su:", opts: ["Obični građani bez ikakvih sposobnosti", "Sposobni ljudi koji bi mogli vladati, ali trenutno ne vladaju", "Vojni generali na vlasti", "Političari u parlamentu"], ans: 1, exp: "Nevladajuća elita su talentirani izazivači koji čekaju svoju priliku. Kad vladajuća elita oslabi, oni preuzimaju vlast." },
+            { q: "Pareto je tvrdio da ljudi zapravo NE djeluju racionalno, nego ih pokreću duboki osjećaji koje je nazvao:", opts: ["Derivacije", "Rezidui", "Ideologije", "Paradigme"], ans: 1, exp: "Rezidui su duboki osjećaji i instinkti koji pokreću naše ponašanje. Mi samo naknadno izmišljamo logične razloge (derivacije) za ono što smo već odlučili iz osjećaja." },
+            { q: "Prema Paretu, koja je slabost elite tipa 'lisica'?", opts: ["Previše su nasilne", "Mogu postati previše korumpirane i izgubiti povjerenje naroda", "Ne znaju donositi odluke", "Uvijek gube ratove"], ans: 1, exp: "Lisice vladaju manipulacijom i pregovorima, ali s vremenom mogu postati toliko korumpirane da gube legitimitet i povjerenje naroda." }
         ];
 
         // Quiz State

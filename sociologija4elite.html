@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teorija Elita: Vilfredo Pareto i Sociologija Moći</title>
+    <meta name="description" content="Lekcija 3: Teorija elita prema Vilfredu Paretu. Kruženje elita, 80/20 pravilo i podjela na lisice i lavove. Jednostavno za 3. razred srednje škole.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #d97706;
+            color: #d97706;
+            font-weight: 600;
+        }
+        .dark .nav-link.active {
+            border-bottom: 2px solid #fbbf24;
+            color: #fbbf24;
+        }
+        .elite-btn.active {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+        }
+        .dark .elite-btn.active {
+            background-color: rgba(217, 119, 6, 0.1);
+            border-left: 4px solid #fbbf24;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            height: 320px;
+        }
+        .pyramid-layer {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .pyramid-layer:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        .circulation-arrow {
+            animation: circulate 3s ease-in-out infinite;
+        }
+        @keyframes circulate {
+            0%, 100% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-6px); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+        }
+        .dark .timeline-dot::before {
+            border-color: #1e293b;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 px-1 py-2 transition-colors">Uvod</a>
+                        <a href="#pareto" class="nav-link text-stone-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 px-1 py-2 transition-colors">Pareto</a>
+                        <a href="#piramida" class="nav-link text-stone-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 px-1 py-2 transition-colors">Piramida</a>
+                        <a href="#lisice-lavovi" class="nav-link text-stone-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 px-1 py-2 transition-colors">Lisice i Lavovi</a>
+                        <a href="#kruzenje" class="nav-link text-stone-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 px-1 py-2 transition-colors">Kruženje</a>
+                    </div>
+                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <!-- HERO / UVOD -->
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[450px] flex items-center justify-start p-6 md:p-14">
+                <div class="absolute inset-0 z-0 bg-stone-900">
+                    <img src="assets/elites_hero.png" alt="Teorija Elita Hero" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
+                </div>
+                
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 3</div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">Teorija <span class="text-amber-300">Elita</span></h1>
+                    <p class="text-base md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm">
+                        Tko zapravo vlada društvom? Demokracija kaže – narod. Ali talijanski sociolog Vilfredo Pareto tvrdio je nešto potpuno drugačije: društvom uvijek vlada mala skupina ljudi na vrhu – <strong class="text-amber-200">elite</strong>. Pogledajmo zašto.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRI PERSPEKTIVE NA VLAST -->
+        <section id="perspektive" class="scroll-mt-20">
+            <div class="mb-10 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Ponavljanje i uvod</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Kako tri perspektive gledaju na <span class="text-amber-600 dark:text-amber-400">vlast</span>?</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl">
+                    Prije nego uđemo u Paretovu teoriju, prisjetimo se: svaka od triju velikih socioloških perspektiva drugačije objašnjava tko ima moć i zašto.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Funkcionalizam -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-3xl mb-3">⚙️</div>
+                    <h3 class="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Funkcionalizam</h3>
+                    <p class="text-stone-300 dark:text-slate-500 italic text-sm mb-3">"Vlast postoji jer je društvu potrebna."</p>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Netko mora donositi odluke da sustav funkcionira. Političari, sudci i direktori imaju moć jer društvo <strong>treba vođe</strong> – isto kao što tijelo treba mozak. Vlast je korisna funkcija koja održava red i stabilnost.
+                    </p>
+                    <div class="mt-4 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 p-3 rounded-xl text-xs text-emerald-800 dark:text-emerald-300">
+                        <strong>Ključno:</strong> Vlast = nužna funkcija za preživljavanje društva.
+                    </div>
+                </div>
+
+                <!-- Konfliktna -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-rose-400 dark:hover:border-rose-400 transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-3xl mb-3">🥊</div>
+                    <h3 class="text-xl font-bold text-rose-600 dark:text-rose-400 mb-2">Konfliktna teorija</h3>
+                    <p class="text-stone-300 dark:text-slate-500 italic text-sm mb-3">"Vlast je oružje bogatih protiv siromašnih."</p>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Marx bi rekao da oni koji imaju novac <strong>kontroliraju zakone, medije i politiku</strong>. Vlast nije tu da pomogne svima – nego da bogati ostanu bogati. Sve institucije štite interese vladajuće klase.
+                    </p>
+                    <div class="mt-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800/30 p-3 rounded-xl text-xs text-rose-800 dark:text-rose-300">
+                        <strong>Ključno:</strong> Vlast = alat za održavanje nejednakosti.
+                    </div>
+                </div>
+
+                <!-- Interakcionizam -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-400 transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-3xl mb-3">🗣️</div>
+                    <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-2">Interakcionizam</h3>
+                    <p class="text-stone-300 dark:text-slate-500 italic text-sm mb-3">"Vlast je ono što ljudi vjeruju da jest."</p>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Interakcionista zanima što <strong>konkretno pojedinac radi</strong> u odnosu na vlast. Izlazi li na izbore? Ide li na sjednicu mjesnog odbora? Potpisuje li peticije? Razgovara li s lokalnim vijećnikom? Promatra kako se vlast gradi kroz svakodnevne male radnje običnih ljudi.
+                    </p>
+                    <div class="mt-4 bg-purple-50 dark:bg-purple-900/10 border border-purple-200 dark:border-purple-800/30 p-3 rounded-xl text-xs text-purple-800 dark:text-purple-300">
+                        <strong>Ključno:</strong> Vlast = društveni dogovor, ne objektivna sila.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 p-5 bg-amber-50 dark:bg-amber-900/10 text-amber-900 dark:text-amber-200 rounded-xl border border-amber-200 dark:border-amber-800/30 text-sm">
+                <strong class="block mb-2 text-stone-800 dark:text-white">💡 A gdje tu dolazi Pareto?</strong>
+                Pareto je bio blizak konfliktnoj teoriji, ali je otišao korak dalje. Rekao je: <em>"Nije bitno tko vlada – bogati, vojska ili demokratski izabrani – bitno je da <strong>uvijek</strong> vlada manjina."</em> Pogledajmo njegovu teoriju detaljnije.
+            </div>
+        </section>
+
+        <!-- TKO JE PARETO -->
+        <section id="pareto" class="scroll-mt-20">
+            <div class="mb-10">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden shadow-lg shadow-amber-500/10 border-2 border-amber-200 dark:border-amber-800 flex-shrink-0">
+                        <img src="assets/pareto_portrait.png" alt="Vilfredo Pareto" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="text-center md:text-left">
+                        <div class="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Upoznaj mislioca</div>
+                        <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Vilfredo Pareto <span class="text-amber-600 dark:text-amber-400">(1848 – 1923)</span></h2>
+                        <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl">
+                            Talijanski ekonomist i sociolog koji je promatrao društvo kroz brojke i činjenice. Nije vjerovao u idealizam – bio je tvrd realista. Evo njegove životne priče u kratkim crtama:
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative border-l-2 border-amber-200 dark:border-amber-800 ml-6 pl-8 space-y-8">
+                <div class="relative timeline-dot">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700">
+                        <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">🎓 OBRAZOVANJE</div>
+                        <p class="text-stone-600 dark:text-slate-400 text-sm">Studirao inženjerstvo i matematiku u Torinu. Upravo ta matematička preciznost oblikovala je njegov pogled na društvo – sve je pokušao izraziti formulama i krivuljama.</p>
+                    </div>
+                </div>
+                <div class="relative timeline-dot">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700">
+                        <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">📊 OTKRIĆE 80/20</div>
+                        <p class="text-stone-600 dark:text-slate-400 text-sm">Proučavajući raspodjelu bogatstva u Italiji, otkrio je da <strong>20% ljudi posjeduje 80% bogatstva</strong>. Ovaj obrazac (danas poznat kao "Pareto princip") vidio je svugdje – u ekonomiji, politici i društvu.</p>
+                    </div>
+                </div>
+                <div class="relative timeline-dot">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700">
+                        <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">📖 GLAVNO DJELO</div>
+                        <p class="text-stone-600 dark:text-slate-400 text-sm"><em>"Traktat o općoj sociologiji"</em> (1916) – masivno djelo u kojem iznosi svoju teoriju o elitama, logičnim i nelogičnim djelovanjima te o tome zašto mase nikada zapravo ne vladaju.</p>
+                    </div>
+                </div>
+                <div class="relative timeline-dot">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-stone-200 dark:border-slate-700">
+                        <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">💡 KLJUČNA IDEJA</div>
+                        <p class="text-stone-600 dark:text-slate-400 text-sm">Demokratija je mit. U svakom društvu – bilo monarhiji, demokraciji ili diktaturi – uvijek vlada mala grupa na vrhu. Mijenja se samo <strong>tko</strong> je u toj grupi, ali činjenica da elite postoje – nikada se ne mijenja.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PIRAMIDA DRUŠTVA -->
+        <section id="piramida" class="scroll-mt-20">
+            <div class="mb-10 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Struktura društva</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Paretova Piramida Društva</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl">
+                    Prema Paretu, svako društvo je podijeljeno na dva sloja. Nema iznimaka – od drevnog Rima do moderne Hrvatske.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border border-stone-200 dark:border-slate-700 p-6 md:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    
+                    <!-- Vizualna piramida -->
+                    <div class="flex flex-col items-center space-y-3">
+                        <div class="pyramid-layer w-[140px] md:w-[180px] bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-center py-5 md:py-6 rounded-t-2xl shadow-lg shadow-amber-500/20 cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-1">👑</div>
+                            <div class="font-extrabold text-sm md:text-base">VLADAJUĆA ELITA</div>
+                            <div class="text-[10px] md:text-xs opacity-80 mt-1">Politička, ekonomska, vojna moć</div>
+                        </div>
+                        <div class="pyramid-layer w-[220px] md:w-[280px] bg-gradient-to-r from-amber-600/70 to-amber-500/70 text-white text-center py-4 md:py-5 shadow-md cursor-pointer">
+                            <div class="text-xl md:text-2xl mb-1">🎯</div>
+                            <div class="font-bold text-sm md:text-base">NEVLADAJUĆA ELITA</div>
+                            <div class="text-[10px] md:text-xs opacity-80 mt-1">Sposobni, ali izvan vlasti</div>
+                        </div>
+                        <div class="pyramid-layer w-[300px] md:w-[400px] bg-gradient-to-r from-stone-500 to-stone-400 text-white text-center py-6 md:py-8 rounded-b-2xl shadow-md cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-1">👥</div>
+                            <div class="font-bold text-sm md:text-base">MASE (NE-ELITA)</div>
+                            <div class="text-[10px] md:text-xs opacity-80 mt-1">Većina ljudi – vođeni, ne vode</div>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <span class="circulation-arrow inline-block text-amber-500 text-2xl">⬆️⬇️</span>
+                            <p class="text-xs text-stone-500 dark:text-slate-500 mt-1 font-medium">Kruženje elita</p>
+                        </div>
+                    </div>
+
+                    <!-- Objašnjenje -->
+                    <div class="space-y-5">
+                        <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 p-5 rounded-2xl">
+                            <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2 flex items-center"><span class="mr-2">👑</span> Vladajuća elita</h3>
+                            <p class="text-stone-600 dark:text-slate-400 text-sm">Mala skupina koja <strong>stvarno donosi odluke</strong> – političari, direktori, generali. To su ljudi na vrhu koji kontroliraju resurse, zakone i institucije.</p>
+                        </div>
+                        <div class="bg-stone-50 dark:bg-slate-700/50 border border-stone-200 dark:border-slate-600 p-5 rounded-2xl">
+                            <h3 class="font-bold text-stone-800 dark:text-white mb-2 flex items-center"><span class="mr-2">🎯</span> Nevladajuća elita</h3>
+                            <p class="text-stone-600 dark:text-slate-400 text-sm">Sposobni i talentirani ljudi koji <strong>bi mogli vladati, ali trenutno ne vladaju</strong>. Čekaju svoju priliku. Kad vladajuća elita oslabi – oni preuzimaju!</p>
+                        </div>
+                        <div class="bg-stone-50 dark:bg-slate-700/50 border border-stone-200 dark:border-slate-600 p-5 rounded-2xl">
+                            <h3 class="font-bold text-stone-800 dark:text-white mb-2 flex items-center"><span class="mr-2">👥</span> Mase (ne-elita)</h3>
+                            <p class="text-stone-600 dark:text-slate-400 text-sm">Velika većina društva. Prema Paretu, <strong>mase su pasivne i neorganizirane</strong> – njima se upravlja, one ne upravljaju. Surovo? Da. Ali Pareto je bio poznat po realističnom (nekim riječima ciničnom) pogledu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LISICE I LAVOVI -->
+        <section id="lisice-lavovi" class="scroll-mt-20 relative">
+            
+            <div class="absolute inset-0 bg-stone-900 dark:bg-slate-950 -mx-4 sm:-mx-6 lg:-mx-8 skew-y-2 z-0 transform translate-y-12 h-[120%] transition-colors duration-300"></div>
+
+            <div class="relative z-10 py-16 text-white text-center">
+                <h2 class="text-4xl font-bold mb-4">Dva Tipa Vladara: <span class="text-amber-400">Lisice</span> i <span class="text-red-400">Lavovi</span></h2>
+                <p class="text-lg text-stone-300 mb-12 max-w-2xl mx-auto">
+                    Pareto je podijelio elite u dvije vrste prema tome <strong>kako vladaju</strong>. Inspirirao se Machiavellijem i njegovom knjigom "Vladar".
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left px-2 md:px-4 max-w-4xl mx-auto">
+                    
+                    <!-- Lisice -->
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-6 md:p-8 rounded-2xl hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:-translate-y-1">
+                        <div class="text-5xl mb-4">🦊</div>
+                        <h3 class="text-2xl font-bold text-amber-400 mb-3">Lisice</h3>
+                        <p class="text-stone-300 italic mb-4 text-lg">"Vladaju lukavstvom i pregovorima."</p>
+                        <ul class="space-y-3 text-stone-400 text-sm">
+                            <li class="flex items-start"><span class="text-amber-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Koriste <strong class="text-stone-200">diplomaciju, manipulaciju i uvjeravanje</strong></span></li>
+                            <li class="flex items-start"><span class="text-amber-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Sklapaju saveze i kompromise</span></li>
+                            <li class="flex items-start"><span class="text-amber-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Izbjegavaju otvoreni sukob – vole pregovarati iza zatvorenih vrata</span></li>
+                            <li class="flex items-start"><span class="text-amber-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Primjer: <strong class="text-stone-200">političari</strong> koji obećavaju na izborima, lobisti, PR stručnjaci</span></li>
+                        </ul>
+                        <div class="mt-6 bg-amber-900/30 border border-amber-700/40 p-3 rounded-xl text-xs text-amber-200">
+                            <strong>⚠️ Slabost:</strong> Mogu postati previše korumpirane i izgubiti povjerenje naroda.
+                        </div>
+                    </div>
+
+                    <!-- Lavovi -->
+                    <div class="bg-stone-800 dark:bg-slate-800 border border-stone-700 dark:border-slate-700 p-6 md:p-8 rounded-2xl hover:border-red-400 dark:hover:border-red-400 transition-all duration-300 hover:-translate-y-1">
+                        <div class="text-5xl mb-4">🦁</div>
+                        <h3 class="text-2xl font-bold text-red-400 mb-3">Lavovi</h3>
+                        <p class="text-stone-300 italic mb-4 text-lg">"Vladaju silom i autoritetom."</p>
+                        <ul class="space-y-3 text-stone-400 text-sm">
+                            <li class="flex items-start"><span class="text-red-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Koriste <strong class="text-stone-200">silu, odlučnost i vojnu moć</strong></span></li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Donose čvrste odluke bez puno pregovaranja</span></li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Vjeruju u red, disciplinu i stabilnost</span></li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2 mt-0.5 flex-shrink-0">▸</span><span>Primjer: <strong class="text-stone-200">vojni vođe</strong>, revolucionari, autoritarni predsjednici</span></li>
+                        </ul>
+                        <div class="mt-6 bg-red-900/30 border border-red-700/40 p-3 rounded-xl text-xs text-red-200">
+                            <strong>⚠️ Slabost:</strong> Mogu postati previše krute i izazvati pobunu "odozdo".
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 max-w-2xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl">
+                    <p class="text-stone-300 text-sm leading-relaxed">
+                        <strong class="text-white text-base block mb-2">💡 Ključni uvid:</strong>
+                        Prema Paretu, zdrav sustav treba <strong class="text-amber-300">ravnotežu</strong> između lisica i lavova. Ako vladaju samo lisice – sustav postane korumpiran. Ako vladaju samo lavovi – sustav postane tiranija. <strong class="text-white">Kada jedna vrsta oslabi, druga preuzima vlast</strong> – i to je srž kruženja elita!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KRUŽENJE ELITA -->
+        <section id="kruzenje" class="scroll-mt-20 pt-32 pb-10">
+            <div class="mb-10 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Ključni koncept</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Kruženje Elita <span class="text-amber-600 dark:text-amber-400">(Cirkulacija)</span></h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl">
+                    Paretova najpoznatija ideja: elite se <strong>neprestano smjenjuju</strong>. Nijedna vladajuća skupina nije vječna. Pogledajmo kako to funkcionira:
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border border-stone-200 dark:border-slate-700 p-6 md:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    
+                    <!-- Ciklus koraci -->
+                    <div class="space-y-4">
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 mt-1 shadow-md group-hover:scale-110 transition-transform">1</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-stone-800 dark:text-white">Nova elita dolazi na vlast</h4>
+                                <p class="text-stone-500 dark:text-slate-400 text-sm mt-1">Jedna grupa (npr. lavovi) osvaja moć – revolucijom, izborima ili ratom. U početku su energični i odlučni.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 mt-1 shadow-md group-hover:scale-110 transition-transform">2</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-stone-800 dark:text-white">Elita se ustaljuje i jača</h4>
+                                <p class="text-stone-500 dark:text-slate-400 text-sm mt-1">Vremenom postaju udobni na vlasti. Počinju uživati u privilegijama i bogaćenju. Gube dodir s realnošću.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 mt-1 shadow-md group-hover:scale-110 transition-transform">3</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-stone-800 dark:text-white">Elita degenerira</h4>
+                                <p class="text-stone-500 dark:text-slate-400 text-sm mt-1">Postaju lijeni, korumpirani ili nesposobni. Više ih ne zanimaju problemi običnog naroda. Sustav počinje pucati.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 mt-1 shadow-md group-hover:scale-110 transition-transform">4</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-stone-800 dark:text-white">Nova elita ih zamjenjuje!</h4>
+                                <p class="text-stone-500 dark:text-slate-400 text-sm mt-1">Sposobniji i energičniji izazivači (nevladajuća elita) preuzimaju vlast. I <strong>ciklus počinje ispočetka</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grafikon - Doughnut -->
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="circulationChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-stone-500 dark:text-slate-500 mt-4">Pareto princip: 80/20 raspodjela bogatstva</p>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-5 bg-amber-50 dark:bg-amber-900/10 text-amber-900 dark:text-amber-200 rounded-xl border border-amber-200 dark:border-amber-800/30 text-sm">
+                    <strong class="block mb-2 text-stone-800 dark:text-white">📝 Paretov citat:</strong>
+                    <em>"Povijest je groblje aristokracija."</em> — Drugim riječima, sve vladajuće klase na kraju propadnu i budu zamijenjene novim. Nitko ne vlada zauvijek.
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm">
+        <p>Interaktivni vodič za sociologiju &copy; 2026</p>
+    </footer>
+
+    <script>
+        (function() {
+            // --- Navigation Highlighting ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+
+
+
+            // --- Doughnut Chart: 80/20 ---
+            const ctx = document.getElementById('circulationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Elita (20% populacije)', 'Mase (80% populacije)'],
+                    datasets: [{
+                        label: 'Posjedovanje bogatstva',
+                        data: [80, 20],
+                        backgroundColor: [
+                            'rgba(217, 119, 6, 0.8)',
+                            'rgba(168, 162, 158, 0.5)',
+                        ],
+                        borderColor: [
+                            'rgb(217, 119, 6)',
+                            'rgb(168, 162, 158)',
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '55%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: { size: 13, family: "'Inter', sans-serif" }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            padding: 14,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '% bogatstva';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        })();
+    </script>
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (themeToggleDarkIcon && themeToggleLightIcon && themeToggleBtn) {
+            if (localStorage.getItem('color-theme') === 'dark') {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                document.documentElement.classList.remove('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
