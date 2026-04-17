@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociologija glazbe: Ritam, Društvo i Značenje</title>
+    <meta name="description" content="Lekcija 4: Sociologija glazbe. Kako funkcionalizam, konfliktna teorija i interakcionizam gledaju na glazbu. Analiza istraživanja M. Žagmešter Kemfelja (2024).">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #8b5cf6;
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+        .dark .nav-link.active {
+            border-bottom: 2px solid #a78bfa;
+            color: #a78bfa;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 350px;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .perspective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Uvod</a>
+                        <a href="#teorija" class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Teorija</a>
+                        <a href="#supkulture" class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Supkulture</a>
+                        <a href="#istrazivanje" class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Istraživanje</a>
+                        <a href="#podaci" class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Rezultati</a>
+                    </div>
+                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
+
+        <!-- HERO SECTION -->
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[450px] flex items-center justify-start p-6 md:p-14">
+                <div class="absolute inset-0 z-0 bg-indigo-900">
+                    <img src="assets/music_hero.png" alt="Sociologija Glazbe Hero" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
+                </div>
+                
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">IZBORNA TEMA</div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">Sociologija <span class="text-violet-300">Glazbe</span></h1>
+                    <p class="text-base md:text-xl text-indigo-50 font-medium leading-relaxed drop-shadow-sm">
+                        Glazba nije samo zvuk – ona je društvena činjenica. Ona nas spaja, razdvaja, definira naš identitet i odražava strukturu moći u društvu. Pogledajmo kako sociologija analizira ritam naših života.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRI PERSPEKTIVE NA GLAZBU -->
+        <section id="teorija" class="scroll-mt-20">
+            <div class="mb-12 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Teorijski okvir</div>
+                <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Kako sociolozi "slušaju" <span class="text-violet-600 dark:text-violet-400">glazbu</span>?</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+                    Svaka velika perspektiva u glazbi vidi nešto drugo. Od funkcije održavanja reda do alata za manipulaciju.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Funkcionalizam -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300">
+                    <div class="text-4xl mb-4">🎻</div>
+                    <h3 class="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Funkcionalizam</h3>
+                    <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-4">"Glazba je socijalno ljepilo."</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Glazba služi za <strong>socijalnu integraciju</strong>. Himne, navijačke pjesme i ritualna glazba stvaraju osjećaj pripadnosti i zajedništva. Ona regulira naše emocije i pomaže nam da se nosimo s stresom, održavajući stabilnost sustava.
+                    </p>
+                    <div class="mt-4 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 p-3 rounded-xl text-xs text-emerald-800 dark:text-emerald-300">
+                        <strong>Fokus:</strong> Harmonija, solidarnost i društvena svrha.
+                    </div>
+                </div>
+
+                <!-- Konfliktna -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300">
+                    <div class="text-4xl mb-4">📢</div>
+                    <h3 class="text-xl font-bold text-rose-600 dark:text-rose-400 mb-2">Konfliktna teorija</h3>
+                    <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-4">"Glazba je roba i alat moći."</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Za Adorna i kritičku teoriju, pop-glazba je proizvod <strong>kulturne industrije</strong> koji umrtvljuje mase. S druge strane, glazba može biti alat otpora (punk, rap) protiv vladajućih elita i nepravde.
+                    </p>
+                    <div class="mt-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800/30 p-3 rounded-xl text-xs text-rose-800 dark:text-rose-300">
+                        <strong>Fokus:</strong> Profit, klasne razlike i ideologija.
+                    </div>
+                </div>
+
+                <!-- Interakcionizam -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300">
+                    <div class="text-4xl mb-4">🎧</div>
+                    <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-2">Interakcionizam</h3>
+                    <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-4">"Glazba je oznaka identiteta."</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Proučava kako pojedinci koriste glazbu za <strong>izgradnju selfa</strong> i povezivanje u subkulture. Glazbeni ukus služi kao simbolička granica: "Mi smo alternativci, oni su cajkaši". Glazba gradi značenje kroz svakodnevnu upotrebu.
+                    </p>
+                    <div class="mt-4 bg-purple-50 dark:bg-purple-900/10 border border-purple-200 dark:border-purple-800/30 p-3 rounded-xl text-xs text-purple-800 dark:text-purple-300">
+                        <strong>Fokus:</strong> Simboli, identitet i mikrogrupe.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GLAZBA I SUPKULTURE -->
+        <section id="supkulture" class="scroll-mt-20 px-2 lg:px-0">
+            <div class="mb-12 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Društvene podskupine</div>
+                <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Glazba i Supkulture: <span class="text-indigo-600 dark:text-indigo-400">Zvučni identiteti</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+                    Glazba je često "uniforma" supkultura. Ona nije samo zvuk, već način na koji mladi izražavaju otpor mainstreamu i stvaraju vlastite svjetove značenja.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Punk -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 group">
+                    <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🎸</div>
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-2">Punk: Bunt</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Rođen kao odgovor na ekonomsku krizu. Naglašava <strong>DIY (do it yourself)</strong> etiku i odbacivanje društvenih normi kroz sirov i agresivan ritam.
+                    </p>
+                </div>
+
+                <!-- Hip-Hop -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 group">
+                    <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🎤</div>
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-2">Hip-Hop: Ulica</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Izraz marginaliziranih skupina iz Bronxa. Kroz rime govori o <strong>autentičnosti</strong>, vlastitom kvartu i borbi za socijalnu pravdu.
+                    </p>
+                </div>
+
+                <!-- Metal -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 group">
+                    <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🤘</div>
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-2">Metal: Vještina</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Karakterizira ga tehnička virtuoznost i ekstremna snaga. Stvara <strong>čvrsto povezanu</strong> globalnu zajednicu koja cijeni glazbenu vještinu.
+                    </p>
+                </div>
+
+                <!-- Navijači -->
+                <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 group">
+                    <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🥁</div>
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-2">Navijači: Ritam</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Stadion je prostor <strong>kolektivne kohezije</strong>. Navijačke pjesme (napjevi) pretvaraju poznate melodije u simbole odanosti, stvarajući snažan osjećaj pripadnosti i identiteta.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800/30 p-6 md:p-8 rounded-3xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+                <div class="flex flex-col md:flex-row items-center gap-6 relative z-10">
+                    <div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-3xl shadow-md border border-indigo-100 dark:border-indigo-800/50 flex-shrink-0 transform group-hover:rotate-6 transition-all duration-500">💡</div>
+                    <div>
+                        <h4 class="font-extrabold text-indigo-900 dark:text-indigo-300 mb-2 text-lg">Sociološki pojam: Brikolaž (Bricolage)</h4>
+                        <p class="text-sm text-indigo-800/80 dark:text-indigo-400/80 leading-relaxed max-w-4xl">
+                            Pojam koji je popularizirao <strong>Dick Hebdige</strong>. Označava proces u kojem supkulture uzimaju obične, svakodnevne predmete (ziherice, lance, stare kabanice) i daju im potpuno nova, buntovna značenja, stvarajući tako svoj vizualni i zvučni <strong>"stil otpora"</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        <!-- ISTRAŽIVANJE: ŽAGMEŠTER KEMFELJA -->
+        <section id="istrazivanje" class="scroll-mt-20">
+            <div class="bg-indigo-900 rounded-[2.5rem] p-8 md:p-16 text-white overflow-hidden relative shadow-2xl">
+                <!-- Abstract decorations -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-violet-500/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+                
+                <div class="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2 space-y-6">
+                        <div class="inline-block px-4 py-1.5 bg-white/20 rounded-full text-xs font-bold tracking-widest uppercase backdrop-blur-md">Znanstveni fokus</div>
+                        <h2 class="text-3xl md:text-5xl font-bold leading-tight">Glazba u <span class="text-violet-300 text-italic">Hrvatskom</span> društvu</h2>
+                        <p class="text-lg text-indigo-100 leading-relaxed">
+                            Predstavljamo istraživanje dr. sc. <strong>Marije Žagmešter Kemfelja (2024)</strong>. Rad analizira odnos medija, vrijednosti i glazbenih preferencija.
+                        </p>
+                        <div class="pt-4">
+                            <a href="https://www.unicath.hr/sites/default/files/2024-11/Doktorski%20rad%20Marija%20%C5%BDagme%C5%A1ter%20Kemfelja.pdf" target="_blank" class="inline-flex items-center px-6 py-3 bg-white text-indigo-900 font-bold rounded-xl hover:bg-violet-100 transition-all hover:scale-105 active:scale-95 shadow-xl">
+                                📄 Pročitaj cijeli rad (PDF) <span class="ml-2 text-xl">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 w-full bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow- inner">
+                        <h3 class="text-xl font-bold mb-6 flex items-center"><span class="mr-3">⚙️</span> Metodologija istraživanja</h3>
+                        <div class="space-y-6 text-sm text-indigo-50">
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 bg-violet-500/40 rounded-lg flex items-center justify-center flex-shrink-0 font-bold">Qn</div>
+                                <div>
+                                    <h4 class="font-bold text-white">Kvantitativni dio: Online anketa</h4>
+                                    <p class="opacity-80 mt-1">Uzorak od <strong>1476 ispitanika</strong> (15-70 godina) iz cijele Hrvatske. Korištene skale vrijednosti (Schwartz) i glazbenih preferencija.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 bg-emerald-500/40 rounded-lg flex items-center justify-center flex-shrink-0 font-bold">Ql</div>
+                                <div>
+                                    <h4 class="font-bold text-white">Kvalitativni dio: Intervjui</h4>
+                                    <p class="opacity-80 mt-1"><strong>18 dubinskih intervjua</strong> s mladima (17-32 godine). Cilj: razumjeti emocije i "skrivene" preferencije poput turbofolka.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/10 italic text-xs">
+                                "Triangulacija (kombiniranje metoda) omogućila je autorici da otkrije fenomen 'neslužbenog mainstreama' – glazbe koju mladi javno negiraju, a privatno intenzivno konzumiraju."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REZULTATI I VIZUALIZACIJE -->
+        <section id="podaci" class="scroll-mt-20">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Što kažu <span class="text-violet-600 dark:text-violet-400">brojke</span>?</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Analiza ključnih nalaza istraživanja vizualizirana kroz podatke.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Chart 1: Preferred Genres -->
+                <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700">
+                    <h3 class="text-xl font-bold mb-6 text-slate-800 dark:text-white flex items-center">
+                        <span class="mr-2">🎸</span> Najpopularniji žanrovi u Hrvatskoj
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="genreChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-6 italic">Podaci pokazuju postotak ispitanika koji su žanr odabrali kao omiljen. Najmanje preferirani su K-pop i regionalna metal glazba.</p>
+                </div>
+
+                <!-- Chart 2: Listening Situations -->
+                <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700">
+                    <h3 class="text-xl font-bold mb-6 text-slate-800 dark:text-white flex items-center">
+                        <span class="mr-2">🕒</span> Kada slušamo glazbu?
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="situationChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-6 italic">Glazba kao pozadina svakodnevice: dominira opuštanje i vrijeme provedeno u prometu (putovanje).</p>
+                </div>
+
+                <!-- Chart 3: Definition of Music -->
+                <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700 lg:col-span-2">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-bold mb-4 text-slate-800 dark:text-white">Što je za Vas glazba?</h3>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
+                                Ispitanici su na otvoreno pitanje davali definicije koje su kategorizirane u pet skupina. Rezultati pokazuju snažnu vezu glazbe s <strong>duhovnošću i emocijama</strong>, dok je puka zabava tek na četvrtom mjestu.
+                            </p>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-violet-500"></span> <strong>Duhovnost:</strong> 44.9% (Smisao života, duša)</li>
+                                <li class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span> <strong>Emocije:</strong> 30.3% (Radost, tuga)</li>
+                                <li class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-amber-500"></span> <strong>Umjetnost:</strong> 11.8% (Estetika, povijest)</li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/2 chart-container">
+                            <canvas id="definitionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KVALITATIVNI UVIDI -->
+        <section id="uvidi" class="scroll-mt-20">
+            <div class="rounded-3xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 md:p-12">
+                <div class="max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Dubinski uvidi: <span class="text-violet-600">Glazba kao bijeg</span></h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                                <h4 class="font-bold text-violet-600 dark:text-violet-400 mb-2">Izolacija u javnosti</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Mladi koriste slušalice u tramvaju ili šetnji kao "štit" protiv okoline, stvarajući privatni prostor usred mase.</p>
+                            </div>
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                                <h4 class="font-bold text-violet-600 dark:text-violet-400 mb-2">Emocionalni eskapizam</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Glazba je opisana kao "rame za plakanje" ili "ulaznica u svijet slobode" od svakodnevnih obveza.</p>
+                            </div>
+                        </div>
+                        <div class="bg-violet-600 rounded-2xl p-6 text-white flex flex-col justify-center italic">
+                            <span class="text-4xl mb-4 font-serif">"</span>
+                             Glazba me povuče deset godina unazad, odvede me na sedmo nebo... to je moj trenutni bijeg od turobne stvarnosti.
+                            <div class="mt-4 text-xs font-bold not-italic opacity-80">— Ispitanik iz istraživanja</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 mt-20">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="text-sm mb-4 italic">"Gdje prestaju riječi, počinje glazba." — Heinrich Heine</p>
+            <div class="w-12 h-1 bg-violet-600 mx-auto mb-8"></div>
+            <p class="text-xs">&copy; 2026 Interaktivni vodič za sociologiju</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            updateChartColors();
+        });
+
+        // --- Navigation Scroll Effect ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- Charts Implementation ---
+        
+        let charts = {};
+
+        function initCharts() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#94a3b8' : '#475569';
+            const gridColor = isDark ? 'rgba(148, 163, 184, 0.1)' : 'rgba(71, 85, 105, 0.1)';
+
+            // 1. Genre Chart
+            const ctxGenre = document.getElementById('genreChart').getContext('2d');
+            charts.genre = new Chart(ctxGenre, {
+                type: 'bar',
+                data: {
+                    labels: ['Strani Rock', 'Ex-YU', 'Reg. Pop-Rock', 'Dom. Pop', 'Blues'],
+                    datasets: [{
+                        label: 'Postotak (%)',
+                        data: [39.0, 32.2, 30.7, 19.6, 18.5],
+                        backgroundColor: 'rgba(139, 92, 246, 0.6)',
+                        borderColor: '#8b5cf6',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: gridColor }, ticks: { color: textColor } },
+                        y: { grid: { display: false }, ticks: { color: textColor } }
+                    }
+                }
+            });
+
+            // 2. Situation Chart
+            const ctxSit = document.getElementById('situationChart').getContext('2d');
+            charts.sit = new Chart(ctxSit, {
+                type: 'bar',
+                data: {
+                    labels: ['Opuštanje', 'Promet', 'Rad', 'Kuhanje', 'Trening', 'Tuširanje', 'Učenje'],
+                    datasets: [{
+                        label: 'Učestalost (%)',
+                        data: [76.8, 75.7, 67.4, 59.9, 41.3, 22.6, 13.8],
+                        backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                        borderColor: '#10b981',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: gridColor }, ticks: { color: textColor } },
+                        x: { grid: { display: false }, ticks: { color: textColor } }
+                    }
+                }
+            });
+
+            // 3. Definition Chart
+            const ctxDef = document.getElementById('definitionChart').getContext('2d');
+            charts.def = new Chart(ctxDef, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Duhovnost', 'Emocije', 'Umjetnost', 'Zabava', 'Fiziologija'],
+                    datasets: [{
+                        data: [44.9, 30.3, 11.8, 9.0, 4.0],
+                        backgroundColor: ['#8b5cf6', '#f43f5e', '#f59e0b', '#06b6d4', '#64748b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: textColor, padding: 20, usePointStyle: true } }
+                    }
+                }
+            });
+        }
+
+        function updateChartColors() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#94a3b8' : '#475569';
+            const gridColor = isDark ? 'rgba(148, 163, 184, 0.1)' : 'rgba(71, 85, 105, 0.1)';
+
+            Object.values(charts).forEach(chart => {
+                if(chart.options.scales) {
+                    if(chart.options.scales.x) {
+                        chart.options.scales.x.ticks.color = textColor;
+                        chart.options.scales.x.grid.color = gridColor;
+                    }
+                    if(chart.options.scales.y) {
+                        chart.options.scales.y.ticks.color = textColor;
+                        chart.options.scales.y.grid.color = gridColor;
+                    }
+                }
+                if(chart.options.plugins && chart.options.plugins.legend) {
+                    chart.options.plugins.legend.labels.color = textColor;
+                }
+                chart.update();
+            });
+        }
+
+        window.onload = initCharts;
+    </script>
+</body>
+</html>
