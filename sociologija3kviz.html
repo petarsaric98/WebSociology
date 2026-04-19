@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="hr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kviz Znanja</title>
-    <meta name="description" content="Provjerite svoje znanje iz uvoda u sociologiju kroz interaktivni test s 10 pitanja.">
+    <meta name="description"
+        content="Provjerite svoje znanje iz uvoda u sociologiju kroz interaktivni test s 10 pitanja.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,12 +15,14 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         .option-btn {
             transition: all 0.2s ease;
         }
-        
+
         .option-btn:hover:not(:disabled) {
             transform: translateX(5px);
         }
@@ -28,7 +32,7 @@
             border-color: #10b981 !important;
             color: #065f46 !important;
         }
-        
+
         .dark .correct-ans {
             background-color: rgba(16, 185, 129, 0.2) !important;
             border-color: #10b981 !important;
@@ -52,28 +56,48 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
 
-    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+<body
+    class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav
+        class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                <div
+                    class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
                     <a href="index.html" class="flex items-center hover:opacity-80">
                         <span class="mr-2">🏠</span> Društvo u Fokusu
                     </a>
                 </div>
                 <div class="flex items-center space-x-2 md:space-x-4">
                     <div class="hidden md:flex items-center space-x-6">
-                        <a href="index.html" class="text-stone-600 dark:text-slate-400 hover:text-amber-600 px-1 py-2 transition-colors font-medium">Lekcije</a>
+                        <a href="index.html"
+                            class="text-stone-600 dark:text-slate-400 hover:text-amber-600 px-1 py-2 transition-colors font-medium">Lekcije</a>
                     </div>
-                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <button id="theme-toggle" type="button"
+                        class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -81,18 +105,23 @@
     </nav>
 
     <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        
+
         <!-- Welcome Screen -->
-        <div id="welcome-screen" class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-16 shadow-xl border border-stone-100 dark:border-slate-700 text-center relative overflow-hidden">
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
-            
+        <div id="welcome-screen"
+            class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-16 shadow-xl border border-stone-100 dark:border-slate-700 text-center relative overflow-hidden">
+            <div
+                class="absolute -top-24 -right-24 w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-3xl z-0 pointer-events-none">
+            </div>
+
             <div class="relative z-10">
                 <div class="text-6xl md:text-7xl mb-4 md:mb-6">🎓</div>
                 <h1 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-4">Kviz Znanja</h1>
                 <p class="text-base md:text-lg text-stone-600 dark:text-slate-400 mb-8 md:mb-10 max-w-xl mx-auto">
-                    Od teorija do metoda istraživanja i teorije elita. Računalo nudi nasumičnih 10 pitanja iz naše baze od 38 pitanja. Znaš li dovoljno da preživiš pravi sociološki ispit?
+                    Od teorija do metoda istraživanja, teorije elita i sociologije glazbe. Računalo nudi nasumičnih 10
+                    pitanja iz naše baze od 46 pitanja. Znaš li dovoljno da preživiš pravi sociološki ispit?
                 </p>
-                <button id="start-btn" class="px-6 py-3 md:px-8 md:py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-base md:text-lg transition-transform transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                <button id="start-btn"
+                    class="px-6 py-3 md:px-8 md:py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-base md:text-lg transition-transform transform hover:scale-105 shadow-lg shadow-amber-500/30">
                     Započni Kviz →
                 </button>
             </div>
@@ -102,29 +131,37 @@
         <div id="quiz-screen" class="hidden min-h-[500px]">
             <!-- Top Progress Bar -->
             <div class="flex justify-between items-center mb-6">
-                <div class="text-sm font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider" id="question-tracker">Pitanje 1/10</div>
-                <div class="text-sm font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-3 py-1 rounded-full border border-amber-100 dark:border-amber-800/50" id="score-tracker">Bodovi: 0</div>
+                <div class="text-sm font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider"
+                    id="question-tracker">Pitanje 1/10</div>
+                <div class="text-sm font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-3 py-1 rounded-full border border-amber-100 dark:border-amber-800/50"
+                    id="score-tracker">Bodovi: 0</div>
             </div>
 
             <div class="w-full bg-stone-200 dark:bg-slate-700 rounded-full h-2 mb-8">
-                <div class="bg-amber-500 h-2 rounded-full transition-all duration-500" id="progress-bar" style="width: 10%"></div>
+                <div class="bg-amber-500 h-2 rounded-full transition-all duration-500" id="progress-bar"
+                    style="width: 10%"></div>
             </div>
 
             <!-- Question Container -->
-            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl shadow-md border border-stone-100 dark:border-slate-700 mb-6">
-                <h2 class="text-xl md:text-2xl font-bold text-stone-800 dark:text-white mb-6 md:mb-8 leading-relaxed" id="question-text">Ovdje ide tekst pitanja?</h2>
-                
+            <div
+                class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl shadow-md border border-stone-100 dark:border-slate-700 mb-6">
+                <h2 class="text-xl md:text-2xl font-bold text-stone-800 dark:text-white mb-6 md:mb-8 leading-relaxed"
+                    id="question-text">Ovdje ide tekst pitanja?</h2>
+
                 <div class="space-y-3 flex flex-col" id="options-container">
                     <!-- Buttons generated dynamically -->
                 </div>
             </div>
 
             <!-- Explanation Box (Shows after answer) -->
-            <div id="explanation-box" class="hidden bg-stone-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-stone-200 dark:border-slate-700">
+            <div id="explanation-box"
+                class="hidden bg-stone-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-stone-200 dark:border-slate-700">
                 <h4 id="explanation-title" class="font-bold text-lg mb-2">Presuda</h4>
-                <p id="explanation-text" class="text-stone-700 dark:text-slate-300">Ovdje ide pojašnjenje zašto je točan taj odgovor.</p>
+                <p id="explanation-text" class="text-stone-700 dark:text-slate-300">Ovdje ide pojašnjenje zašto je točan
+                    taj odgovor.</p>
                 <div class="mt-6 flex justify-end">
-                    <button id="next-btn" class="px-6 py-3 bg-stone-800 hover:bg-stone-900 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors">
+                    <button id="next-btn"
+                        class="px-6 py-3 bg-stone-800 hover:bg-stone-900 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors">
                         Sljedeće pitanje &rarr;
                     </button>
                 </div>
@@ -132,21 +169,30 @@
         </div>
 
         <!-- Result Screen -->
-        <div id="result-screen" class="hidden text-center bg-white dark:bg-slate-800 p-6 py-10 md:p-10 md:py-16 rounded-3xl shadow-xl border border-stone-100 dark:border-slate-700">
+        <div id="result-screen"
+            class="hidden text-center bg-white dark:bg-slate-800 p-6 py-10 md:p-10 md:py-16 rounded-3xl shadow-xl border border-stone-100 dark:border-slate-700">
             <div id="result-emoji" class="text-6xl md:text-7xl mb-4">🏆</div>
             <h2 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-2">Gotovo!</h2>
-            <p class="text-lg md:text-xl text-stone-600 dark:text-slate-400 mb-8">Tvoj rezultat je: <strong class="text-amber-600 dark:text-amber-400 text-2xl md:text-3xl ml-2" id="final-score">0/10</strong></p>
-            
-            <div class="bg-stone-50 dark:bg-slate-900 p-6 rounded-xl border border-stone-200 dark:border-slate-700 max-w-lg mx-auto mb-8 md:mb-10 text-left">
-                <h4 class="text-xs md:text-sm font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-2">Presuda sociologa:</h4>
-                <p class="text-base md:text-lg font-medium text-stone-800 dark:text-slate-200" id="final-message">Ovdje ide poruka.</p>
+            <p class="text-lg md:text-xl text-stone-600 dark:text-slate-400 mb-8">Tvoj rezultat je: <strong
+                    class="text-amber-600 dark:text-amber-400 text-2xl md:text-3xl ml-2" id="final-score">0/10</strong>
+            </p>
+
+            <div
+                class="bg-stone-50 dark:bg-slate-900 p-6 rounded-xl border border-stone-200 dark:border-slate-700 max-w-lg mx-auto mb-8 md:mb-10 text-left">
+                <h4
+                    class="text-xs md:text-sm font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-2">
+                    Presuda sociologa:</h4>
+                <p class="text-base md:text-lg font-medium text-stone-800 dark:text-slate-200" id="final-message">Ovdje
+                    ide poruka.</p>
             </div>
 
             <div class="flex flex-col md:flex-row justify-center gap-3">
-                <button id="restart-btn" class="px-6 py-3 md:px-8 bg-stone-100 hover:bg-stone-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-stone-800 dark:text-white font-bold border border-stone-300 dark:border-slate-600 rounded-xl transition-colors">
+                <button id="restart-btn"
+                    class="px-6 py-3 md:px-8 bg-stone-100 hover:bg-stone-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-stone-800 dark:text-white font-bold border border-stone-300 dark:border-slate-600 rounded-xl transition-colors">
                     Igraj ponovno (Nova pitanja!)
                 </button>
-                <a href="index.html" class="inline-flex justify-center items-center px-6 py-3 md:px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors">
+                <a href="index.html"
+                    class="inline-flex justify-center items-center px-6 py-3 md:px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors">
                     Povratak na izbornik
                 </a>
             </div>
@@ -154,14 +200,15 @@
 
     </main>
 
-    <footer class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm transition-colors duration-300 w-full mt-auto">
+    <footer
+        class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm transition-colors duration-300 w-full mt-auto">
         <p>Interaktivni vodič za sociologiju &copy; 2026</p>
     </footer>
 
     <script>
         // Data Bank of 30 questions
         const masterQuestions = [
-            { q: "Tko se smatra 'ocem sociologije' te je uveo ideju o 'Zakonu triju stadija'?", opts: ["Karl Marx", "Max Weber", "Émile Durkheim", "Auguste Comte"], ans: 3, exp: "Auguste Comte je skovao termin 'sociologija' i vjerovao je da društvo iz teološkog, te metafizičkog kroz povijest prelazi u onaj posljednji - pozitivni (znanstveni) stadij." },
+
             { q: "Émile Durkheim smatrao je da ruralna, tradicionalna društva na okupu drži:", opts: ["Mehanička solidarnost", "Organska solidarnost", "Klasna solidarnost", "Državna sila"], ans: 0, exp: "Mehanička solidarnost karakterizira tradicionalna društva gdje svi dijele ista vjerovanja i uvjerenja i rade jako slične poslove." },
             { q: "Prema Karlu Marxu, koja promjena potiče tranziciju iz tradicionalnog u moderno društvo?", opts: ["Gubitak vjere u religiju", "Evolucija znanosti", "Promjena u sredstvima proizvodnje (ekonomija)", "Birokracija"], ans: 2, exp: "Za Marxa je ekonomija i industrija (način na koji proizvodimo i jedemo) ultimativni pokretač svih promjena. Zato se zove materijalist." },
             { q: "Pojam 'raščarani svijet' koji govori o prelasku na proračunati i birokratizirani način života vezujemo uz:", opts: ["Verstehena", "Maxa Webera", "Marxa", "Teoriju interakcionizma"], ans: 1, exp: "Max Weber je opisao gubitak magije, mitova i vjere u svijetu dolaskom kapitalizma i nemilosrdne proračunate birokracije kao 'raščarenje svijeta'." },
@@ -172,7 +219,7 @@
             { q: "Kada profesor etiketira osobu A kao 'liječnika', a osobu B kao 'lošijeg učenika', pa ovi počnu mijenjati svoje ponašanje ovisno o primljenoj 'etiketi', prateći koju paradigmu gledamo taj primjer?", opts: ["Funkcionalizam", "Konfliktna", "Interakcionizam", "Marksizam"], ans: 2, exp: "Interakcionizam je lud za etiketama, stereotipima, mimikom i simboličkog izgradnji identiteta dvoje ljudi." },
             { q: "Sva ljudska objašnjenja po Comteu su u početku ljudske vrste bila objašnjavana Bogom i mitovima, u tzv:", opts: ["Politeizmu", "Prvom / Teološkom stadiju", "Pozitivnom stadiju", "Durkheimskom stadiju"], ans: 1, exp: "Zakon 3 stadija kreće od Teološkog, korača u Metafizički (filozofski pojmovi) i završava u Pozitivnom (stroga znanost)." },
             { q: "Prva obavezna faza baš svakog sociološkog istraživanja je uvijek:", opts: ["Skupljanje podataka i pisanje ankete", "Odabir teme i definiranje problema", "Pregledavanje literature", "Donošenje zaključka"], ans: 1, exp: "Kako bi skupljao podatke ako ne znaš ni što istrazuješ? Prvi korak je naći problem koji sociološki intrigira." },
-            { q: "Kada sociolog čita i pregledava dostupnu prijašnju literaturu (knjige, radove), što time želi izbjeći?", opts: ["Odgovoriti na pogrešno pitanje", "Otkrivanje tople vode izmišljajući već poznato", "Slanje loših anketa", "Eksperiment"], ans: 1, exp: "Čitanjem prošlih radova znanstvenik pazi da već netko prošle godine nije napisao i dokazao apsolutno istu stvar koju on sad planira mjesecima raditi." },
+
             { q: "Hipoteza je...?", opts: ["Apsolutna istina", "Metoda istraživanja", "Unaprijed pretpostavljeni tvrdnja/rezultat koji moramo potvrditi ili odbaciti", "Vrsta kvalitativnog podatka"], ans: 2, exp: "Tvoja hipoteza je tvoja pametna pretpostavka. Npr: 'Hipoteza: Igranje igara uzrokuje nesanicu'. Idući korak je dokazivanje." },
             { q: "Prednost Ankete (Upitnika) nad svim drugim metodama obično je:", opts: ["Saznavanje najdubljih osobnih osjećaja", "Može sakupiti ogromnu količinu mišljenja veoma brzo i jeftino", "Omogućava nam da testiramo lijek", "Ništa od navedenog"], ans: 1, exp: "S Google Formsom možeš u jednoj noći besplatno skupiti 50,000 mišljenja jednostavnim 'A, B ili C' odgovorima." },
             { q: "Koja bi metoda bila daleko najbolja za dubinsko shvaćanje zašto i kada se pojedinačni srednjoškolac osjeća anksiozno?", opts: ["Anketa s ponuđenim odgovorima u učionici", "Gledanje video isječaka", "Intervju jedan-na-jedan otvorenog tipa", "Analiza školskog weba"], ans: 2, exp: "Intervju ti omogućuje da postavljaš pod-pitanja, gledaš emocije, i kopaš najdublje moguće kroz odgovore same osobe." },
@@ -183,39 +230,48 @@
             { q: "Istraživanje koje je u cijelosti napisano riječima i tekstom, prepuno citata, emocija ispitanika te anegdota proizvelo je puno...", opts: ["Kvalitativnih podataka", "Kvantitativnih podataka", "Interakcionističkih podataka", "Statističkih brojeva"], ans: 0, exp: "Kvaliteta nam daje suštinsku bit, subjektivnost i cjelovit opis bez svođenja svega na brojke." },
             { q: "Kada sociolog završi s naivnim prikupljanjem podataka terena, što obvezno mora napraviti prije kraja rada?", opts: ["Analizirati ih i interpretirati", "Pohraniti ih u arhivu", "Napisati zakon za vladu", "Napraviti drugi eksperiment"], ans: 0, exp: "Podaci su beskorisni ako iz njih na kraju logično ne protumačiš zašto su uopće takvi. Zato radimo analizu." },
             { q: "Zašto sociolog (istraživač) najčešće izabire 'uzorak' umjesto cijelu hrvatsku naciju da ih sve ponaosob ispita?", opts: ["Jer se boji negativnih odgovora i GDPR-a", "Zbog jezičnih razlika i tradicije", "Iz čistog razloga prevelikog troška te utrošenog vremena i nemogućnosti provedbe", "Samo uzorak valjano odobrava Vlada RH"], ans: 2, exp: "Zato nasumično, s matematičkom preciznošću odabiremo npr. reprezentativnih samo 1,000 ljudi koji točno reprezentiraju naciju." },
-            { q: "Znanstvenici su pronašli jasnu pozitivnu korelaciju. Što znači pojam korelacija?", opts: ["Izvor pogreške u teoriji", "Uzročno-posljedična veza dvoje aktera", "Veza ili odnos preklapanja između dvije odvojene varijable", "Skrivena varijabla koja radi štetu"], ans: 2, exp: "Korelacija implicira vezu (rastom jedne stvari, raste primjerice i druga stvar, npr učenje i ocjena), no korelacija NIJE UVIJEK dokaz uzročnosti." },
+
             { q: "Za Marxa klasni sustav definira tko posjeduje materijalna i ekonomska sredstva. Ti koji ih posjeduju su...?", opts: ["Feudalci", "Buržoazija (kapitalisti)", "Proletarijat (radnici)", "Elitisti"], ans: 1, exp: "Buržoazija su vlasnici koji drže sva sredstva, dok je proletarijat radnička klasa koja nema ništa osim svog rada." },
-            { q: "Što bi od ovoga bio primjer operacioalizacije na primjeru u istraživanju stresa kod školaraca?", opts: ["Definiranje stresa kao 'ubrzan puls nakon testa viši od 100 otkucaja'", "Odlučivanje hoćemo li koristiti anketu umjesto intervjua", "Biranje teme rada", "Zaključak istraživanja o padu stresa"], ans: 0, exp: "Operacionalizacija znači da moraš jasno, jasno, doslovno u milimetar definirati KAKO mjeriš i prevodiš mutni pojam 'stres' u brojku." },
-            { q: "Kada je netko odbijen za posao zato što u razgovoru za taj posao ima jeftiniji naglasak siromašnog sela, prateći koju sociološku teoriju bi taj događaj prokomentirali?", opts: ["Funkcionalističku", "Simboličko-interakcionističku", "Sustavnu", "Strukturnu"], ans: 1, exp: "Ocjenjivanje nečijih detalja i stvaranje zaključaka na temelju naglaska ugovorima spada u čisti Interakcionistički mikroskop." },
-            { q: "Upitnik u kojem svatko zaokruži broj od 1 do 10 ovisno o boli - je li on kvalitativan ili kvantitativan?", opts: ["Subjektivan i nevalidan", "Kvalitativan", "Kvantitativan", "Eksplorativan"], ans: 2, exp: "Čim forsiraš nekog da umjesto opisa svoj osjećaj prebaci u ocjenu kojom raspolažu matematički alati, pretvorio si podatak u kvantitativni." },
-            { q: "Zato sociolozi vrlo, vrlo ali uistinu RRRiJETKO izoliraju ljude zatvarajući golihe i u kaveze unutar labosa radi socijalnih eksperimentata?", opts: ["Nema dovoljno novca u društvenim djelatostima", "Rigorozno pridržavanje moralnih i etičkih zakona kojih se moraju pridržavati", "Radi nemogućnosti dobivanja opreme", "Jer se tim isključivo zamaraju psiholozi."], ans: 1, exp: "Znanost, pa ni sociološki eksperimenti vezani za ponašanje, NE smiju narušavati slobodu niti uzrokovati traume ispitanicima – prate etički kodeks." },
+
+
+            { q: "Kakav je upitnik u kojem svatko zaokruži broj od 1 do 10 ovisno o boli?", opts: ["Subjektivan i nevalidan", "Kvalitativan", "Kvantitativan", "Eksplorativan"], ans: 2, exp: "Čim forsiraš nekog da umjesto opisa svoj osjećaj prebaci u ocjenu kojom raspolažu matematički alati, pretvorio si podatak u kvantitativni." },
+
             { q: "Dok te gleda sa svog satelita, funkcionalistički profesor zamišlja kako:", opts: ["Svijet ispravno diše i funkcionira upravo zbog podjele uloga na institucije koje o sebi paze i stabiliziraju se.", "Netko trenutno broji novac oštećenog podređenika.", "Dvoje ljubavnika stvaraju značenje veze putem simbola.", "Državna kontrola gubi svoj utjecaj te se lomi."], ans: 0, exp: "Da nema institucija u kojoj i svaka ima neku funkciju, svijet bi po njemu implodirao i prestao živjeti." },
             { q: "Ako hoćeš samo brojanje specifičnih psovki izrečenih u 23. albumu rock pjevaza, uzimaš", opts: ["Teorijsku matematiku i interakciju", "Eksperiment u studiju", "Analizu tekstova obožavatelja", "Kvantitativnu analizu sadržaja i prebrojavaš."], ans: 3, exp: "Analiza materijala te brojanje učestalosti znakova u istoj. Ključ na bravu." },
-            { q: "Vilfredo Pareto je otkrio da u Italiji 20% ljudi posjeduje 80% bogatstva. Kako se taj obrazac danas naziva?", opts: ["Marxov zakon", "Pareto princip (80/20)", "Weberova krivulja", "Durkheimova raspodjela"], ans: 1, exp: "Pareto princip (ili 80/20 pravilo) kaže da 20% uzroka stvara 80% posljedica – u ekonomiji, društvu, pa čak i na društvenim mrežama." },
+            { q: "Netko je otkrio da u društvu okvirno 20% ljudi posjeduje 80% bogatstva. Kako se taj obrazac danas naziva?", opts: ["Marxov zakon", "Pareto princip", "Weberova krivulja", "Durkheimova raspodjela"], ans: 1, exp: "Pareto princip (ili 80/20 pravilo) kaže da 20% uzroka stvara 80% posljedica – u ekonomiji, društvu, pa čak i na društvenim mrežama." },
             { q: "Prema Paretovoj teoriji elita, društvom uvijek vlada:", opts: ["Narod kroz demokraciju", "Mala skupina ljudi na vrhu (elita)", "Srednja klasa", "Vojska i crkva zajedno"], ans: 1, exp: "Pareto je tvrdio da je demokracija mit – u svakom sustavu (monarhiji, demokraciji, diktaturi) uvijek vlada mala elita na vrhu." },
             { q: "Pareto je elite podijelio na dvije vrste prema načinu vladanja. Koje su to?", opts: ["Bogati i siromašni", "Lisice i lavovi", "Konzervativci i liberali", "Vladari i svećenici"], ans: 1, exp: "Lisice vladaju lukavstvom, diplomacijom i manipulacijom, dok lavovi vladaju silom, odlučnošću i autoritetom. Inspiracija dolazi od Machiavellija." },
             { q: "Što znači Paretov pojam 'kruženje elita' (cirkulacija)?", opts: ["Elite se nikada ne mijenjaju", "Vladajuća elita se neprestano smjenjuje novom elitom", "Narod bira elite svake 4 godine", "Elite kruže po različitim državama"], ans: 1, exp: "Nijedna vladajuća skupina nije vječna – kad oslabi, zamjenjuje je nova, energičnija elita. 'Povijest je groblje aristokracija.'" },
             { q: "Čiji je poznati citat: 'Povijest je groblje aristokracija'?", opts: ["Karl Marx", "Max Weber", "Vilfredo Pareto", "Auguste Comte"], ans: 2, exp: "Pareto je ovim citatom sažeo svoju ključnu ideju – sve vladajuće klase na kraju propadnu i budu zamijenjene novim." },
             { q: "U Paretovoj piramidi društva, 'nevladajuća elita' su:", opts: ["Obični građani bez ikakvih sposobnosti", "Sposobni ljudi koji bi mogli vladati, ali trenutno ne vladaju", "Vojni generali na vlasti", "Političari u parlamentu"], ans: 1, exp: "Nevladajuća elita su talentirani izazivači koji čekaju svoju priliku. Kad vladajuća elita oslabi, oni preuzimaju vlast." },
-            { q: "Pareto je tvrdio da ljudi zapravo NE djeluju racionalno, nego ih pokreću duboki osjećaji koje je nazvao:", opts: ["Derivacije", "Rezidui", "Ideologije", "Paradigme"], ans: 1, exp: "Rezidui su duboki osjećaji i instinkti koji pokreću naše ponašanje. Mi samo naknadno izmišljamo logične razloge (derivacije) za ono što smo već odlučili iz osjećaja." },
-            { q: "Prema Paretu, koja je slabost elite tipa 'lisica'?", opts: ["Previše su nasilne", "Mogu postati previše korumpirane i izgubiti povjerenje naroda", "Ne znaju donositi odluke", "Uvijek gube ratove"], ans: 1, exp: "Lisice vladaju manipulacijom i pregovorima, ali s vremenom mogu postati toliko korumpirane da gube legitimitet i povjerenje naroda." }
+
+            { q: "Prema Paretu, koja je slabost elite tipa 'lisica'?", opts: ["Previše su nasilne", "Mogu postati previše korumpirane i izgubiti povjerenje naroda", "Ne znaju donositi odluke", "Uvijek gube ratove"], ans: 1, exp: "Lisice vladaju manipulacijom i pregovorima, ali s vremenom mogu postati toliko korumpirane da gube legitimitet i povjerenje naroda." },
+
+            // --- SOCIOLOGIJA GLAZBE ---
+            { q: "Prema funkcionalizmu, primarna uloga glazbe u društvu je:", opts: ["Generiranje profita za glazbenu industriju", "Izražavanje individualnog bunta i otpora", "Socijalna integracija i jačanje zajedništva", "Oblikovanje političkih stavova slušatelja"], ans: 2, exp: "Funkcionalisti glazbu gledaju kao 'socijalno ljepilo' – himne, navijačke pjesme i ritualna glazba stvaraju osjećaj zajedništva i solidarnosti, čime doprinose stabilnosti sustava." },
+            { q: "Adorno i kritička (konfliktna) teorija smatrali su pop-glazbu 'kulturnom industrijom' jer:", opts: ["Pop-glazba potiče kreativnost i kritičko mišljenje", "Standardizirana glazba pasivizira mase i služi kao alat ideološke kontrole", "Pop glazba ujedinjuje radničku klasu", "Glazba je uvijek bila slobodna od ekonomskih interesa"], ans: 1, exp: "Adorno je tvrdio da masovna produkcija glazbe ne slijedi kreativnost nego profitabilnost. Standardizirana, repetitivna glazba 'umrtvljuje' mase i odvraća ih od kritičkog mišljenja." },
+            { q: "Istraživanje Žagmešter Kemfelja (2024.) u Hrvatskoj koristilo je:", opts: ["Isključivo eksperiment kontrolirane etnosociologije", "Samo dubinske intervjue bez statističke analize", "Triangulaciju – kombinirani kvantitativni (anketa) i kvalitativni pristup (intervjui)", "Isključivo analizu sadržaja glazbenih recenzija"], ans: 2, exp: "Triangulacija omogućuje sveobuhvatniji uvid: anketa s 1476 ispitanika dala je statističke podatke, dok su 18 dubinskih intervjua otkrila skrivena emocionalna značenja glazbe (npr. fenomen 'neslužbenog mainstreama')." },
+            { q: "Prema istraživanju u Hrvatskoj, što je najdominantnija definicija glazbe kod ispitanika?", opts: ["Glazba je zabava i razbibriga", "Glazba je ekonomska robna marka", "Glazba je duhovnost i smisao života (44.9%)", "Glazba je fiziološki stimulans"], ans: 2, exp: "Čak 44.9% ispitanika glazbu je definiralo kroz dimenziju duhovnosti (smisao života, duša), što je bilo iznenađujuće visoko. Zabava je bila tek na četvrtom mjestu, što govori o dubokoj emocionalnoj funkciji glazbe." },
+            { q: "'Neslužbeni mainstream' fenomen koji je otkrilo istraživanje Žagmešter Kemfelja odnosi se na:", opts: ["Glazbu koja se pušta isključivo na radiju", "Glazbu koju mladi javno negiraju (npr. turbofolk), ali privatno intenzivno konzumiraju", "Neformalne glazbene grupe izvan mainstream produkcije", "Glazbu koja se ne može naći na streaming platformama"], ans: 1, exp: "Triangulacijom je otkriveno da mladi u javnosti odbacuju žanrove poput turbofolka (zbog stigme), ali ih privatno aktivno slušaju. To pokazuje jaz između javnog i privatnog identiteta – ključna sociološka tema." },
+            { q: "Hip-hop je kao supkultura nastao kao izraz:", opts: ["Srednje klase koja želi eksperimentirati s novim zvukovima", "Bogatih krugova koji promoviraju individualizam", "Marginaliziranih zajednica iz siromašnih gradskih kvartova (Bronx), govoreći o socijalnoj nepravdi", "Akademskih krugova zainteresiranih za ritam i govorništvo"], ans: 2, exp: "Hip-hop je rođen u siromašnom Bronxu (NYC) 1970-ih kao glasnik marginaliziranih crnih i latinoameričkih zajednica. Kroz rapp, graffiti, break-dance i DJ kulturu izražavali su autentičnost ulice i borbu za socijalnu pravdu." },
+            { q: "Kada sociolog interakcionizma proučava glazbeni ukus kao 'simboličku granicu', što on zapravo analizira?", opts: ["Koliko novca osoba troši na glazbu", "Kako godišnji prihodi utječu na glazbene preferencije", "Kako glazbeni ukus serve kao oznaka identiteta i razdvaja 'nas' od 'njih' u svakodnevnoj interakciji", "Kako institucije reguliraju glazbenu industriju"], ans: 2, exp: "Interakcionizam gleda mikrorazinu: 'Mi smo alternativci, oni su cajkaši' – glazbeni ukus postaje simbolička granica koja gradi identitet i definira tko pripada kojoj grupi. To je ključna interakcionistička tema jer se identitet gradi kroz simbole i svakodnevne interakcije." }
         ];
 
         // Quiz State
         let questions = [];
         let currentQIndex = 0;
         let score = 0;
-        
+
         const welcomeScreen = document.getElementById('welcome-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
-        
+
         const qText = document.getElementById('question-text');
         const optionsCont = document.getElementById('options-container');
         const qTracker = document.getElementById('question-tracker');
         const sTracker = document.getElementById('score-tracker');
         const pBar = document.getElementById('progress-bar');
-        
+
         const expBox = document.getElementById('explanation-box');
         const expTitle = document.getElementById('explanation-title');
         const expText = document.getElementById('explanation-text');
@@ -223,9 +279,9 @@
 
         const finalScore = document.getElementById('final-score');
         const finalMsg = document.getElementById('final-message');
-        
+
         function shuffle(array) {
-            let currentIndex = array.length,  randomIndex;
+            let currentIndex = array.length, randomIndex;
             while (currentIndex != 0) {
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
@@ -237,21 +293,21 @@
         function startQuiz() {
             let shuffled = shuffle([...masterQuestions]);
             questions = shuffled.slice(0, 10);
-            
+
             score = 0;
             currentQIndex = 0;
-            
+
             welcomeScreen.classList.add('hidden');
             resultScreen.classList.add('hidden');
             quizScreen.classList.remove('hidden');
-            
+
             loadQuestion();
         }
 
         function loadQuestion() {
             expBox.classList.add('hidden');
             optionsCont.innerHTML = '';
-            
+
             let q = questions[currentQIndex];
             qText.innerText = q.q;
             qTracker.innerText = `Pitanje ${currentQIndex + 1}/${questions.length}`;
@@ -267,7 +323,7 @@
                 btn.className = `option-btn w-full text-left p-4 md:p-5 rounded-xl border border-stone-200 dark:border-slate-600 bg-stone-50 hover:bg-stone-100 dark:bg-slate-700 dark:hover:bg-slate-600 font-medium text-stone-700 dark:text-slate-200 fade-in text-base md:text-lg`;
                 btn.style.animationDelay = `${index * 0.1}s`;
                 btn.innerHTML = `<span class="inline-block w-8 font-bold opacity-50 uppercase">${String.fromCharCode(65 + index)}.</span> <span>${optText}</span>`;
-                
+
                 btn.onclick = () => handleAnswer(btn, index, q.ans, q.exp);
                 optionsCont.appendChild(btn);
             });
@@ -282,7 +338,7 @@
                 b.classList.add('opacity-80');
             });
 
-            if(selectedIdx === correctIdx) {
+            if (selectedIdx === correctIdx) {
                 btn.classList.remove('opacity-80');
                 btn.classList.add('correct-ans', 'scale-105', 'shadow-md');
                 score++;
@@ -291,29 +347,29 @@
             } else {
                 btn.classList.remove('opacity-80');
                 btn.classList.add('wrong-ans');
-                
+
                 btns[correctIdx].classList.remove('opacity-80');
                 btns[correctIdx].classList.add('correct-ans');
-                
+
                 expTitle.innerText = "Netočan Odgovor";
                 expTitle.className = "font-bold text-lg mb-2 text-red-600 dark:text-red-400";
             }
-            
+
             sTracker.innerText = `Bodovi: ${score}`;
             sTracker.classList.add("scale-110");
             setTimeout(() => sTracker.classList.remove("scale-110"), 200);
-            
+
             expText.innerText = explanation;
             expBox.classList.remove('hidden');
             expBox.classList.add('fade-in');
-            
+
             // smooth scroll down to explanation box
             setTimeout(() => expBox.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
         }
 
         function nextQuestion() {
             currentQIndex++;
-            if(currentQIndex < questions.length) {
+            if (currentQIndex < questions.length) {
                 loadQuestion();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
@@ -325,15 +381,15 @@
         function showResults() {
             quizScreen.classList.add('hidden');
             resultScreen.classList.remove('hidden');
-            
+
             pBar.style.width = '100%';
             finalScore.innerText = `${score}/10`;
-            
+
             let emoji = "🏆";
             let msg = "";
             let percent = score / 10;
-            
-            if(percent === 1) {
+
+            if (percent === 1) {
                 emoji = "👑";
                 msg = "Apsolutni Vladar Sociologije! Weber i Marx bi te pozvali na večeru. Spreman/na si za peticu iz testa društva.";
             } else if (percent >= 0.8) {
@@ -346,7 +402,7 @@
                 emoji = "🙈";
                 msg = "Uh... Možda bi trebao/la razmisliti o ponovnom čitanju uvodnih lekcija! Nema nagađanja u znanosti.";
             }
-            
+
             document.getElementById('result-emoji').innerText = emoji;
             finalMsg.innerText = msg;
         }
@@ -370,7 +426,7 @@
             document.documentElement.classList.remove('dark');
         }
 
-        themeToggleBtn.addEventListener('click', function() {
+        themeToggleBtn.addEventListener('click', function () {
             themeToggleDarkIcon.classList.toggle('hidden');
             themeToggleLightIcon.classList.toggle('hidden');
 
@@ -389,4 +445,5 @@
         });
     </script>
 </body>
+
 </html>

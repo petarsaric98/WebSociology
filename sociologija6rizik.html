@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociologija Rizika i Straha: Zašto se bojimo pogrešnih stvari?</title>
+    <meta name="description" content="Lekcija 5: Sociologija rizika i straha. Psihologija rizika, percipirana naspram realnog rizika, nuklearna energija vs fosilna goriva.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #0d9488;
+            color: #0d9488;
+            font-weight: 600;
+        }
+        .dark .nav-link.active {
+            border-bottom: 2px solid #2dd4bf;
+            color: #2dd4bf;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 380px;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .perspective-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .perspective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.1), 0 10px 10px -5px rgba(13, 148, 136, 0.04);
+        }
+
+        /* Spider vs Mosquito animated comparison */
+        .creature-card {
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+        .creature-card:hover {
+            transform: scale(1.03);
+        }
+
+        /* Risk meter animation */
+        .risk-bar {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Pulse animation for scary mosquito */
+        @keyframes pulse-danger {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+        }
+        .pulse-danger {
+            animation: pulse-danger 2s ease-in-out infinite;
+        }
+
+        /* Glow animation for nuclear */
+        @keyframes nuclear-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); }
+        }
+        .nuclear-glow {
+            animation: nuclear-glow 3s ease-in-out infinite;
+        }
+
+        /* Floating particles */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
+        .float-anim-delay { animation: float 4s ease-in-out 1s infinite; }
+
+        /* Counter animation */
+        .counter-num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Fear scale visual */
+        .fear-thermometer {
+            background: linear-gradient(to top, #ef4444, #f97316, #eab308, #22c55e);
+            border-radius: 9999px;
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0d9488, #2dd4bf);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+        }
+        .dark .timeline-dot::before {
+            border-color: #1e293b;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 px-1 py-2 transition-colors">Uvod</a>
+
+                        <a href="#sociologija" class="nav-link text-stone-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 px-1 py-2 transition-colors">Sociologija</a>
+                        <a href="#studija" class="nav-link text-stone-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 px-1 py-2 transition-colors">Studija slučaja</a>
+                    </div>
+                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <!-- HERO / UVOD -->
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[380px] md:h-[460px] flex items-center justify-start p-6 md:p-14">
+                <div class="absolute inset-0 z-0 bg-teal-900">
+                    <img src="assets/risk_hero.png" alt="Sociologija Rizika i Straha Hero" class="w-full h-full object-cover mix-blend-overlay opacity-75" />
+                </div>
+
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md">LEKCIJA 5 · IZBORNA TEMA</div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">Sociologija <span class="text-teal-300">Rizika i Straha</span></h1>
+                    <p class="text-base md:text-xl text-teal-50 font-medium leading-relaxed drop-shadow-sm">
+                        Zašto se bojimo pauka, a ne komaraca? Zašto se nuklearke čine strašnijima od ugljena? Odgovore ne treba tražiti u biologiji – nego u <strong class="text-teal-200">društvu koje oblikuje naše percepcije</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- INTRO HOOK: Pauk vs. Komarac -->
+            <div class="mt-12">
+                <div class="text-center mb-8">
+                    <div class="inline-block px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Zanimljiva činjenica za razmišljanje</div>
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-3">Pauk vs. <span class="text-red-500">Komarac</span>: Tko je zapravo <span class="text-red-500">opasniji?</span></h2>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">Arahnofobija (strah od pauka) je jedna od triju najčešćih fobija na svijetu. Ali pogledajmo stvarne podatke...</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Pauk -->
+                    <div class="creature-card bg-white dark:bg-slate-800 rounded-3xl p-8 border-2 border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 text-xs font-bold px-3 py-1 rounded-full">Naša fobija</div>
+                        <div class="text-7xl mb-5 float-anim">🕷️</div>
+                        <h3 class="text-2xl font-extrabold text-slate-800 dark:text-white mb-4">Pauk</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Godišnje žrtve</span>
+                                <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-lg">~10 <span class="text-xs font-normal">(cijeli svijet)</span></span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Vjerojatnost smrtnog ishoda</span>
+                                <span class="font-extrabold text-emerald-600 dark:text-emerald-400">Praktički 0%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Psihološki status</span>
+                                <span class="font-bold text-violet-600 dark:text-violet-400 text-sm">Top 3 fobija ⚠️</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-4 bg-violet-50 dark:bg-violet-900/20 rounded-2xl border border-violet-200 dark:border-violet-800/40">
+                            <p class="text-xs text-violet-800 dark:text-violet-300 leading-relaxed">Strah od pauka toliko je raširen da evolucijski psiholozi raspravljaju je li to urođena reakcija naslijeđena od predaka.</p>
+                        </div>
+                    </div>
+
+                    <!-- Komarac -->
+                    <div class="creature-card bg-white dark:bg-slate-800 rounded-3xl p-8 border-2 border-red-200 dark:border-red-800/50 shadow-lg pulse-danger relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 text-xs font-bold px-3 py-1 rounded-full">Stvarna prijetnja</div>
+                        <div class="text-7xl mb-5 float-anim-delay">🦟</div>
+                        <h3 class="text-2xl font-extrabold text-slate-800 dark:text-white mb-4">Komarac</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Godišnje žrtve</span>
+                                <span class="font-extrabold text-red-600 dark:text-red-400 text-lg">750.000 – 1.000.000+</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Oružje</span>
+                                <span class="font-extrabold text-red-600 dark:text-red-400 text-sm">Malarija, Dengue, Zika</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-xl">
+                                <span class="text-sm text-slate-600 dark:text-slate-400 font-medium">Psihološki status</span>
+                                <span class="font-bold text-slate-500 dark:text-slate-400 text-sm">„Gnjavator" 🙄</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-4 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-200 dark:border-red-800/40">
+                            <p class="text-xs text-red-800 dark:text-red-300 leading-relaxed"><strong>Komarac je najsmrtonosnija životinja na Zemlji</strong> – ubija više ljudi godišnje nego sve ostale životinje zajedno, uključujući ljude i morske pse.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Provocative question -->
+                <div class="mt-8 p-6 md:p-8 bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 rounded-3xl border border-teal-200 dark:border-teal-800/40">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-teal-600 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md">🤔</div>
+                        <div>
+                            <h4 class="font-extrabold text-teal-900 dark:text-teal-200 text-lg mb-2">Zašto je to tako? Sociološko pitanje</h4>
+                            <p class="text-teal-800 dark:text-teal-300 leading-relaxed">Ako su pauk i komarac toliko različiti po stvarnoj opasnosti, a mi se bojimo pogresnog – to znači da naš strah <strong>nije racionalna kalkulacija rizika, nego društveni konstrukt</strong>. Upravo to proučava <em>sociologija rizika i straha</em>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tri sociološke perspektive (odmah nakon uvoda) -->
+            <div class="mt-10">
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Tri sociološke perspektive na <span class="text-teal-600 dark:text-teal-400">rizik i strah</span></h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                        <div class="text-4xl mb-4">⚙️</div>
+                        <h3 class="text-lg font-bold text-emerald-600 dark:text-emerald-400 mb-2">Funkcionalizam</h3>
+                        <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-3">"Percepcija rizika je neophodna za funkcioniranje društva."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Funkcionalistička perspektiva tvrdi da društvo <strong>uglavnom točno percipira realne rizike</strong> – i da je to korisno. Zajednički strah od bolesti, katastrofa ili kriminala pokreće <strong>kolektivnu akciju</strong>: grade se bolnice, vatrogasci, zakoni o sigurnosti. Bez percepcije rizika, ne bi bilo ni društvene organizacije za zaštitu.</p>
+                        <div class="mt-4 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 p-3 rounded-xl text-xs text-emerald-800 dark:text-emerald-300">
+                            <strong>Primjer:</strong> Percepcija rizika od pandemije → kolektivna mobilizacija → razvoj cjepiva i sustava javnog zdravstva
+                        </div>
+                    </div>
+
+                    <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                        <div class="text-4xl mb-4">🥊</div>
+                        <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 mb-2">Konfliktna teorija</h3>
+                        <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-3">"Percepcija rizika je oruđe kontrole masa."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Konfliktna perspektiva gleda tko ima <strong>moć definirati što je opasno</strong>. Elite, države i korporacije strateški konstruiraju ili minimiziraju percepciju određenih rizika prema vlastitom interesu. Prestrašena masa traži zaštitu i predaje kontrolu vladajućima – čime se <strong>učvršćuje postojeći poredak moći</strong>.</p>
+                        <div class="mt-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800/30 p-3 rounded-xl text-xs text-rose-800 dark:text-rose-300">
+                            <strong>Primjer:</strong> Strah od terorizma → masovni nadzor i ograničavanje sloboda → korist za državni aparat
+                        </div>
+                    </div>
+
+                    <div class="perspective-card bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                        <div class="text-4xl mb-4">🗣️</div>
+                        <h3 class="text-lg font-bold text-purple-600 dark:text-purple-400 mb-2">Interakcionizam</h3>
+                        <p class="text-slate-500 dark:text-slate-400 italic text-sm mb-3">"Rizik je ono što zajednički odlučimo da jest."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Interakcionisti promatraju kako se percepcija rizika gradi kroz <strong>svakodnevne interakcije, priče i simbole</strong>. Što mediji prikazuju kao „opasno", postaje opasno u kolektivnoj imaginaciji – neovisno o statistici. Značenja rizika nastaju <strong>mikro-razinom</strong>, razgovorima, pričama i kulturnim narativima.</p>
+                        <div class="mt-4 bg-purple-50 dark:bg-purple-900/10 border border-purple-200 dark:border-purple-800/30 p-3 rounded-xl text-xs text-purple-800 dark:text-purple-300">
+                            <strong>Primjer:</strong> Filmovi o hajkama → naglo padanje turizma na plažama 1975., bez ikakve promjene stvarne statike napada
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- SOCIOLOGIJA STRAHA -->
+        <section id="sociologija" class="scroll-mt-20">
+            <div class="mb-10 text-center md:text-left">
+                <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Kulturni i društveni okvir</div>
+                <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Sociologija Straha: <span class="text-indigo-600 dark:text-indigo-400">Strahovi su Društveni Konstrukti</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+                    Ulrich Beck, njemački sociolog, uveo je 1986. pojam <strong>„Društvo rizika" (Risikogesellschaft)</strong> – ideju da moderno društvo ne samo da proizvodi rizike, nego ih i <em>percipira i komunicira</em> na društveno uvjetovan način.
+                </p>
+            </div>
+
+            <!-- Beck's Risk Society -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 border border-slate-200 dark:border-slate-700 shadow-sm mb-10">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+                    <div class="md:w-1/3 text-center">
+                        <div class="w-28 h-28 mx-auto bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl flex items-center justify-center text-5xl shadow-xl shadow-indigo-500/20 mb-4">📚</div>
+                        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white">Ulrich Beck</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">„Risikogesellschaft", 1986.</p>
+                        <div class="mt-3 inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full">Ključni Teoričar</div>
+                    </div>
+                    <div class="md:w-2/3 space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-indigo-700 dark:text-indigo-300 font-extrabold text-sm">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Rizici su globalni i nevidljivi</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Za razliku od opasnosti prošlosti (poplave, glad), moderni rizici (zagađenje, nuklearno oružje, klimatske promjene) su nevidljivi i globalni. Nitko ih ne može „vidjeti" ni kontrolirati samostalno.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-indigo-700 dark:text-indigo-300 font-extrabold text-sm">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Definicija rizika je politička</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Tko odlučuje što je „prihvatljiv rizik"? Stručnjaci, vlade, korporacije – svi imaju interes. Percepcija rizika nije neutralna: ona odražava <strong>distribuciju moći u društvu</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-indigo-700 dark:text-indigo-300 font-extrabold text-sm">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Strah postaje politička sila</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Kad društvo percipira nešto kao opasno – to ima realne posljedice (zakoni, protesti, investicije). Strah <strong>oblikuje stvarnost</strong>, čak i kad nije opravdan podacima.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frank Furedi: Kultura Straha -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 border border-slate-200 dark:border-slate-700 shadow-sm mb-10">
+                <div class="flex flex-col md:flex-row gap-10 items-start">
+                    <div class="md:w-1/3 text-center md:text-left">
+                        <div class="w-28 h-28 mx-auto md:mx-0 bg-gradient-to-br from-rose-500 to-orange-600 rounded-3xl flex items-center justify-center text-5xl shadow-xl shadow-rose-500/20 mb-4">😨</div>
+                        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white">Frank Furedi</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">„Culture of Fear", 1997. / „How Fear Works", 2018.</p>
+                        <div class="mt-3 inline-block px-3 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-xs font-bold rounded-full">Ključni Teoričar</div>
+                        <div class="mt-4 p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800/30 rounded-2xl">
+                            <p class="text-xs text-rose-800 dark:text-rose-300 italic leading-relaxed">„Nismo postali opasniji svijet. Postali smo društvo koje je naučilo biti prestrašeno."</p>
+                            <p class="text-[10px] text-rose-500 dark:text-rose-400 mt-2 font-medium">— Frank Furedi</p>
+                        </div>
+                    </div>
+
+                    <div class="md:w-2/3 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-rose-700 dark:text-rose-300 font-extrabold text-sm">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Strah je odvojen od stvarnih opasnosti</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Furedi tvrdi da suvremeni strahovi <strong>nemaju empirijsku osnovu</strong> – nisu proporcionalni stvarnim rizicima, nego su kulturno konstruirani. Živimo sigurnije nego ikad, a osjećamo se ugroženije nego ikad.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-rose-700 dark:text-rose-300 font-extrabold text-sm">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Kolaps moralnog autoriteta → strah kao zamjena</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Tradicija i religija nekad su davali ljudiokvir vrijednosti i sigurnosti. Kad su ti okviri erodirali u modernom društvu, <strong>strah je zauzeo njihovo mjesto</strong> – postaje nova moralna kategorija koja dijeli „sigurno" od „opasnog".</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-rose-700 dark:text-rose-300 font-extrabold text-sm">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Kultura ranjivosti i „niske očekivanje"</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Društvo počinje ljude tretirati kao <strong>inherentno krhke i ranjive</strong>. Djeca su preopasno okružena, odrasli su „žrtve traume", svuda vrebaju rizici. Furedi to naziva „kulturom niskih očekivanja" – ne vjerujemo da ljudi mogu podnijeti izazove.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-rose-700 dark:text-rose-300 font-extrabold text-sm">4</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Politizacija straha</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Političari, mediji i interesne grupe <strong>strateški koriste strah</strong> kao alat mobilizacije. Prijetnje se preuveličavaju, prikazuju kao nekontrolabilne i neuhvatljive – jer prestrašen građanin traži zaštitu od države.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center flex-shrink-0 text-rose-700 dark:text-rose-300 font-extrabold text-sm">5</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1">Predznismo i zatvorenost prema budućnosti</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Moderno društvo je „<strong>prezentističko</strong>" – okrenuto samo sadašnjosti, bez nade u kolektivnu budućnost. Imaginacija postaje zarobljena u najgorim mogućim scenarijima, što vodi pasivnosti i eroziji zajedništva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vizualni "Risk Perception Gap" meter -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-6 text-center">Jaz između <span class="text-teal-600">percipiranog</span> i <span class="text-slate-500">stvarnog</span> rizika</h3>
+                <div class="space-y-6" id="risk-bars">
+                    <!-- Nuklearna energija -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-slate-700 dark:text-slate-300 text-sm">☢️ Nuklearna energija</span>
+                            <span class="text-xs text-slate-500">Percipiran visok / Stvaran nizak</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-rose-600 w-24 text-right">Percipirani:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-rose-500 to-rose-600 h-4 rounded-full w-0" data-width="90%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-rose-600 w-8">90%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-emerald-600 w-24 text-right">Stvarni:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-emerald-400 to-emerald-500 h-4 rounded-full w-0" data-width="3%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 w-8">3%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fosilna goriva -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-slate-700 dark:text-slate-300 text-sm">🏭 Fosilna goriva (zagađenje zraka)</span>
+                            <span class="text-xs text-slate-500">Percipiran nizak / Stvaran visok</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-rose-600 w-24 text-right">Percipirani:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-rose-500 to-rose-600 h-4 rounded-full w-0" data-width="20%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-rose-600 w-8">20%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-emerald-600 w-24 text-right">Stvarni:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-emerald-400 to-emerald-500 h-4 rounded-full w-0" data-width="95%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 w-8">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Avioni -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-slate-700 dark:text-slate-300 text-sm">✈️ Avioni</span>
+                            <span class="text-xs text-slate-500">Percipiran visok / Stvaran nizak</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-rose-600 w-24 text-right">Percipirani:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-rose-500 to-rose-600 h-4 rounded-full w-0" data-width="75%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-rose-600 w-8">75%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-emerald-600 w-24 text-right">Stvarni:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-emerald-400 to-emerald-500 h-4 rounded-full w-0" data-width="5%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 w-8">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Automobili -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-slate-700 dark:text-slate-300 text-sm">🚗 Automobili</span>
+                            <span class="text-xs text-slate-500">Percipiran nizak / Stvaran visok</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-rose-600 w-24 text-right">Percipirani:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-rose-500 to-rose-600 h-4 rounded-full w-0" data-width="30%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-rose-600 w-8">30%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-emerald-600 w-24 text-right">Stvarni:</span>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
+                                    <div class="risk-bar bg-gradient-to-r from-emerald-400 to-emerald-500 h-4 rounded-full w-0" data-width="80%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 w-8">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-6 italic text-center">* Postoci su relativni i ilustrativni; prikazuju veličinu percepcijskog jaza, a ne apsolutne vrijednosti smrtnosti.</p>
+            </div>
+        </section>
+
+        <!-- STUDIJA SLUČAJA: Nuklearna vs. Fosilna -->
+        <section id="studija" class="scroll-mt-20">
+            <!-- Dark full-width banner -->
+            <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-16 text-white overflow-hidden relative shadow-2xl mb-10">
+                <div class="absolute top-0 right-0 w-72 h-72 bg-green-500/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 text-center mb-10">
+                    <div class="inline-block px-4 py-1.5 bg-white/20 rounded-full text-xs font-bold tracking-widest uppercase backdrop-blur-md mb-4">Studija slučaja · Podaci iz stvarnog života</div>
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">☢️ Nuklearna energija <span class="text-slate-400">vs.</span> 🏭 Fosilna goriva</h2>
+                    <p class="text-slate-300 max-w-2xl mx-auto text-lg">Koji energetski izvor je zapravo opasniji za ljude? Podaci govore suprotno od naše percepcije.</p>
+                </div>
+
+                <!-- Tri stat kartice -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                    <!-- Chernobyl -->
+                    <div class="nuclear-glow bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-6 text-center">
+                        <div class="text-4xl mb-3">🏭</div>
+                        <div class="text-xs font-bold text-green-400 uppercase tracking-wider mb-2">Černobil (1986.)</div>
+                        <div class="text-5xl font-extrabold text-white mb-2 counter-num">~4.000</div>
+                        <p class="text-sm text-slate-400">prognoziranih dugoročnih smrtnih slučajeva od raka (UN, 2005.)</p>
+                        <div class="mt-4 text-xs text-slate-500 italic">31 direktna smrt u nesreći</div>
+                    </div>
+
+                    <!-- Fukushima -->
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-3xl p-6 text-center">
+                        <div class="text-4xl mb-3">🌊</div>
+                        <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Fukushima (2011.)</div>
+                        <div class="text-5xl font-extrabold text-white mb-2 counter-num">0</div>
+                        <p class="text-sm text-slate-400">direktnih smrtnih slučajeva od zračenja</p>
+                        <div class="mt-4 text-xs text-slate-500 italic">~2.300 indirektnih: stres od evakuacije (ne od radioaktivnosti). Tsunami: 18.000+ mrtvih.</div>
+                    </div>
+
+                    <!-- Fosilna -->
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-3xl p-6 text-center">
+                        <div class="text-4xl mb-3">💨</div>
+                        <div class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Zagađenje zraka (fosil.) godišnje</div>
+                        <div class="text-5xl font-extrabold text-white mb-2 counter-num">8.100.000</div>
+                        <p class="text-sm text-slate-400">smrtnih slučajeva globalno u 2021. (UNICEF/WHO)</p>
+                        <div class="mt-4 text-xs text-slate-500 italic">2. vodeći uzrok smrti na svijetu</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Sociološki zaključak -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Zašto se bojimo nuklearne -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-5 flex items-center gap-2">
+                        <span class="text-2xl">☢️</span> Zašto se bojimo nuklearne energije?
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-rose-100 dark:bg-rose-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-rose-600 text-xs font-bold">1</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Nevidljivost:</strong> Radioaktivno zračenje ne možemo osjetiti ni vidjeti – izaziva „efekt strave"</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-rose-100 dark:bg-rose-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-rose-600 text-xs font-bold">2</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Mediji:</strong> Černobil i Fukushima – spektakularne katastrofe koje su decenijama u kolektivnoj memoriji</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-rose-100 dark:bg-rose-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-rose-600 text-xs font-bold">3</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Hladni rat:</strong> Atomska bomba → asocijacija nuklearno = uništenje civilizacije</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-rose-100 dark:bg-rose-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-rose-600 text-xs font-bold">4</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Gubitak kontrole:</strong> Nitko od nas nije „odabrao" živjeti pored nuklearke – nameće se bez pristanka</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zašto ignoriramo fosilna -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="text-lg font-extrabold text-slate-800 dark:text-white mb-5 flex items-center gap-2">
+                        <span class="text-2xl">🏭</span> Zašto ignoriramo fosilna goriva?
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-amber-600 text-xs font-bold">1</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Normalizacija:</strong> Dim iz auta i tvornica vidimo svakodnevno – mozak ga klasificira kao „normalno"</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-amber-600 text-xs font-bold">2</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Moć lobbying-a:</strong> Naftne kompanije troše milijarde na PR kampanje koje umanjuju percepciju rizika</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-amber-600 text-xs font-bold">3</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Difuzne žrtve:</strong> Zagađenje ubija sporo i „nevidljivo" – nema jedne katastrofalne slike, nema vijesti</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-amber-600 text-xs font-bold">4</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-white">Ekonomski interesi:</strong> Fosilna goriva su baza globalnog gospodarstva – „preskupo" ih je se bojati</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ključni zaključak -->
+            <div class="mt-10 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-3xl p-8 md:p-10 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="text-5xl mb-4">💡</div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold mb-4">Sociološki zaključak</h3>
+                    <p class="text-teal-100 text-lg leading-relaxed max-w-3xl">
+                        Naši strahovi od nuklearne energije su <strong class="text-white">90 puta veći</strong> nego što statistika opravdava, a ignoriranje fosilnih goriva odgovara interesima moćnih korporacija koji oblikuju javni diskurs.
+                        <br><br>
+                        Ovo je savršen primjer zašto je sociologija rizika važna: <strong class="text-white">percipiorani rizici su društveno uvjetovani</strong>, a ne nužno racionalni. Tko kontrolira priču o tome što je opasno – kontrolira politiku, zakone i novčane tokove.
+                    </p>
+                    <div class="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 text-sm text-teal-100 italic">
+                        „Rizik nije samo fizikalna činjenica. On je socijalna i kulturna konstrukcija." — Ulrich Beck
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AKTUALNI STRAHOVI: AI -->
+            <div class="mt-16 bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+                <!-- Dekorativni sjaj -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-violet-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl transition-all duration-700 group-hover:bg-violet-500/10"></div>
+                
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3 relative z-10">
+                    <span class="text-3xl">🤖</span> Aktualni Strahovi: Hoće li nas AI zamijeniti?
+                </h3>
+                
+                <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-4xl relative z-10">
+                    Umjetna inteligencija (AI) savršen je poligon za testiranje sociologije rizika u 21. stoljeću. Zašto toliko strahujemo od tehnologije koju smo sami stvorili? Primijenimo naše tri teorijske perspektive na strah od AI-ja:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                    <!-- Funkcionalizam & AI -->
+                    <div class="p-5 bg-emerald-50/50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-800/30">
+                        <div class="font-extrabold text-emerald-700 dark:text-emerald-400 mb-2">⚙️ Oprez spašava sustav</div>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Strah od gubitka kontrole nad inteligencijom potiče nas na akciju. Baš zato što društvo <strong>percipira rizik</strong>, donose se zakoni poput <em>EU AI Acta</em>, osnivaju se etička povjerenstva i uvode regulative. Strah nas tjera da tehnologiju integriramo na siguran način.
+                        </p>
+                    </div>
+
+                    <!-- Konfliktna teorija & AI -->
+                    <div class="p-5 bg-rose-50/50 dark:bg-rose-900/10 rounded-2xl border border-rose-100 dark:border-rose-800/30">
+                        <div class="font-extrabold text-rose-700 dark:text-rose-400 mb-2">🥊 Tko gubi, a tko zarađuje?</div>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Pravi rizik često nije apokaliptični „Terminator", nego <strong>rastuća nejednakost</strong>. Dok tehnološke elite gomilaju kapital, radnici gube poslove. Zanimljivo je da iste te elite ponekad same potenciraju mistične strahove ("AI će uništiti svijet!") kako bi odvratile pozornost javnosti od sasvim konkretnog rizika – monopolizacije moći i bogatstva.
+                        </p>
+                    </div>
+
+                    <!-- Interakcionizam & AI -->
+                    <div class="p-5 bg-purple-50/50 dark:bg-purple-900/10 rounded-2xl border border-purple-100 dark:border-purple-800/30">
+                        <div class="font-extrabold text-purple-700 dark:text-purple-400 mb-2">🗣️ Matrica nas je programirala</div>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Kako uopće doživljavamo softver koji „misli"? Naš strah oblikovan je desetljećima <strong>pop-kulture i znanstvene fantastike</strong> (<em>Matrix, Odiseja 2001, Black Mirror</em>). Naša procjena rizika rijetko počiva na čitanju koda, a najčešće na kulturalnim narativima o strojevima koji se otimaju kontroli.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 mt-20">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="text-sm mb-4 italic">„Strah je najstariji i najjači osjećaj čovječanstva, ali on ne mora biti najpametniji vodič kroz život." — H.P. Lovecraft (adaptirano)</p>
+            <div class="w-12 h-1 bg-teal-600 mx-auto mb-8"></div>
+            <p class="text-xs">&copy; 2026 Interaktivni vodič za sociologiju</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // --- Navigation Scroll Effect ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- Animated Risk Bars (Intersection Observer) ---
+        const riskBars = document.querySelectorAll('.risk-bar');
+
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const targetWidth = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = targetWidth;
+                    }, 200);
+                    barObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        riskBars.forEach(bar => barObserver.observe(bar));
+
+        // --- Mortality Chart ---
+        window.addEventListener('load', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#94a3b8' : '#475569';
+            const gridColor = isDark ? 'rgba(148, 163, 184, 0.1)' : 'rgba(71, 85, 105, 0.1)';
+
+            const ctx = document.getElementById('mortalityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ugljen', 'Nafta', 'Prirodni plin', 'Nuklearna', 'Vjetar', 'Solarni'],
+                    datasets: [{
+                        label: 'Smrtni slučajevi na TWh',
+                        data: [24.6, 18.4, 2.8, 0.07, 0.04, 0.02],
+                        backgroundColor: [
+                            'rgba(100, 116, 139, 0.8)',
+                            'rgba(100, 116, 139, 0.65)',
+                            'rgba(100, 116, 139, 0.5)',
+                            'rgba(13, 148, 136, 0.75)',
+                            'rgba(13, 148, 136, 0.55)',
+                            'rgba(13, 148, 136, 0.4)',
+                        ],
+                        borderColor: [
+                            '#475569',
+                            '#475569',
+                            '#475569',
+                            '#0d9488',
+                            '#0d9488',
+                            '#0d9488',
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => `${ctx.raw} smrtnih slučajeva / TWh`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: gridColor },
+                            ticks: { color: textColor },
+                            title: { display: true, text: 'Smrtnih slučajeva na TWh', color: textColor }
+                        },
+                        x: { grid: { display: false }, ticks: { color: textColor } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
