@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociologija Digitalnog Svijeta: Algoritmi i Naš Identitet</title>
+    <meta name="description"
+        content="Lekcija 7: Sociologija digitalnog društva. Algoritmi, filter mjehurići, echo chamberi i prezentacija digitalne osobnosti u digitalnom prostoru.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid #8b5cf6;
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .dark .nav-link.active {
+            border-bottom: 2px solid #a78bfa;
+            color: #a78bfa;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .concept-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Floating particles */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .dark .timeline-dot::before {
+            border-color: #1e293b;
+        }
+
+        .algorithm-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        /* Green Theme Overrides */
+        html.theme-green body {
+            background-color: #021f20 !important;
+            color: #a1c2c4 !important;
+        }
+
+        html.theme-green .bg-white,
+        html.theme-green .dark\:bg-slate-800 {
+            background-color: #032b2c !important;
+        }
+
+        html.theme-green .dark\:bg-slate-900 {
+            background-color: #021f20 !important;
+        }
+
+        html.theme-green .dark\:bg-slate-700 {
+            background-color: #04393b !important;
+        }
+
+        html.theme-green .dark\:border-slate-800,
+        html.theme-green .dark\:border-slate-700 {
+            border-color: #044246 !important;
+        }
+
+        html.theme-green .dark\:text-slate-200,
+        html.theme-green .dark\:text-white {
+            color: #d1f2f4 !important;
+        }
+
+        html.theme-green .dark\:text-slate-300,
+        html.theme-green .dark\:text-slate-400 {
+            color: #92b4b5 !important;
+        }
+
+        html.theme-green .bg-slate-50,
+        html.theme-green .bg-slate-100 {
+            background-color: #021f20 !important;
+        }
+
+        html.theme-green .shadow-sm,
+        html.theme-green .shadow-md,
+        html.theme-green .shadow-lg,
+        html.theme-green .shadow-xl,
+        html.theme-green .shadow-2xl {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        html.theme-green .text-slate-800,
+        html.theme-green .text-slate-700 {
+            color: #d1f2f4 !important;
+        }
+
+        html.theme-green .text-slate-500,
+        html.theme-green .text-slate-400 {
+            color: #92b4b5 !important;
+        }
+
+        html.theme-green .border-slate-100,
+        html.theme-green .border-slate-200 {
+            border-color: #044246 !important;
+        }
+
+        html.theme-green .hover\:bg-slate-200:hover,
+        html.theme-green .dark\:hover\:bg-slate-700:hover {
+            background-color: #04393b !important;
+        }
+
+        html.theme-green .bg-white\/90 {
+            background-color: rgba(3, 43, 44, 0.9) !important;
+        }
+
+        html.theme-green .dark\:bg-slate-900\/90 {
+            background-color: rgba(2, 31, 32, 0.9) !important;
+        }
+
+        /* Specific Component Overrides */
+        html.theme-green .concept-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.2), 0 10px 10px -5px rgba(13, 148, 136, 0.1) !important;
+        }
+
+        html.theme-green .timeline-dot::before {
+            background: linear-gradient(135deg, #0d9488, #10b981) !important;
+            border-color: #021f20 !important;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2) !important;
+        }
+
+        html.theme-green .algorithm-gradient {
+            background: linear-gradient(135deg, #0d9488 0%, #065f46 100%) !important;
+        }
+
+        html.theme-green .text-violet-600,
+        html.theme-green .text-indigo-600,
+        html.theme-green .text-violet-400,
+        html.theme-green .text-indigo-400 {
+            color: #2dd4bf !important;
+        }
+
+        html.theme-green .bg-violet-600,
+        html.theme-green .bg-indigo-600 {
+            background-color: #0d9488 !important;
+        }
+
+        html.theme-green .border-violet-600,
+        html.theme-green .border-indigo-600,
+        html.theme-green .border-violet-500,
+        html.theme-green .border-indigo-500 {
+            border-color: #0d9488 !important;
+        }
+    </style>
+</head>
+
+<body
+    class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav
+        class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div
+                    class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod"
+                            class="nav-link active text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Uvod</a>
+                        <a href="#perspektive"
+                            class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Perspektive</a>
+                        <a href="#algoritmi"
+                            class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Algoritmi</a>
+                        <a href="#digitalna-osobnost"
+                            class="nav-link text-stone-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 px-1 py-2 transition-colors">Digitalna
+                            osobnost</a>
+                    </div>
+                    <button id="theme-toggle" type="button"
+                        class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg id="theme-toggle-green-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <!-- HERO / UVOD -->
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div
+                class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] md:h-[500px] flex items-center justify-start p-6 md:p-14">
+                <div class="absolute inset-0 z-0 bg-indigo-950">
+                    <img src="assets/digital_hero.png" alt="Digital Sociology Hero"
+                        class="w-full h-full object-cover mix-blend-overlay opacity-60" />
+                </div>
+
+                <div
+                    class="relative z-10 glass p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div
+                        class="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/20 text-white rounded-full text-[10px] md:text-xs font-bold tracking-widest mb-4 md:mb-6 shadow-sm ring-1 ring-white/40 uppercase backdrop-blur-md text-white">
+                        LEKCIJA 7 · DIGITALNO DRUŠTVO</div>
+                    <h1
+                        class="text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">
+                        Tko ti kroji <span class="text-violet-400">stvarnost?</span></h1>
+                    <p class="text-base md:text-xl text-indigo-100 font-medium leading-relaxed drop-shadow-sm">
+                        Internet nije samo "prostor" gdje se nalazimo. To je <strong class="text-violet-300">društvena
+                            arhitektura</strong> koja putem algoritama selektira što vidimo, koga volimo i kako
+                        doživljavamo sami sebe.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tri perspektive — odmah ispod heroa -->
+            <div class="mt-20">
+                <div class="text-center mb-10">
+                    <div
+                        class="inline-block px-3 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4">
+                        Teorijski okvir</div>
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-3">Tri pogleda na <span
+                            class="text-violet-600 dark:text-violet-400">Platforme Društvenih Mreža</span></h2>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">Isti fenomen — TikTok, Instagram,
+                        Facebook — tri potpuno različita odgovora. Koja perspektiva ti se čini najbliža istini?</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Funkcionalizam -->
+                    <div
+                        class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-teal-400 to-teal-600 rounded-t-3xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-teal-100 dark:bg-teal-900/40 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            ⚙️</div>
+                        <div
+                            class="inline-block px-2 py-0.5 bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 text-[10px] font-bold rounded-full uppercase tracking-widest mb-3">
+                            Funkcionalizam</div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Platforme kao ljepilo društva
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                            Društvene mreže imaju jasnu <strong class="text-slate-800 dark:text-slate-200">društvenu
+                                funkciju</strong> — povezuju ljude, ubrzavaju širenje informacija u krizama i stvaraju
+                            nove oblike solidarnosti i zajedništva diljem svijeta.
+                        </p>
+                        <div
+                            class="p-4 bg-teal-50 dark:bg-slate-900 rounded-2xl border border-teal-100 dark:border-slate-700">
+                            <p class="text-xs text-teal-800 dark:text-teal-400 font-semibold mb-1">🔍 Ključno pitanje:
+                            </p>
+                            <p class="text-xs text-teal-700 dark:text-teal-500 italic">Koju funkciju ispunjava TikTok u
+                                životu tinejdžera?</p>
+                        </div>
+                    </div>
+
+                    <!-- Konfliktni -->
+                    <div
+                        class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-rose-400 to-rose-600 rounded-t-3xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-rose-100 dark:bg-rose-900/40 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            ⚔️</div>
+                        <div
+                            class="inline-block px-2 py-0.5 bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 text-[10px] font-bold rounded-full uppercase tracking-widest mb-3">
+                            Konfliktna teorija</div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Ti si produkt, ne korisnik
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                            Korporacije poput Mete i Googlea grade <strong
+                                class="text-slate-800 dark:text-slate-200">moć temeljenu na tvojim podacima</strong>.
+                            Korisnici su besplatna radna snaga. Algoritmi pojačavaju nejednakosti jer siromašniji
+                            slojevi imaju manje digitalnih resursa.
+                        </p>
+                        <div
+                            class="p-4 bg-rose-50 dark:bg-slate-900 rounded-2xl border border-rose-100 dark:border-slate-700">
+                            <p class="text-xs text-rose-800 dark:text-rose-400 font-semibold mb-1">🔍 Ključno pitanje:
+                            </p>
+                            <p class="text-xs text-rose-700 dark:text-rose-500 italic">Kome zaista služi tvoj Instagram
+                                profil — tebi ili oglašivačima?</p>
+                        </div>
+                    </div>
+
+                    <!-- Interakcionistički -->
+                    <div
+                        class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 to-amber-600 rounded-t-3xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-amber-100 dark:bg-amber-900/40 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            🤝</div>
+                        <div
+                            class="inline-block px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold rounded-full uppercase tracking-widest mb-3">
+                            Simbolički interakcionizam</div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Identitet se gradi lajkovima
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                            Fokus je na <strong class="text-slate-800 dark:text-slate-200">mikrointerakcijama</strong> —
+                            kako lajk, komentar ili story mijenja naš doživljaj samih sebe? Svaka objava je pažljivo
+                            konstruiran nastup pred publikom (Goffman).
+                        </p>
+                        <div
+                            class="p-4 bg-amber-50 dark:bg-slate-900 rounded-2xl border border-amber-100 dark:border-slate-700">
+                            <p class="text-xs text-amber-800 dark:text-amber-400 font-semibold mb-1">🔍 Ključno pitanje:
+                            </p>
+                            <p class="text-xs text-amber-700 dark:text-amber-500 italic">Zašto se osjećamo loše kad
+                                objava dobije malo lajkova?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Provokativno pitanje -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div
+                        class="inline-block px-3 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-xs font-bold rounded-full uppercase tracking-wider">
+                        Provokativno pitanje</div>
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white leading-tight">Je li tvoj feed zaista
+                        <span class="text-violet-600 dark:text-violet-400 italic">tvoj</span>?
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Kada skrolaš TikTokom, misliš da biraš što gledaš. No, sociološki gledano, ti si unutar sustava
+                        koji je <strong class="text-slate-800 dark:text-white">predvidio tvoje reakcije</strong> i prije
+                        nego što si ih sam postao svjestan. Algoritmi nisu neutralni alati; oni su agenti
+                        socijalizacije.
+                    </p>
+                    <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border-l-4 border-violet-500 shadow-sm">
+                        <p class="text-sm italic text-slate-500 dark:text-slate-400 leading-relaxed">
+                            "Algoritam je tvoj novi roditelj, tvoj novi učitelj i tvoj novi najbolji prijatelj. On te
+                            poznaje bolje od tebe samog jer on ne sluša što kažeš, nego gleda što radiš."
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-violet-500/20 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl"></div>
+                    <img src="assets/echo_chamber.png" alt="Echo Chamber Visual"
+                        class="rounded-3xl shadow-2xl relative z-10 border border-slate-200 dark:border-slate-700" />
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ALGORITMI I KONTROLA -->
+        <section id="algoritmi" class="scroll-mt-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Nevidljivi kavezi: <span
+                        class="text-violet-600">Filteri i Mjehurići</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Concept 1 -->
+                <div
+                    class="concept-card bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                    <div class="text-4xl mb-6">🫧</div>
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">Filter Mjehurić (Filter Bubble)
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Personalizirani svemir informacija u kojem te algoritam okružuje samo onime što ti se već sviđa.
+                        Rezultat? <strong class="text-violet-600 dark:text-violet-400">Intelektualna izolacija</strong>
+                        bez da si toga svjestan.
+                    </p>
+                    <div
+                        class="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-xl text-xs text-violet-700 dark:text-violet-300">
+                        <strong>Problem:</strong> Prestajemo se susretati s idejama koje nas izazivaju.
+                    </div>
+                </div>
+
+                <!-- Concept 2 -->
+                <div
+                    class="concept-card bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                    <div class="text-4xl mb-6">📢</div>
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">Echo Chamber</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Digitalni prostor gdje se tvoje mišljenje stalno vraća k tebi kroz druge ljude koji misle isto.
+                        To vodi ka <strong class="text-violet-600 dark:text-violet-400">radikalizaciji i
+                            polarizaciji</strong> društva.
+                    </p>
+                    <div
+                        class="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-xl text-xs text-violet-700 dark:text-violet-300">
+                        <strong>Problem:</strong> "Oni drugi" nam postaju neshvatljivi i neprijateljski nastrojeni.
+                    </div>
+                </div>
+
+                <!-- Concept 3 -->
+                <div
+                    class="concept-card bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                    <div class="text-4xl mb-6">👁️</div>
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">Ekonomija pažnje</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Na internetu tvoj novac nije bitan koliko tvoje <strong
+                            class="text-violet-600 dark:text-violet-400">vrijeme i pažnja</strong>. Algoritmi su
+                        dizajnirani da te drže "zakačenim" koristeći dopaminske petlje (lajkovi, notifikacije).
+                    </p>
+                    <div
+                        class="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-xl text-xs text-violet-700 dark:text-violet-300">
+                        <strong>Problem:</strong> Tehnologija ne služi tebi, nego ti služiš tehnologiji (tj.
+                        oglašivačima).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Chart Area -->
+            <div class="mt-16 bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-violet-600/10 rounded-full blur-3xl"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Algoritamska dominacija: <br><span
+                                class="text-violet-400">Što najviše utječe na tvoje mišljenje?</span></h3>
+                        <div class="space-y-6">
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                                <p class="text-sm text-slate-300 mb-2">Vjerujete li informacijama koje vam algoritam
+                                    preporuči?</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                                        <div class="bg-violet-500 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                    <span class="text-xs font-bold">65% "Da"</span>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                                <p class="text-sm text-slate-300 mb-2">Koliko puta dnevno provjeravate telefon bez
+                                    razloga?</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                                        <div class="bg-indigo-500 h-2 rounded-full" style="width: 82%"></div>
+                                    </div>
+                                    <span class="text-xs font-bold">Prosjek: 80+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative h-64">
+                        <canvas id="digitalChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULACIJA DRUŠTVENE STVARNOSTI -->
+        <section id="simulacija" class="scroll-mt-20">
+            <div class="relative p-8 md:p-16 rounded-[3rem] bg-slate-900 border border-slate-800 overflow-hidden shadow-2xl">
+                <!-- Background Decorative Elements -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px]"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px]"></div>
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="inline-block px-4 py-1.5 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-widest mb-6 border border-emerald-500/20">
+                                Digitalni Fenomeni
+                            </div>
+                            <h2 class="text-4xl font-extrabold text-white leading-tight">
+                                Simulacija <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">društvene stvarnosti</span>
+                            </h2>
+                            <p class="text-slate-400 mt-6 leading-relaxed text-lg">
+                                Koliko je "društva" u društvenim mrežama zaista ljudsko? Danas se suočavamo s granicom gdje prestaje autentična ljudska interakcija, a počinje algoritamska simulacija.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Botovi Card -->
+                            <div class="p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors">
+                                <div class="flex items-start gap-4">
+                                    <div class="text-3xl">🤖</div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white mb-2">Botovi i lažni konsenzus</h3>
+                                        <p class="text-sm text-slate-400 leading-relaxed">
+                                            Botovi nisu samo programi; oni su sociološki akteri. Oni mogu stvoriti <strong>lažni dojam popularnosti</strong> (prikazujući da veliki broj ljudi podržava neku ideju, iako su to samo strojevi) i tako umjetno promijeniti ono što društvo smatra "normalnim" ili "popularnim".
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dead Internet Card -->
+                            <div class="p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors">
+                                <div class="flex items-start gap-4">
+                                    <div class="text-3xl">💀</div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white mb-2">Dead Internet Theory</h3>
+                                        <p class="text-sm text-slate-400 leading-relaxed">
+                                            Radikalna teorija koja tvrdi da je internet prestao biti ljudski prostor oko 2016. Danas, AI generira sadržaj koji drugi AI lajka, dok ljudi promatraju tu <strong>digitalnu simulaciju</strong> misleći da sudjeluju u stvarnom društvu.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-[2.5rem] p-1 border border-white/10 shadow-2xl">
+                            <div class="bg-slate-950/80 backdrop-blur-md rounded-[2.3rem] p-8 space-y-8">
+                                <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                                    <span class="text-emerald-400 font-mono text-xs tracking-widest uppercase">System Audit: Reality Check</span>
+                                    <div class="flex gap-1.5">
+                                        <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                                        <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                                        <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex justify-between items-end">
+                                        <span class="text-sm text-slate-400">Bad Bot Traffic (Global)</span>
+                                        <span class="text-2xl font-bold text-white">27.7%</span>
+                                    </div>
+                                    <div class="w-full bg-white/5 h-3 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-emerald-500 to-cyan-500 h-full w-[27%] shadow-[0_0_20px_rgba(16,185,129,0.5)]"></div>
+                                    </div>
+                                    <p class="text-[10px] text-slate-500 uppercase tracking-wider text-center">Gotovo trećina internetskog prometa su maliciozni botovi (<a href="https://www.imperva.com/resources/resource-library/reports/bad-bot-report/" target="_blank" class="hover:text-emerald-400 transition-colors underline decoration-dotted">Imperva Report, 2022</a>)</p>
+                                </div>
+
+                                <div class="p-6 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl">
+                                    <p class="text-xs text-emerald-300 italic leading-relaxed">
+                                        "Problem nije u tome što strojevi počinju razmišljati kao ljudi, nego što ljudi počinju reagirati kao strojevi na programirane podražaje."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- DIGITALNA OSOBNOST -->
+        <section id="digitalna-osobnost" class="scroll-mt-20">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/3">
+                    <div class="sticky top-24 space-y-6">
+                        <div
+                            class="w-20 h-20 bg-violet-600 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                            🎭</div>
+                        <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Goffman na Instagramu</h2>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Sociolog <strong>Erving Goffman</strong> davno je pisao o "upravljanju dojmovima". On kaže
+                            da smo svi glumci na pozornici. U digitalnom dobu, ta pozornica je tvoj profil.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 space-y-8">
+                    <!-- Dramaturgija 2.0 -->
+                    <div
+                        class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full">
+                                Koncept</div>
+                            <h3 class="text-xl font-bold">Dramaturški pristup i "Izložbena stranica"</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-violet-600 uppercase text-xs tracking-widest">Front Stage
+                                    (Pozornica)</h4>
+                                <p class="text-slate-500">Tvoj profil i objave. Prema istraživanju <a
+                                        href="https://hrcak.srce.hr/264364" target="_blank"
+                                        class="font-bold underline decoration-indigo-500/30 hover:text-indigo-600 transition-colors">Perkov
+                                        i Šarić (2021)</a>, to je tvoja "izložbena stranica" na kojoj si ti kustos
+                                    vlastitog identiteta.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-slate-400 uppercase text-xs tracking-widest">Back Stage
+                                    (Zakulisje)</h4>
+                                <p class="text-slate-500">Prostor pripreme. Dok uživo (sinkrono) možemo pogriješiti,
+                                    online imamo luksuz <em>asinkrone komunikacije</em> — mogućnost da popravimo svaku
+                                    sliku i riječ.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-5 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                <strong>Sociološki rizik:</strong> Kad "pozornica" postane jedina stvarnost koju
+                                priznajemo, gubimo kontakt s autentičnim sobom. To vodi do tjeskobe jer se stalno
+                                uspoređujemo s tuđim "najboljim trenucima".
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ZNANSTVENI KUT: PERKOV & ŠARIĆ -->
+        <section id="znanstveni-kut" class="scroll-mt-20">
+            <div
+                class="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden">
+                <div
+                    class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/30">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                        <div>
+                            <div
+                                class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full uppercase tracking-wider mb-3">
+                                Znanstveni Kut</div>
+                            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Istraživanje:
+                                Samopredstavljanje na mrežama</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Izvor: <a
+                                    href="https://hrcak.srce.hr/264364" target="_blank"
+                                    class="hover:text-indigo-600 underline underline-offset-4 decoration-indigo-400/30 transition-colors">Perkov,
+                                    I. & Šarić, P. (2021)</a>. <em>Filozofska istraživanja</em>, 41(3), 627–638.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <div
+                                class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">
+                                IP</div>
+                            <div
+                                class="w-10 h-10 bg-violet-600 rounded-lg flex items-center justify-center text-white font-bold">
+                                PŠ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                            <span class="text-2xl">🖼️</span> Koncept "Izložbene stranice"
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            U svom radu, autori naglašavaju da mi na mrežama ne "nastupamo" u klasičnom smislu (kao u
+                            kazalištu uživo), već gradimo <strong>izložbenu stranicu</strong>. To su reproduktivni
+                            artefakti — naši podaci, slike i postovi — koji ostaju trajno pohranjeni.
+                        </p>
+                        <blockquote
+                            class="pl-4 border-l-4 border-indigo-500 italic text-sm text-slate-500 dark:text-slate-400 py-2">
+                            "Korisnici su sada urednici i stvaratelji – dizajniraju i stvaraju svoje samopredstavljanje,
+                            birajući što će staviti u prvi red ili sakriti u pozadinu."
+                        </blockquote>
+                    </div>
+
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                            <span class="text-2xl">⏳</span> Sinkrona vs. Asinkrona komunikacija
+                        </h3>
+                        <div class="space-y-4 mt-4">
+                            <!-- Sinkrona -->
+                            <div
+                                class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-100 dark:border-emerald-800/30">
+                                <div class="text-xl">🗣️</div>
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest mb-1">
+                                        Sinkrona (U realnom vremenu)</h4>
+                                    <p class="text-xs text-emerald-700 dark:text-emerald-300 leading-relaxed">
+                                        Događa se <strong>odmah</strong> (razgovor uživo, video poziv). Ne ostavlja
+                                        prostor za naknadno uređivanje. Goffman kaže da je ovdje rizik od "narušavanja
+                                        nastupa" (zamuckivanje, sram) najveći.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Asinkrona -->
+                            <div
+                                class="flex gap-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/30">
+                                <div class="text-xl">✉️</div>
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-indigo-800 dark:text-indigo-400 uppercase tracking-widest mb-1">
+                                        Asinkrona (S odmakom)</h4>
+                                    <p class="text-xs text-indigo-700 dark:text-indigo-300 leading-relaxed">
+                                        Događa se <strong>kad nama odgovara</strong> (poruke, komentari, objave). Imamo
+                                        luksuz da promislimo, obrišemo i "ispoliramo" sliku o sebi prije nego što je
+                                        javno objavimo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-4 p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl text-[11px] text-slate-500 italic">
+                            *Upravo ta moć asinkronosti pretvara naš profil u "izložbenu stranicu", a ne u pozornicu
+                            uživo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ISTRAŽIVANJE: PREFERENCIJE KOMUNIKACIJE -->
+        <section id="preferencije" class="scroll-mt-20">
+            <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-indigo-600/10 pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div
+                            class="inline-block px-3 py-1 bg-violet-500/20 text-violet-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4">
+                            Temeljni nalaz</div>
+                        <h2 class="text-3xl font-bold mb-6 leading-tight">Nesrazmjer digitalne prisutnosti i stvarnih
+                            želja</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Iako provodimo sate na mrežama, istraživanje pokazuje da <strong>fizički kontakt</strong> i
+                            dalje ostaje neprikosnoven. Ovo je ključni dokaz da digitalna komunikacija ne može u
+                            potpunosti zamijeniti ljudsku potrebu za neposrednošću.
+                        </p>
+                        <div class="text-xs text-slate-500 italic">
+                            Izvor: <a href="https://zir.nsk.hr/object/hrstud:2843#" target="_blank"
+                                class="underline hover:text-violet-400">NSK - ZIR (hrstud:2843)</a>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-violet-300 mb-4 text-center md:text-left">Preferencije
+                            oblika komunikacije (%)</h3>
+
+                        <!-- Lice u lice -->
+                        <div class="space-y-2">
+                            <div
+                                class="flex justify-between text-xs font-bold uppercase tracking-widest text-slate-400">
+                                <span>Fizička komunikacija (Lice-u-lice)</span>
+                                <span class="text-violet-400 font-bold">71.19%</span>
+                            </div>
+                            <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full"
+                                    style="width: 71.19%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Svejedno -->
+                        <div class="space-y-2">
+                            <div
+                                class="flex justify-between text-xs font-bold uppercase tracking-widest text-slate-400">
+                                <span>Svejedno im je</span>
+                                <span class="text-slate-200">19.92%</span>
+                            </div>
+                            <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-slate-500 rounded-full" style="width: 19.92%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Društvene mreže -->
+                        <div class="space-y-2">
+                            <div
+                                class="flex justify-between text-xs font-bold uppercase tracking-widest text-slate-400">
+                                <span>Društvene mreže</span>
+                                <span class="text-rose-400">8.9%</span>
+                            </div>
+                            <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-rose-500 rounded-full" style="width: 8.9%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ISTRAŽIVANJE: MOBITEL U SOCIJALNIM SITUACIJAMA -->
+        <section id="socijalne-situacije" class="scroll-mt-20">
+            <div
+                class="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 shadow-xl p-8 md:p-12">
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4">
+                        Digitalne navike</div>
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Korištenje mobitela na predavanju
+                        i u društvu"</h2>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">Koliko često posežemo za mrežama u
+                        situacijama koje bi trebale biti fokusirane na druge ljude ili učenje?</p>
+                </div>
+
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="socialSituationsChart"></canvas>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div
+                        class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 class="font-bold text-indigo-600 mb-2">📌 U društvu</h4>
+                        <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Čak <strong>42.4%</strong>
+                            studenata "ponekad" koristi mobitel dok su s prijateljima, što ukazuje na fenomen poznat kao
+                            <em>phubbing</em> (phone snubbing).
+                        </p>
+                    </div>
+                    <div
+                        class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 class="font-bold text-violet-600 mb-2">🎓 Na predavanju</h4>
+                        <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Više od <strong>20%</strong>
+                            studenata "često" ili "vrlo često" pregledava mreže tijekom nastave, što je izazov za
+                            tradicionalne oblike učenja.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ISTRAŽIVANJE: SPOLNE RAZLIKE -->
+        <section id="spolne-razlike" class="scroll-mt-20">
+            <div
+                class="bg-gradient-to-br from-indigo-500 to-violet-600 rounded-[2.5rem] p-8 md:p-12 text-white shadow-xl overflow-hidden relative">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/2 space-y-6">
+                            <div
+                                class="inline-block px-3 py-1 bg-white/20 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                                Zanimljivost</div>
+                            <h2 class="text-3xl font-bold leading-tight">Tko više uređuje izložbene stranica na
+                                društvenim mrežama?</h2>
+                            <p class="text-indigo-100 leading-relaxed">
+                                Istraživanje je mjerilo sklonost <strong>asinkronom samopredstavljanju</strong> —
+                                odnosno, koliko se trudimo urediti objavu prije nego što je drugi vide. Rezultati
+                                pokazuju da su <strong>djevojke</strong> u prosjeku nešto sklonije pažljivijem kreiranju
+                                svog digitalnog identiteta.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/2 w-full space-y-8">
+                            <!-- Žene -->
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-end">
+                                    <span
+                                        class="text-sm font-bold uppercase tracking-widest text-indigo-100 flex items-center gap-2">
+                                        <span class="text-xl">👩‍🎓</span> Djevojke
+                                    </span>
+                                    <span class="text-2xl font-black text-white">3.21</span>
+                                </div>
+                                <div class="h-4 bg-white/10 rounded-full overflow-hidden border border-white/20">
+                                    <div class="h-full bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                                        style="width: 64.2%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Muškarci -->
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-end">
+                                    <span
+                                        class="text-sm font-bold uppercase tracking-widest text-indigo-100 flex items-center gap-2">
+                                        <span class="text-xl">👨‍🎓</span> Mladići
+                                    </span>
+                                    <span class="text-2xl font-black text-white">2.93</span>
+                                </div>
+                                <div class="h-4 bg-white/10 rounded-full overflow-hidden border border-white/20">
+                                    <div class="h-full bg-indigo-300 rounded-full" style="width: 58.6%"></div>
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-indigo-200 italic text-center mt-4">
+                                *Ljestvica od 1 do 5. Viša vrijednost znači veću sklonost planiranju i uređivanju
+                                digitalnog nastupa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ZAKLJUČAK -->
+        <section class="text-center space-y-8">
+            <div class="inline-block p-1 bg-gradient-to-r from-violet-500 via-magenta-500 to-indigo-500 rounded-full">
+                <div
+                    class="bg-slate-50 dark:bg-slate-900 rounded-full px-6 py-2 text-sm font-bold uppercase tracking-widest">
+                    Završna misao
+                </div>
+            </div>
+            <h2 class="text-4xl font-extrabold text-slate-800 dark:text-white max-w-3xl mx-auto leading-tight">
+                Digitalni svijet nije alat koji koristimo, nego <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">okruženje u
+                    kojem postajemo tko jesmo.</span>
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+                Biti medijski pismen danas ne znači znati upaliti kompjuter, nego znati kako te algoritam pokušava
+                izmanipulirati.
+            </p>
+            <div class="flex justify-center gap-4 pt-8">
+                <a href="index.html"
+                    class="px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-2xl hover:scale-105 transition-transform shadow-lg">Vrati
+                    se na početnu</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-500 py-12 px-4 mt-20 text-center">
+        <p class="text-sm mb-4 italic">„Budućnost je već ovdje, samo nije ravnomjerno raspoređena." — William Gibson</p>
+        <div class="w-12 h-1 bg-violet-600 mx-auto mb-8"></div>
+        <p class="text-xs">&copy; 2026 Društvo u Fokusu · Lekcija 7</p>
+    </footer>
+
+    <script>
+        // --- Theme Toggle ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        function setTheme(theme) {
+            themeToggleDarkIcon.classList.add('hidden');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleGreenIcon.classList.add('hidden');
+
+            document.documentElement.classList.remove('dark', 'theme-green');
+
+            if (theme === 'dark') {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+            } else if (theme === 'green') {
+                themeToggleGreenIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-green');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+            localStorage.setItem('color-theme', theme);
+        }
+
+        const currentTheme = localStorage.getItem('color-theme') || 'light';
+        setTheme(currentTheme);
+
+        themeToggleBtn.addEventListener('click', function () {
+            const currentTheme = localStorage.getItem('color-theme');
+            if (currentTheme === 'light') {
+                setTheme('dark');
+            } else if (currentTheme === 'dark') {
+                setTheme('green');
+            } else {
+                setTheme('light');
+            }
+        });
+
+        // --- Chart ---
+        window.addEventListener('load', () => {
+            const ctx = document.getElementById('digitalChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['TikTok', 'Instagram', 'YouTube', 'Gaming', 'Učenje'],
+                    datasets: [{
+                        label: 'Vrijeme/Pažnja (%)',
+                        data: [45, 25, 15, 10, 5],
+                        backgroundColor: [
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(99, 102, 241, 0.7)',
+                            'rgba(168, 85, 247, 0.7)',
+                            'rgba(192, 132, 252, 0.7)',
+                            'rgba(244, 114, 182, 0.7)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#cbd5e1', font: { size: 10 } }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            angleLines: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // --- Social Situations Chart ---
+            const ctx2 = document.getElementById('socialSituationsChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Nikad', 'Rijetko', 'Ponekad', 'Često', 'Vrlo često'],
+                    datasets: [
+                        {
+                            label: 'U društvu (%)',
+                            data: [8.5, 39.8, 42.4, 8.1, 1.3],
+                            backgroundColor: 'rgba(99, 102, 241, 0.8)',
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Na predavanju (%)',
+                            data: [11, 31.4, 36, 17.8, 3.8],
+                            backgroundColor: 'rgba(139, 92, 246, 0.8)',
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            ticks: { callback: value => value + '%' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

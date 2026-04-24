@@ -17,6 +17,62 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Green Theme Overrides */
+        html.theme-green body { background-color: #021f20 !important; color: #a1c2c4 !important; }
+        html.theme-green .bg-white, html.theme-green .dark\:bg-slate-800 { background-color: #032b2c !important; }
+        html.theme-green .dark\:bg-slate-900 { background-color: #021f20 !important; }
+        html.theme-green .dark\:bg-slate-700 { background-color: #04393b !important; }
+        html.theme-green .dark\:border-slate-800, html.theme-green .dark\:border-slate-700 { border-color: #044246 !important; }
+        html.theme-green .dark\:text-slate-200, html.theme-green .dark\:text-white { color: #d1f2f4 !important; }
+        html.theme-green .dark\:text-slate-300, html.theme-green .dark\:text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .bg-slate-50, html.theme-green .bg-slate-100 { background-color: #021f20 !important; }
+        html.theme-green .text-slate-800, html.theme-green .text-slate-700 { color: #d1f2f4 !important; }
+        html.theme-green .text-slate-500, html.theme-green .text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .border-slate-100, html.theme-green .border-slate-200 { border-color: #044246 !important; }
+        html.theme-green .hover\:bg-slate-200:hover, html.theme-green .dark\:hover\:bg-slate-700:hover { background-color: #04393b !important; }
+        html.theme-green .bg-white\/90 { background-color: rgba(3, 43, 44, 0.9) !important; }
+        html.theme-green .dark\:bg-slate-900\/90 { background-color: rgba(2, 31, 32, 0.9) !important; }
+        html.theme-green .shadow-sm, html.theme-green .shadow-md, html.theme-green .shadow-lg, html.theme-green .shadow-xl, html.theme-green .shadow-2xl { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important; }
+        
+        /* Green Theme - Lesson Panel Overrides */
+        html.theme-green .group > div.z-20 { 
+            background-image: linear-gradient(to bottom right, #04393b, #021f20) !important; 
+            border-color: #055a5e !important; 
+        }
+        html.theme-green .group > div.z-20 h3 { color: #92b4b5 !important; }
+        html.theme-green .group > div.z-20 div[style*="radial-gradient"] { 
+            background-image: radial-gradient(#055a5e 1px, transparent 1px) !important; 
+        }
+        
+        /* Icon & Accent Color Overrides for Green Mode */
+        html.theme-green .group div[class*="bg-gradient-to-br"] {
+            background-image: linear-gradient(to bottom right, #0d9488, #065f46) !important;
+            box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.4) !important;
+        }
+        html.theme-green .group div[class*="shadow-indigo"], 
+        html.theme-green .group div[class*="shadow-teal"],
+        html.theme-green .group div[class*="shadow-amber"],
+        html.theme-green .group div[class*="shadow-violet"] {
+            --tw-shadow-color: rgba(13, 148, 136, 0.3) !important;
+        }
+        html.theme-green .group div.bg-indigo-50\/50, 
+        html.theme-green .group div.bg-teal-50\/50,
+        html.theme-green .group div.bg-amber-50\/50,
+        html.theme-green .group div.bg-violet-50\/50 {
+            background-color: rgba(4, 66, 70, 0.2) !important;
+        }
+        html.theme-green .group .bg-slate-100 { background-color: #04393b !important; color: #92b4b5 !important; }
+        html.theme-green .group .text-indigo-600, 
+        html.theme-green .group .text-teal-600,
+        html.theme-green .group .text-amber-600,
+        html.theme-green .group .text-violet-600 { color: #2dd4bf !important; }
+        html.theme-green .group:hover .hover\:shadow-indigo-500\/10,
+        html.theme-green .group:hover .hover\:shadow-teal-500\/10,
+        html.theme-green .group:hover .hover\:shadow-amber-500\/10,
+        html.theme-green .group:hover .hover\:shadow-violet-500\/10,
+        html.theme-green .group:hover .hover\:shadow-amber-500\/10 {
+            box-shadow: 0 25px 50px -12px rgba(13, 148, 136, 0.25) !important;
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
@@ -34,6 +90,7 @@
                     <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        <svg id="theme-toggle-green-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" /></svg>
                     </button>
                 </div>
             </div>
@@ -180,6 +237,33 @@
                 </div>
             </a>
 
+            <!-- Lekcija 6 -->
+            <a href="sociologija7digital.html" class="group block h-full relative cursor-pointer">
+                <!-- "Scratch" Overlay -->
+                <div class="absolute inset-0 z-20 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 rounded-[1.5rem] md:rounded-[2rem] flex flex-col items-center justify-center border-2 border-dashed border-slate-400 dark:border-slate-500 transition-all duration-[800ms] ease-out opacity-100 group-hover:opacity-0 group-hover:scale-105 pointer-events-none overflow-hidden shadow-inner">
+                    <!-- Texture Pattern -->
+                    <div class="absolute inset-0 opacity-10 dark:opacity-20" style="background-image: radial-gradient(#475569 1px, transparent 1px); background-size: 12px 12px;"></div>
+                    <!-- Content -->
+                    <div class="text-5xl mb-4 transform -rotate-12 drop-shadow-md">🤖</div>
+                    <h3 class="font-extrabold text-slate-700 dark:text-slate-200 relative z-10 text-xl uppercase tracking-widest text-center px-4">Lekcija 6</h3>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-500 h-full flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-violet-50/50 dark:bg-violet-900/10 rounded-bl-full -z-10 group-hover:bg-violet-100/50 transition-colors duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-lg shadow-violet-500/30 group-hover:scale-110 transition-transform duration-500 delay-200">
+                        🤖
+                    </div>
+                    <div class="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-[10px] font-bold rounded-full mb-4 w-max uppercase tracking-wider group-hover:bg-violet-50 dark:group-hover:bg-violet-900/30 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">Lekcija 6</div>
+                    <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">Digitalno Društvo i Algoritmi</h2>
+                    <p class="text-slate-500 dark:text-slate-400 flex-grow leading-relaxed">
+                        Tko ti kroji stvarnost? Istraži filter mjehuriće, eho-komore i kako digitalne platforme oblikuju tvoj identitet i prezentaciju sebstva.
+                    </p>
+                    <div class="mt-8 flex items-center text-violet-600 dark:text-violet-400 font-bold uppercase text-xs tracking-wider">
+                        Kreni na lekciju <span class="ml-2 group-hover:translate-x-2 transition-transform duration-300 delay-300">→</span>
+                    </div>
+                </div>
+            </a>
+
             <!-- Lekcija 3 (Kviz) -->
             <a href="sociologija3kviz.html" class="group block h-full col-span-1 md:col-span-2 mt-8">
                 <div class="bg-white dark:bg-slate-800 rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-2 transition-all duration-500 h-full flex flex-col relative overflow-hidden text-center md:text-left items-center md:items-start">
@@ -204,102 +288,90 @@
 
         </div>
 
-        <!-- BRZO PONAVLJANJE -->
-        <div class="mt-12 md:mt-16 text-center">
-            <button id="recap-toggle" onclick="document.getElementById('recap-panel').classList.toggle('hidden'); this.querySelector('span.arrow').classList.toggle('rotate-180')" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md hover:border-violet-300 dark:hover:border-violet-500 transition-all text-stone-700 dark:text-slate-300 font-semibold text-base">
-                <span class="text-xl">🎵</span> Brzo ponavljanje: Lekcija 4 (Sociologija Glazbe)
-                <span class="arrow transition-transform duration-300 text-stone-400">▼</span>
-            </button>
-        </div>
-
-        <div id="recap-panel" class="hidden space-y-6 mt-6 max-w-4xl mx-auto px-4">
-            
-            <!-- LEKCIJA 4: SOCIOLOGIJA GLAZBE -->
-            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border border-stone-200 dark:border-slate-700 p-6 md:p-10">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 bg-violet-100 dark:bg-violet-900/30 rounded-xl flex items-center justify-center text-violet-600 dark:text-violet-400 font-extrabold text-sm">L4</div>
-                    <h3 class="text-2xl font-bold text-stone-800 dark:text-white uppercase tracking-tight">Sociologija Glazbe</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-6">
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-stone-100 dark:border-slate-700">
-                            <h4 class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-4">🎵 Tri Perspektive</h4>
-                            <div class="space-y-3 text-sm">
-                                <div class="flex items-start gap-3">
-                                    <span class="text-lg mt-0.5">⚙️</span>
-                                    <div><strong class="text-emerald-600 dark:text-emerald-400">Funkcionalizam:</strong> <span class="text-xs text-stone-500 dark:text-slate-400">Glazba kao socijalno ljepilo i integracija</span></div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <span class="text-lg mt-0.5">🥊</span>
-                                    <div><strong class="text-rose-600 dark:text-rose-400">Konfliktna:</strong> <span class="text-xs text-stone-500 dark:text-slate-400">Glazba kao roba – kulturna industrija (Adorno)</span></div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <span class="text-lg mt-0.5">🎧</span>
-                                    <div><strong class="text-purple-600 dark:text-purple-400">Interakcionizam:</strong> <span class="text-xs text-stone-500 dark:text-slate-400">Glazba kao oznaka identiteta i simbolička granica</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-stone-100 dark:border-slate-700">
-                            <h4 class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-3">📊 Istraživanje (Žagmešter Kemfelj, 2024.)</h4>
-                            <ul class="text-xs text-stone-600 dark:text-slate-400 space-y-2">
-                                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-violet-500 flex-shrink-0"></span> 1476 ispitanika, triangulacija</li>
-                                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-violet-500 flex-shrink-0"></span> 44.9% glazbu = duhovnost</li>
-                                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-violet-500 flex-shrink-0"></span> Fenomen: "neslužbeni mainstream" (turbofolk)</li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-6">
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-stone-100 dark:border-slate-700 flex-grow">
-                            <h4 class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-4">🎸 Što je za Vas glazba?</h4>
-                            <div class="relative w-full h-40">
-                                <canvas id="recapChart"></canvas>
-                            </div>
-                            <p class="text-[10px] text-stone-400 dark:text-slate-500 mt-3 italic text-center leading-tight">
-                                Rezultati ankete: Kako Hrvati definiraju glazbu (Kemfelj, 2024.)
-                            </p>
-                        </div>
-                        
-                        <div class="p-6 bg-violet-600 text-white rounded-2xl shadow-lg shadow-violet-500/20">
-                            <h4 class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Ključni uvid</h4>
-                            <p class="text-xs font-medium leading-relaxed italic">
-                                "Glazba nije samo zvuk – ona je društvena činjenica. Ona definira tko smo, kome pripadamo i kako se nosimo s emocijama svakodnevnog života."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Supkulture -->
-                <div class="mt-8 pt-8 border-t border-stone-100 dark:border-slate-700">
-                    <h4 class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-4">🎸 Glazba i Supkulture: Zvučni identiteti</h4>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-stone-100 dark:border-slate-700 text-center">
-                            <div class="text-2xl mb-2">🎸</div>
-                            <div class="text-xs font-extrabold text-slate-800 dark:text-white mb-1">Punk: Bunt</div>
-                            <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">DIY etika, odbacivanje normi, odgovor na ekonomsku krizu.</p>
-                        </div>
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-stone-100 dark:border-slate-700 text-center">
-                            <div class="text-2xl mb-2">🎤</div>
-                            <div class="text-xs font-extrabold text-slate-800 dark:text-white mb-1">Hip-Hop: Ulica</div>
-                            <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">Glas marginaliziranih iz Bronxa – autentičnost i socijalna pravda.</p>
-                        </div>
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-stone-100 dark:border-slate-700 text-center">
-                            <div class="text-2xl mb-2">🤘</div>
-                            <div class="text-xs font-extrabold text-slate-800 dark:text-white mb-1">Metal: Vještina</div>
-                            <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">Tehnička virtuoznost, čvrsto povezana globalna zajednica.</p>
-                        </div>
-                        <div class="bg-stone-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-stone-100 dark:border-slate-700 text-center">
-                            <div class="text-2xl mb-2">🥁</div>
-                            <div class="text-xs font-extrabold text-slate-800 dark:text-white mb-1">Navijači: Ritam</div>
-                            <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">Stadion = prostor kolektivne kohezije. Napjevi kao simboli odanosti.</p>
-                        </div>
-                    </div>
-
-                </div>
+        <!-- BRZO PONAVLJANJE SEKCIJA -->
+        <div id="recap-container" class="mt-12 md:mt-16 max-w-4xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button id="recap-toggle-5" onclick="toggleRecap('5')" class="recap-btn inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md hover:border-teal-300 dark:hover:border-teal-500 transition-all text-stone-700 dark:text-slate-300 font-semibold text-base group">
+                    <span class="text-xl group-hover:scale-110 transition-transform">⚠️</span> Ponavljanje: L5 (Rizik)
+                    <span class="arrow ml-1 transition-transform duration-300 text-stone-400">▼</span>
+                </button>
             </div>
+
+            <!-- PANEL LEKCIJA 5 -->
+            <div id="recap-panel-5" class="hidden animate-in fade-in slide-in-from-top-4 duration-500 mb-8">
+                <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-700 p-6 md:p-10">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-xl flex items-center justify-center text-teal-600 dark:text-teal-400 font-extrabold text-sm">L5</div>
+                        <h3 class="text-2xl font-bold text-stone-800 dark:text-white uppercase tracking-tight">Sociologija Rizika</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Lijeva kolona: Teorije -->
+                        <div class="space-y-6">
+                            <div class="bg-stone-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="text-xs font-bold text-stone-400 dark:text-slate-500 uppercase tracking-widest mb-4">⚠️ Teorije</h4>
+                                <div class="space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                                    <div>
+                                        <strong class="text-teal-500">Ulrich Beck:</strong>
+                                        <p class="text-[11px] opacity-70 leading-tight mt-1">Moderni rizici su globalni i "proizvedeni" (nuklearni otpad, zagađenje). Nitko nije siguran.</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-rose-500">Frank Furedi:</strong>
+                                        <p class="text-[11px] opacity-70 leading-tight mt-1">Opsjednuti smo sigurnošću. Strah je postao kulturni okvir kroz koji gledamo svijet.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5 bg-teal-50/50 dark:bg-teal-900/10 rounded-2xl border border-teal-100 dark:border-teal-800/30">
+                                <h4 class="text-xs font-bold text-teal-700 dark:text-teal-400 uppercase mb-2">🕷️ Percepcijski jaz</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed italic">"Bojimo se pauka, ali nas ubijaju komarci. Strah je društveni konstrukt koji često nema veze s brojkama."</p>
+                            </div>
+                        </div>
+
+                        <!-- Desna kolona: Info blokovi -->
+                        <div class="flex flex-col gap-6">
+                            <div class="bg-stone-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-widest mb-6">📊 Statistika vs. Strah</h4>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between group">
+                                        <span class="text-xs font-semibold text-slate-500">Ugljen (zagađenje)</span>
+                                        <span class="text-xs font-bold text-rose-500 bg-rose-50 dark:bg-rose-900/20 px-2 py-1 rounded-lg">Visok rizik</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-rose-500 h-full w-[90%]"></div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between group">
+                                        <span class="text-xs font-semibold text-slate-500">Nafta i plin</span>
+                                        <span class="text-xs font-bold text-orange-500 bg-orange-50 dark:bg-orange-900/20 px-2 py-1 rounded-lg">Srednji rizik</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-orange-500 h-full w-[60%]"></div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between group">
+                                        <span class="text-xs font-semibold text-slate-500">Nuklearna energija</span>
+                                        <span class="text-xs font-bold text-teal-500 bg-teal-50 dark:bg-teal-900/20 px-2 py-1 rounded-lg">Minimalan rizik</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-teal-500 h-full w-[5%]"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                    <h5 class="text-[10px] font-bold text-teal-600 dark:text-teal-400 uppercase mb-2">Paradoks rizika</h5>
+                                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                                        Iako se nuklearne energije najviše bojimo (zbog vidljivosti katastrofa), ona je statistički <strong>najsigurnija</strong>. Ugljen ubija "tiho" kroz stalno zagađenje zraka.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-teal-600 text-white rounded-2xl shadow-lg shadow-teal-600/20">
+                                <p class="text-xs font-medium italic opacity-90">"Tko kontrolira definiciju rizika – kontrolira i politiku."</p>
+                            </div>
+                        </div>
+                    </div> <!-- Kraj grida -->
+                </div> <!-- Kraj bg-white p-6 -->
+            </div> <!-- Kraj recap-panel-5 -->
         </div>
 
         <div class="mt-12 md:mt-16 text-center">
@@ -318,84 +390,68 @@
     <script>
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
 
-        if (localStorage.getItem('color-theme') === 'dark') {
-            themeToggleLightIcon.classList.remove('hidden');
-            document.documentElement.classList.add('dark');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-            document.documentElement.classList.remove('dark');
+        function setTheme(theme) {
+            themeToggleDarkIcon.classList.add('hidden');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleGreenIcon.classList.add('hidden');
+            
+            document.documentElement.classList.remove('dark', 'theme-green');
+
+            if (theme === 'dark') {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+            } else if (theme === 'green') {
+                themeToggleGreenIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-green');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+            localStorage.setItem('color-theme', theme);
         }
 
+        const currentTheme = localStorage.getItem('color-theme') || 'light';
+        setTheme(currentTheme);
+
         themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+            const currentTheme = localStorage.getItem('color-theme');
+            if (currentTheme === 'light') {
+                setTheme('dark');
+            } else if (currentTheme === 'dark') {
+                setTheme('green');
             } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
+                setTheme('light');
             }
         });
 
-        // Osluškivanje klika na "Brzo ponavljanje" kako bi se grafikon iscrtao tek nakon što je panel vidljiv
-        let chartInitialized = false;
-        document.getElementById('recap-toggle').addEventListener('click', function() {
-            if (!chartInitialized) {
-                // Mali delay da se panel stigne otvoriti (display: block) pa da canvas ima veličinu
-                setTimeout(() => {
-                    const ctx = document.getElementById('recapChart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Duhovnost', 'Emocije', 'Umjetnost', 'Zabava', 'Fiziologija'],
-                            datasets: [{
-                                data: [44.9, 30.3, 11.8, 9.0, 4.0],
-                                backgroundColor: ['#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe', '#64748b'],
-                                borderWidth: 0,
-                                hoverOffset: 4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutout: '60%',
-                            plugins: {
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        color: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569',
-                                        font: { family: 'Inter', size: 9 },
-                                        boxWidth: 10,
-                                        padding: 8
-                                    }
-                                },
-                                tooltip: { enabled: true }
-                            }
-                        }
-                    });
-                    
-                    // Ažuriranje boja legende pri promjeni teme (light/dark)
-                    document.getElementById('theme-toggle').addEventListener('click', function() {
-                        setTimeout(() => {
-                            const isDark = document.documentElement.classList.contains('dark');
-                            Chart.getChart(ctx).options.plugins.legend.labels.color = isDark ? '#cbd5e1' : '#475569';
-                            Chart.getChart(ctx).update();
-                        }, 50);
-                    });
+        function toggleRecap(lesson) {
+            const panels = ['5'];
+            panels.forEach(p => {
+                const panel = document.getElementById(`recap-panel-${p}`);
+                const btn = document.getElementById(`recap-toggle-${p}`);
+                
+                if (!panel || !btn) return;
 
-                    chartInitialized = true;
-                }, 100);
-            }
-        });
+                if (p === lesson) {
+                    const isHidden = panel.classList.contains('hidden');
+                    if (isHidden) {
+                        panel.classList.remove('hidden');
+                        btn.querySelector('span.arrow').classList.add('rotate-180');
+                    } else {
+                        panel.classList.add('hidden');
+                        btn.querySelector('span.arrow').classList.remove('rotate-180');
+                    }
+                } else {
+                    panel.classList.add('hidden');
+                    btn.querySelector('span.arrow').classList.remove('rotate-180');
+                }
+            });
+        }
+
+        // Uklonjen initChart jer više nema grafova na index stranici
+
     </script>
 </body>
 </html>
