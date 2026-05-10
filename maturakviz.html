@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Državna Matura - Sociologija</title>
+    <meta name="description"
+        content="Priprema za državnu maturu iz sociologije s bazom od preko 1100 pitanja.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .option-btn {
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateX(5px);
+        }
+
+        .correct-ans {
+            background-color: #d1fae5 !important;
+            border-color: #10b981 !important;
+            color: #065f46 !important;
+        }
+
+        .dark .correct-ans {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            border-color: #10b981 !important;
+            color: #10b981 !important;
+        }
+
+        .wrong-ans {
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+
+        .dark .wrong-ans {
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        /* Green Theme Overrides */
+        html.theme-green body { background-color: #021f20 !important; color: #a1c2c4 !important; }
+        html.theme-green .bg-white, html.theme-green .dark\:bg-slate-800 { background-color: #032b2c !important; }
+        html.theme-green .dark\:bg-slate-900 { background-color: #021f20 !important; }
+        html.theme-green .dark\:bg-slate-700 { background-color: #04393b !important; }
+        html.theme-green .dark\:border-slate-800, html.theme-green .dark\:border-slate-700 { border-color: #044246 !important; }
+        html.theme-green .dark\:text-slate-200, html.theme-green .dark\:text-white { color: #d1f2f4 !important; }
+        html.theme-green .dark\:text-slate-300, html.theme-green .dark\:text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .bg-slate-50, html.theme-green .bg-slate-100 { background-color: #021f20 !important; }
+        html.theme-green .text-slate-800, html.theme-green .text-slate-700 { color: #d1f2f4 !important; }
+        html.theme-green .text-slate-500, html.theme-green .text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .border-slate-100, html.theme-green .border-slate-200 { border-color: #044246 !important; }
+        html.theme-green .hover\:bg-slate-200:hover, html.theme-green .dark\:hover\:bg-slate-700:hover { background-color: #04393b !important; }
+        html.theme-green .bg-white\/90 { background-color: rgba(3, 43, 44, 0.9) !important; }
+        html.theme-green .dark\:bg-slate-900\/90 { background-color: rgba(2, 31, 32, 0.9) !important; }
+        html.theme-green .shadow-sm, html.theme-green .shadow-md, html.theme-green .shadow-lg, html.theme-green .shadow-xl, html.theme-green .shadow-2xl { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important; }
+
+        /* Pink Theme Overrides */
+        html.theme-pink body { background-color: #3b0728 !important; color: #f9a8d4 !important; }
+        html.theme-pink .bg-white, html.theme-pink .dark\:bg-slate-800 { background-color: #500732 !important; }
+        html.theme-pink .dark\:bg-slate-900 { background-color: #3b0728 !important; }
+        html.theme-pink .dark\:bg-slate-700 { background-color: #700b46 !important; }
+        html.theme-pink .dark\:border-slate-800, html.theme-pink .dark\:border-slate-700 { border-color: #831843 !important; }
+        html.theme-pink .dark\:text-slate-200, html.theme-pink .dark\:text-white { color: #fbcfe8 !important; }
+        html.theme-pink .dark\:text-slate-300, html.theme-pink .dark\:text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .bg-slate-50, html.theme-pink .bg-slate-100 { background-color: #3b0728 !important; }
+        html.theme-pink .text-slate-800, html.theme-pink .text-slate-700 { color: #fbcfe8 !important; }
+        html.theme-pink .text-slate-500, html.theme-pink .text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .border-slate-100, html.theme-pink .border-slate-200 { border-color: #831843 !important; }
+        html.theme-pink .hover\:bg-slate-200:hover, html.theme-pink .dark\:hover\:bg-slate-700:hover { background-color: #700b46 !important; }
+        html.theme-pink .bg-white\/90 { background-color: rgba(80, 7, 50, 0.9) !important; }
+        html.theme-pink .dark\:bg-slate-900\/90 { background-color: rgba(59, 7, 40, 0.9) !important; }
+        html.theme-pink .shadow-sm, html.theme-pink .shadow-md, html.theme-pink .shadow-lg, html.theme-pink .shadow-xl, html.theme-pink .shadow-2xl { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important; }
+    </style>
+    <!-- Load the data generated previously -->
+    <script src="matura_data.js"></script>
+</head>
+
+<body
+    class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav
+        class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div
+                    class="flex items-center text-xl font-bold text-emerald-700 dark:text-emerald-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html"
+                            class="text-stone-600 dark:text-slate-400 hover:text-emerald-600 px-1 py-2 transition-colors font-medium">Početna</a>
+                    </div>
+                    <button id="theme-toggle" type="button"
+                        class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        <svg id="theme-toggle-green-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" /></svg>
+                        <svg id="theme-toggle-pink-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- Welcome Screen -->
+        <div id="setup-screen"
+            class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-16 shadow-xl border border-stone-100 dark:border-slate-700 text-center relative overflow-hidden">
+            <div
+                class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-200/50 dark:bg-emerald-900/20 rounded-full blur-3xl z-0 pointer-events-none">
+            </div>
+
+            <div class="relative z-10">
+                <div class="text-6xl md:text-7xl mb-4 md:mb-6">🎓</div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-4">Državna Matura - Sociologija</h1>
+                <p class="text-base md:text-lg text-stone-600 dark:text-slate-400 mb-8 max-w-xl mx-auto">
+                    Odaberi broj pitanja i započni nasumični test s pravim pitanjima s državne mature u zadnjih 10 godina.
+                </p>
+                <div class="mb-8 max-w-xs mx-auto">
+                    <label class="block text-sm font-bold text-stone-700 dark:text-slate-300 mb-2">Broj pitanja za današnju sesiju:</label>
+                    <input type="number" id="num-questions" value="10" min="1" max="50" class="w-full border border-stone-300 dark:border-slate-600 bg-stone-50 dark:bg-slate-700 text-stone-800 dark:text-slate-200 rounded-xl p-3 text-center text-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-shadow">
+                </div>
+                <button id="start-btn"
+                    class="px-6 py-3 md:px-8 md:py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-base md:text-lg transition-transform transform hover:scale-105 shadow-lg shadow-emerald-600/30">
+                    Započni Test &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz Interface -->
+        <div id="quiz-screen" class="hidden min-h-[500px]">
+            <!-- Top Progress Bar -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="text-sm font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider"
+                    id="q-counter">Pitanje 1/10</div>
+                <div class="text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-full border border-emerald-100 dark:border-emerald-800/50"
+                    id="score-counter">Bodovi: 0</div>
+            </div>
+
+            <div class="w-full bg-stone-200 dark:bg-slate-700 rounded-full h-2 mb-8">
+                <div class="bg-emerald-500 h-2 rounded-full transition-all duration-500" id="progress-bar"
+                    style="width: 10%"></div>
+            </div>
+
+            <!-- Question Container -->
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl shadow-md border border-stone-100 dark:border-slate-700 mb-6" id="question-container">
+                <!-- Question content will be injected here -->
+            </div>
+
+            <!-- Feedback Box -->
+            <div id="feedback-container"
+                class="hidden bg-stone-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-stone-200 dark:border-slate-700 fade-in mb-6">
+                <!-- Feedback injected here -->
+            </div>
+            
+            <div class="flex justify-end">
+                <button id="next-btn"
+                    class="hidden px-6 py-3 bg-stone-800 hover:bg-stone-900 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors shadow-lg">
+                    Sljedeće pitanje &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen"
+            class="hidden text-center bg-white dark:bg-slate-800 p-6 py-10 md:p-10 md:py-16 rounded-3xl shadow-xl border border-stone-100 dark:border-slate-700">
+            <div id="result-emoji" class="text-6xl md:text-7xl mb-4">🏆</div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-2">Gotovo!</h2>
+            <p class="text-lg md:text-xl text-stone-600 dark:text-slate-400 mb-8" id="final-score">Osvojili ste 0 od 10 bodova!</p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-3">
+                <button onclick="location.reload()"
+                    class="px-6 py-3 md:px-8 bg-stone-100 hover:bg-stone-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-stone-800 dark:text-white font-bold border border-stone-300 dark:border-slate-600 rounded-xl transition-colors">
+                    Novi Test (Druga pitanja)
+                </button>
+                <a href="index.html"
+                    class="inline-flex justify-center items-center px-6 py-3 md:px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors">
+                    Povratak na izbornik
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer
+        class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm transition-colors duration-300 w-full mt-auto">
+        <p>Interaktivni vodič za sociologiju &copy; 2026</p>
+    </footer>
+
+    <script>
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            const num = parseInt(document.getElementById('num-questions').value) || 10;
+            // Shuffle and slice
+            let shuffled = [...MATURA_DB].sort(() => 0.5 - Math.random());
+            currentQuestions = shuffled.slice(0, num);
+            
+            document.getElementById('setup-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            loadQuestion();
+        });
+
+        function loadQuestion() {
+            const q = currentQuestions[currentIndex];
+            document.getElementById('q-counter').innerText = `Pitanje ${currentIndex + 1}/${currentQuestions.length}`;
+            document.getElementById('score-counter').innerText = `Bodovi: ${score}`;
+            document.getElementById('progress-bar').style.width = `${((currentIndex) / currentQuestions.length) * 100}%`;
+            
+            document.getElementById('feedback-container').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            
+            const qc = document.getElementById('question-container');
+            let html = `<p class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">${q.t} <span class="text-stone-400 dark:text-slate-500">(${q.g})</span></p>`;
+            html += `<h2 class="text-xl md:text-2xl font-bold text-stone-800 dark:text-white mb-6 md:mb-8 leading-relaxed fade-in">${q.p}</h2>`;
+            
+            if (q.r === 'mcq' && q.o && q.o !== '-') {
+                let opts = q.o.split('|');
+                html += `<div class="space-y-3 flex flex-col" id="options-container">`;
+                opts.forEach((opt, index) => {
+                    let letter = opt.trim().charAt(0);
+                    let text = opt.trim().substring(2).trim(); // Remove "A. " from text
+                    html += `<button class="option-btn w-full text-left p-4 md:p-5 rounded-xl border border-stone-200 dark:border-slate-600 bg-stone-50 hover:bg-stone-100 dark:bg-slate-700 dark:hover:bg-slate-600 font-medium text-stone-700 dark:text-slate-200 fade-in text-base md:text-lg" style="animation-delay: ${index * 0.1}s" data-val="${letter}">
+                        <span class="inline-block w-8 font-bold opacity-50 uppercase">${letter}.</span> <span>${opt.trim()}</span>
+                    </button>`;
+                });
+                html += `</div>`;
+            } else if (q.r === 'multi' && q.o && q.o !== '-') {
+                 let opts = q.o.split('|');
+                 html += `<div class="space-y-3" id="multi-opts">`;
+                 opts.forEach((opt, index) => {
+                    let letter = opt.trim().charAt(0);
+                    html += `<label class="flex items-center p-4 border border-stone-200 dark:border-slate-600 rounded-xl hover:bg-stone-50 dark:hover:bg-slate-700 cursor-pointer fade-in" style="animation-delay: ${index * 0.1}s">
+                                <input type="checkbox" value="${letter}" class="w-5 h-5 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500 mr-4 dark:bg-slate-600 dark:border-slate-500">
+                                <span class="font-medium text-stone-700 dark:text-slate-200">${opt.trim()}</span>
+                             </label>`;
+                 });
+                 html += `</div><button id="submit-multi" class="mt-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors shadow-md fade-in" style="animation-delay: ${opts.length * 0.1}s">Potvrdi odabir</button>`;
+            } else {
+                html += `<textarea id="open-ans" class="w-full border border-stone-300 dark:border-slate-600 bg-stone-50 dark:bg-slate-700 text-stone-800 dark:text-slate-200 rounded-xl p-4 mb-4 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-shadow fade-in" rows="${q.r === 'long' ? 5 : 2}" placeholder="Upiši svoj odgovor ovdje..."></textarea>`;
+                html += `<button id="submit-open" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors shadow-md fade-in" style="animation-delay: 0.1s">Provjeri odgovor</button>`;
+            }
+            
+            qc.innerHTML = html;
+            attachListeners(q);
+        }
+
+        function normalizeText(text) {
+            return text.toLowerCase().replace(/[^a-zčćžšđ0-9]/g, '');
+        }
+
+        function checkOpenAnswer(userAns, correctAns) {
+            let u = normalizeText(userAns);
+            let c = normalizeText(correctAns);
+            if(u === c) return true;
+            if(c.length > 4 && u.includes(c)) return true;
+            if(u.length > 4 && c.includes(u)) return true;
+            
+            let uWords = userAns.toLowerCase().split(/\s+/).map(w=>w.replace(/[^a-zčćžšđ0-9]/g, '')).filter(w=>w.length>2);
+            let cWords = correctAns.toLowerCase().split(/\s+/).map(w=>w.replace(/[^a-zčćžšđ0-9]/g, '')).filter(w=>w.length>2);
+            let matchCount = 0;
+            for(let w of uWords) if(cWords.includes(w)) matchCount++;
+            
+            if (cWords.length > 0 && matchCount / cWords.length >= 0.5) return true;
+            return false;
+        }
+
+        function showFeedback(isCorrect, correctAnsText, isLong = false) {
+            const fc = document.getElementById('feedback-container');
+            fc.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800', 'bg-blue-100', 'text-blue-800', 'dark:bg-emerald-900/30', 'dark:text-emerald-300', 'dark:bg-red-900/30', 'dark:text-red-300', 'dark:bg-blue-900/30', 'dark:text-blue-300');
+            
+            if (isLong) {
+                fc.classList.add('bg-blue-100', 'text-blue-800', 'dark:bg-blue-900/30', 'dark:text-blue-300');
+                fc.innerHTML = `<h4 class="font-bold text-lg mb-2">Referentni odgovor</h4><p class="mb-2">Tvoj zadatak je bio opisati svojim riječima. Bod ti je automatski dodijeljen, a ovo je službeno rješenje:</p><div class="p-3 bg-white/50 dark:bg-black/20 rounded-lg border border-blue-200 dark:border-blue-800 font-medium">${correctAnsText}</div>`;
+            } else if (isCorrect) {
+                score++;
+                document.getElementById('score-counter').innerText = `Bodovi: ${score}`;
+                fc.classList.add('bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-900/30', 'dark:text-emerald-300');
+                fc.innerHTML = `<h4 class="font-bold text-lg mb-1">Točno! 🎉</h4><p>Odličan posao!</p>`;
+            } else {
+                fc.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-900/30', 'dark:text-red-300');
+                fc.innerHTML = `<h4 class="font-bold text-lg mb-2">Netočno</h4><p>Ispravan odgovor bi bio:</p><div class="p-3 bg-white/50 dark:bg-black/20 rounded-lg border border-red-200 dark:border-red-800 mt-2 font-bold">${correctAnsText}</div>`;
+            }
+            
+            const scoreCounter = document.getElementById('score-counter');
+            scoreCounter.classList.add("scale-110", "transition-transform");
+            setTimeout(() => scoreCounter.classList.remove("scale-110"), 300);
+
+            document.getElementById('next-btn').classList.remove('hidden');
+            setTimeout(() => fc.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
+        }
+
+        function attachListeners(q) {
+            if (q.r === 'mcq' && q.o && q.o !== '-') {
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.option-btn').forEach(b => { 
+                            b.disabled = true; 
+                            b.classList.remove('hover:bg-stone-100', 'dark:hover:bg-slate-600');
+                            b.style.transform = "none";
+                            b.classList.add('opacity-70'); 
+                        });
+                        let selected = this.dataset.val;
+                        let isCorrect = selected === q.a;
+                        this.classList.remove('opacity-70');
+                        this.classList.add(isCorrect ? 'correct-ans' : 'wrong-ans', 'scale-105', 'shadow-md');
+                        showFeedback(isCorrect, q.a);
+                    });
+                });
+            } else if (q.r === 'multi' && q.o && q.o !== '-') {
+                const btn = document.getElementById('submit-multi');
+                if(btn) btn.addEventListener('click', () => {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-50');
+                    document.querySelectorAll('#multi-opts input').forEach(inp => inp.disabled = true);
+                    let selected = Array.from(document.querySelectorAll('#multi-opts input:checked')).map(cb => cb.value).sort().join(',');
+                    let correctArr = q.a.split(',').map(s=>s.trim()).sort().join(',');
+                    let isCorrect = selected === correctArr;
+                    showFeedback(isCorrect, q.a);
+                });
+            } else {
+                const btn = document.getElementById('submit-open');
+                if(btn) btn.addEventListener('click', () => {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-50');
+                    document.getElementById('open-ans').disabled = true;
+                    let userAns = document.getElementById('open-ans').value;
+                    let isCorrect = false;
+                    if(q.r === 'long') {
+                        isCorrect = userAns.trim().length > 10;
+                        score++; // give point for trying
+                        document.getElementById('score-counter').innerText = `Bodovi: ${score}`;
+                        showFeedback(true, q.a, true);
+                    } else {
+                        isCorrect = checkOpenAnswer(userAns, q.a);
+                        showFeedback(isCorrect, q.a);
+                    }
+                });
+            }
+        }
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                document.getElementById('progress-bar').style.width = '100%';
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                
+                const finalScoreEl = document.getElementById('final-score');
+                finalScoreEl.innerHTML = `Osvojili ste <strong class="text-emerald-600 dark:text-emerald-400 text-2xl ml-1 mr-1">${score}</strong> od <strong class="text-2xl ml-1">${currentQuestions.length}</strong> bodova!`;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // --- Theme Toggle Logic ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
+        const themeTogglePinkIcon = document.getElementById('theme-toggle-pink-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        function setTheme(theme) {
+            themeToggleDarkIcon.classList.add('hidden');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleGreenIcon.classList.add('hidden');
+            if (themeTogglePinkIcon) themeTogglePinkIcon.classList.add('hidden');
+            
+            document.documentElement.classList.remove('dark', 'theme-green', 'theme-pink');
+
+            if (theme === 'dark') {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+            } else if (theme === 'green') {
+                themeToggleGreenIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-green');
+            } else if (theme === 'pink') {
+                if (themeTogglePinkIcon) themeTogglePinkIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-pink');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+            localStorage.setItem('color-theme', theme);
+        }
+
+        const currentTheme = localStorage.getItem('color-theme') || 'light';
+        setTheme(currentTheme);
+
+        themeToggleBtn.addEventListener('click', function() {
+            const currentTheme = localStorage.getItem('color-theme');
+            if (currentTheme === 'light') {
+                setTheme('dark');
+            } else if (currentTheme === 'dark') {
+                setTheme('green');
+            } else if (currentTheme === 'green') {
+                setTheme('pink');
+            } else {
+                setTheme('light');
+            }
+        });
+    </script>
+</body>
+</html>

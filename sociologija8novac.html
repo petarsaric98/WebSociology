@@ -68,6 +68,22 @@
         html.theme-green .text-amber-600, html.theme-green .text-amber-400 { color: #2dd4bf !important; }
         html.theme-green .bg-amber-600 { background-color: #0d9488 !important; }
         html.theme-green .bg-amber-50, html.theme-green .dark\:bg-amber-900\/30 { background-color: rgba(13, 148, 136, 0.1) !important; }
+            /* Pink Theme Overrides */
+        html.theme-pink body { background-color: #3b0728 !important; color: #f9a8d4 !important; }
+        html.theme-pink .bg-white, html.theme-pink .dark\:bg-slate-800 { background-color: #500732 !important; }
+        html.theme-pink .dark\:bg-slate-900 { background-color: #3b0728 !important; }
+        html.theme-pink .dark\:bg-slate-700 { background-color: #700b46 !important; }
+        html.theme-pink .dark\:border-slate-800, html.theme-pink .dark\:border-slate-700 { border-color: #831843 !important; }
+        html.theme-pink .dark\:text-slate-200, html.theme-pink .dark\:text-white { color: #fbcfe8 !important; }
+        html.theme-pink .dark\:text-slate-300, html.theme-pink .dark\:text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .bg-slate-50, html.theme-pink .bg-slate-100 { background-color: #3b0728 !important; }
+        html.theme-pink .text-slate-800, html.theme-pink .text-slate-700 { color: #fbcfe8 !important; }
+        html.theme-pink .text-slate-500, html.theme-pink .text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .border-slate-100, html.theme-pink .border-slate-200 { border-color: #831843 !important; }
+        html.theme-pink .hover\:bg-slate-200:hover, html.theme-pink .dark\:hover\:bg-slate-700:hover { background-color: #700b46 !important; }
+        html.theme-pink .bg-white\/90 { background-color: rgba(80, 7, 50, 0.9) !important; }
+        html.theme-pink .dark\:bg-slate-900\/90 { background-color: rgba(59, 7, 40, 0.9) !important; }
+        html.theme-pink .shadow-sm, html.theme-pink .shadow-md, html.theme-pink .shadow-lg, html.theme-pink .shadow-xl, html.theme-pink .shadow-2xl { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
@@ -90,6 +106,7 @@
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                         <svg id="theme-toggle-green-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" /></svg>
+                        <svg id="theme-toggle-pink-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
                     </button>
                 </div>
             </div>
@@ -320,14 +337,16 @@
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
+        const themeTogglePinkIcon = document.getElementById('theme-toggle-pink-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
 
         function setTheme(theme) {
             themeToggleDarkIcon.classList.add('hidden');
             themeToggleLightIcon.classList.add('hidden');
             themeToggleGreenIcon.classList.add('hidden');
+            if (themeTogglePinkIcon) themeTogglePinkIcon.classList.add('hidden');
 
-            document.documentElement.classList.remove('dark', 'theme-green');
+            document.documentElement.classList.remove('dark', 'theme-green', 'theme-pink');
 
             if (theme === 'dark') {
                 themeToggleLightIcon.classList.remove('hidden');
@@ -335,6 +354,9 @@
             } else if (theme === 'green') {
                 themeToggleGreenIcon.classList.remove('hidden');
                 document.documentElement.classList.add('dark', 'theme-green');
+            } else if (theme === 'pink') {
+                if (themeTogglePinkIcon) themeTogglePinkIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-pink');
             } else {
                 themeToggleDarkIcon.classList.remove('hidden');
             }
@@ -350,6 +372,8 @@
                 setTheme('dark');
             } else if (currentTheme === 'dark') {
                 setTheme('green');
+            } else if (currentTheme === 'green') {
+                setTheme('pink');
             } else {
                 setTheme('light');
             }

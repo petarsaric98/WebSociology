@@ -215,6 +215,22 @@
         html.theme-green .border-indigo-500 {
             border-color: #0d9488 !important;
         }
+            /* Pink Theme Overrides */
+        html.theme-pink body { background-color: #3b0728 !important; color: #f9a8d4 !important; }
+        html.theme-pink .bg-white, html.theme-pink .dark\:bg-slate-800 { background-color: #500732 !important; }
+        html.theme-pink .dark\:bg-slate-900 { background-color: #3b0728 !important; }
+        html.theme-pink .dark\:bg-slate-700 { background-color: #700b46 !important; }
+        html.theme-pink .dark\:border-slate-800, html.theme-pink .dark\:border-slate-700 { border-color: #831843 !important; }
+        html.theme-pink .dark\:text-slate-200, html.theme-pink .dark\:text-white { color: #fbcfe8 !important; }
+        html.theme-pink .dark\:text-slate-300, html.theme-pink .dark\:text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .bg-slate-50, html.theme-pink .bg-slate-100 { background-color: #3b0728 !important; }
+        html.theme-pink .text-slate-800, html.theme-pink .text-slate-700 { color: #fbcfe8 !important; }
+        html.theme-pink .text-slate-500, html.theme-pink .text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .border-slate-100, html.theme-pink .border-slate-200 { border-color: #831843 !important; }
+        html.theme-pink .hover\:bg-slate-200:hover, html.theme-pink .dark\:hover\:bg-slate-700:hover { background-color: #700b46 !important; }
+        html.theme-pink .bg-white\/90 { background-color: rgba(80, 7, 50, 0.9) !important; }
+        html.theme-pink .dark\:bg-slate-900\/90 { background-color: rgba(59, 7, 40, 0.9) !important; }
+        html.theme-pink .shadow-sm, html.theme-pink .shadow-md, html.theme-pink .shadow-lg, html.theme-pink .shadow-xl, html.theme-pink .shadow-2xl { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important; }
     </style>
 </head>
 
@@ -962,14 +978,16 @@
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
+        const themeTogglePinkIcon = document.getElementById('theme-toggle-pink-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
 
         function setTheme(theme) {
             themeToggleDarkIcon.classList.add('hidden');
             themeToggleLightIcon.classList.add('hidden');
             themeToggleGreenIcon.classList.add('hidden');
+            if (themeTogglePinkIcon) themeTogglePinkIcon.classList.add('hidden');
 
-            document.documentElement.classList.remove('dark', 'theme-green');
+            document.documentElement.classList.remove('dark', 'theme-green', 'theme-pink');
 
             if (theme === 'dark') {
                 themeToggleLightIcon.classList.remove('hidden');
@@ -977,6 +995,9 @@
             } else if (theme === 'green') {
                 themeToggleGreenIcon.classList.remove('hidden');
                 document.documentElement.classList.add('dark', 'theme-green');
+            } else if (theme === 'pink') {
+                if (themeTogglePinkIcon) themeTogglePinkIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark', 'theme-pink');
             } else {
                 themeToggleDarkIcon.classList.remove('hidden');
             }
@@ -992,6 +1013,8 @@
                 setTheme('dark');
             } else if (currentTheme === 'dark') {
                 setTheme('green');
+            } else if (currentTheme === 'green') {
+                setTheme('pink');
             } else {
                 setTheme('light');
             }
