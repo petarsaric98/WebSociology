@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Društvena Stratifikacija: Moć, Klase i Kaste</title>
+    <meta name="description" content="Lekcija o društvenoj nejednakosti, sustavima stratifikacije (kaste, staleži, klase) i društvenoj pokretljivosti.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #6366f1;
+            color: #6366f1;
+            font-weight: 600;
+        }
+        .dark .nav-link.active {
+            border-bottom: 2px solid #818cf8;
+            color: #818cf8;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+        /* Green Theme Overrides */
+        html.theme-green body { background-color: #021f20 !important; color: #a1c2c4 !important; }
+        html.theme-green .bg-white, html.theme-green .dark\:bg-slate-800 { background-color: #032b2c !important; }
+        html.theme-green .dark\:bg-slate-900 { background-color: #021f20 !important; }
+        html.theme-green .dark\:bg-slate-700 { background-color: #04393b !important; }
+        html.theme-green .dark\:border-slate-800, html.theme-green .dark\:border-slate-700 { border-color: #044246 !important; }
+        html.theme-green .dark\:text-slate-200, html.theme-green .dark\:text-white { color: #d1f2f4 !important; }
+        html.theme-green .dark\:text-slate-300, html.theme-green .dark\:text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .bg-slate-50, html.theme-green .bg-slate-100 { background-color: #021f20 !important; }
+        html.theme-green .text-slate-800, html.theme-green .text-slate-700 { color: #d1f2f4 !important; }
+        html.theme-green .text-slate-500, html.theme-green .text-slate-400 { color: #92b4b5 !important; }
+        html.theme-green .border-slate-100, html.theme-green .border-slate-200 { border-color: #044246 !important; }
+        html.theme-green .hover\:bg-slate-200:hover, html.theme-green .dark\:hover\:bg-slate-700:hover { background-color: #04393b !important; }
+        html.theme-green .bg-white\/90 { background-color: rgba(3, 43, 44, 0.9) !important; }
+        html.theme-green .dark\:bg-slate-900\/90 { background-color: rgba(2, 31, 32, 0.9) !important; }
+
+        /* Pink Theme Overrides */
+        html.theme-pink body { background-color: #3b0728 !important; color: #f9a8d4 !important; }
+        html.theme-pink .bg-white, html.theme-pink .dark\:bg-slate-800 { background-color: #500732 !important; }
+        html.theme-pink .dark\:bg-slate-900 { background-color: #3b0728 !important; }
+        html.theme-pink .dark\:bg-slate-700 { background-color: #700b46 !important; }
+        html.theme-pink .dark\:border-slate-800, html.theme-pink .dark\:border-slate-700 { border-color: #831843 !important; }
+        html.theme-pink .dark\:text-slate-200, html.theme-pink .dark\:text-white { color: #fbcfe8 !important; }
+        html.theme-pink .dark\:text-slate-300, html.theme-pink .dark\:text-slate-400 { color: #f472b6 !important; }
+        html.theme-pink .bg-slate-50, html.theme-pink .bg-slate-100 { background-color: #3b0728 !important; }
+        html.theme-pink .text-slate-800, html.theme-pink .text-slate-700 { color: #fbcfe8 !important; }
+        html.theme-pink .text-slate-500, html.theme-pink .text-slate-400 { color: #f472b6 !important; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav class="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm z-50 border-b border-transparent dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center text-xl font-bold text-indigo-900 dark:text-indigo-400 transition-colors duration-300">
+                    <a href="index.html" class="flex items-center hover:opacity-80">
+                        <span class="mr-2">🏠</span> Društvo u Fokusu
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#uvod" class="nav-link active text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors font-medium">Uvod</a>
+                        <a href="#sustavi" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors font-medium">Sustavi</a>
+                        <a href="#teorije" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors font-medium">Teorije</a>
+                        <a href="#mobilnost" class="nav-link text-stone-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 px-1 py-2 transition-colors font-medium">Mobilnost</a>
+                    </div>
+                    <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        <svg id="theme-toggle-green-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" /></svg>
+                        <svg id="theme-toggle-pink-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <section id="uvod" class="scroll-mt-20 pt-8">
+            <div class="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] md:h-[500px] flex items-center justify-start p-6 md:p-14">
+                <div class="absolute inset-0 z-0 bg-indigo-950">
+                    <img src="assets/stratification_hero.png" alt="Društvena stratifikacija" class="w-full h-full object-cover mix-blend-overlay opacity-60" />
+                </div>
+                
+                <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-14 rounded-3xl shadow-2xl max-w-3xl transform transition-all hover:scale-[1.01]">
+                    <div class="inline-block px-5 py-2 bg-indigo-500/30 text-indigo-100 rounded-full text-xs font-bold tracking-widest mb-6 shadow-sm ring-1 ring-indigo-400/50 uppercase backdrop-blur-md">Lekcija 10</div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-md">Društvena Stratifikacija ⚖️</h1>
+                    <p class="text-lg md:text-xl text-stone-100 font-medium leading-relaxed drop-shadow-sm italic">
+                        "Društvo se ne sastoji od pojedinaca, nego izražava zbroj onih veza i odnosa u kojima se ti pojedinci nalaze jedni prema drugima." — Karl Marx
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="definiranje" class="scroll-mt-20">
+            <div class="mb-12 text-center">
+                <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Koncept nejednakosti</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-4">Što je zapravo stratifikacija?</h2>
+                <p class="text-lg text-stone-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                    Pojam dolazi iz geologije (stratum = sloj). U sociologiji označava hijerarhijsko rangiranje skupina ljudi unutar društva, pri čemu gornji slojevi imaju više resursa, moći i prestiža.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-stone-100 dark:border-slate-700">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-4 flex items-center">
+                        <span class="mr-3">⚖️</span> Nejednakost vs. Diferencijacija
+                    </h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Dok je <strong>diferencijacija</strong> jednostavno postojanje različitih uloga (npr. zidar i pekar), <strong>stratifikacija</strong> uključuje rangiranje tih uloga. Jedna uloga se smatra "boljom" ili "vrjednijom" od druge.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-stone-100 dark:border-slate-700">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-white mb-4 flex items-center">
+                        <span class="mr-3">💎</span> Resursi koji se dijele
+                    </h3>
+                    <p class="text-stone-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Ne radi se samo o novcu. Stratifikacija određuje pristup <strong>materijalnom bogatstvu</strong>, <strong>političkoj moći</strong> i <strong>društvenom ugledi</strong> (prestižu).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sustavi" class="scroll-mt-20">
+            <div class="mb-12">
+                <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Povijesni sustavi</div>
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-6">Glavni sustavi stratifikacije</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Ropstvo -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-stone-100 dark:border-slate-700 hover:border-indigo-500 transition-all hover:shadow-xl group">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">⛓️</div>
+                        <h4 class="font-bold text-stone-800 dark:text-white mb-2">Ropstvo</h4>
+                        <p class="text-[11px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Najekstremniji oblik nejednakosti. Pojedinac je <strong>objekt vlasništva</strong>. Razlikujemo <em>chattel</em> ropstvo (potpuno vlasništvo) i dužničko ropstvo. Status je potpuno zatvoren i nasljedan, a opravdanje je često bilo temeljeno na tobožnjoj biološkoj ili civilizacijskoj inferiornosti.
+                        </p>
+                    </div>
+                    <!-- Kaste -->
+                    <div class="bg-indigo-600 text-white p-6 rounded-2xl shadow-xl transform scale-105 group">
+                        <div class="text-3xl mb-4 group-hover:rotate-12 transition-transform">🕉️</div>
+                        <h4 class="font-bold mb-2">Kaste</h4>
+                        <p class="text-[11px] opacity-90 leading-relaxed">
+                            Sustav utemeljen na <strong>ritualnoj čistoći</strong>. Položaj je <em>askribiran</em> (dobiven rođenjem) i nepromjenjiv. Ključni mehanizam je <strong>endogamija</strong> (brak unutar grupe) i stroga podjela rada prema religijskim propisima (Indijski model).
+                        </p>
+                    </div>
+                    <!-- Staleži -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-stone-100 dark:border-slate-700 hover:border-indigo-500 transition-all hover:shadow-xl group">
+                        <div class="text-3xl mb-4 group-hover:-translate-y-1 transition-transform">🛡️</div>
+                        <h4 class="font-bold text-stone-800 dark:text-white mb-2">Staleži</h4>
+                        <p class="text-[11px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Karakterističan za europski feudalizam. Temelji se na <strong>pravno definiranim</strong> pravima i obvezama. Sustav triju staleža: oni koji se mole (svećenstvo), oni koji se bore (plemstvo) i oni koji rade (seljaštvo/građanstvo). Mobilnost je bila rijetka, ali teoretski moguća kroz brak ili titulu.
+                        </p>
+                    </div>
+                    <!-- Klase -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-stone-100 dark:border-slate-700 hover:border-indigo-500 transition-all hover:shadow-xl group">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">👔</div>
+                        <h4 class="font-bold text-stone-800 dark:text-white mb-2">Klase</h4>
+                        <p class="text-[11px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Moderni, ekonomski sustav. Granice su fluidne, a položaj se bar djelomično temelji na <strong>postignutom statusu</strong> (obrazovanje, rad). Ključna je <strong>mobilnost</strong>, no klasne razlike se često održavaju kroz prijenos kulturnog i socijalnog kapitala unutar obitelji.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Detaljna analiza -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-stone-800 dark:text-white">Dinamika zatvorenih sustava</h3>
+                    <p class="text-sm text-stone-600 dark:text-slate-400 leading-relaxed">
+                        U <strong>zatvorenim sustavima</strong> (ropstvo, kaste), granice su nepremostive. Društvo je organizirano tako da svatko "zna svoje mjesto" od rođenja. Nejednakost se ne smatra nepravdom, već prirodnim ili božanskim poretkom.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-xs text-stone-500 dark:text-slate-400">
+                            <span class="text-indigo-500 font-bold mt-1">●</span>
+                            <span><strong>Kolektivizam:</strong> Identitet pojedinca neodvojiv je od identiteta grupe kojoj pripada.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-stone-500 dark:text-slate-400">
+                            <span class="text-indigo-500 font-bold mt-1">●</span>
+                            <span><strong>Endogamija:</strong> Brak je moguć isključivo unutar istog sloja, čime se strogo čuvaju resursi, status i "čistoća" grupe.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-stone-800 dark:text-white">Evolucija prema otvorenim sustavima</h3>
+                    <p class="text-sm text-stone-600 dark:text-slate-400 leading-relaxed">
+                        <strong>Otvoreni sustavi</strong> (klase) temelje se na ideološkoj postavci <em>meritokracije</em> — napredovanja prema sposobnostima. Iako su granice fluidne, prijelaz u viši sloj zahtijeva akumulaciju različitih oblika kapitala.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-xs text-stone-500 dark:text-slate-400">
+                            <span class="text-indigo-500 font-bold mt-1">●</span>
+                            <span><strong>Individualizam:</strong> Položaj se (teoretski) pripisuje osobnim naporima, a ne obiteljskom stablu.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-stone-500 dark:text-slate-400">
+                            <span class="text-indigo-500 font-bold mt-1">●</span>
+                            <span><strong>Kulturni kapital:</strong> Obrazovanje, maniri i način govora postaju ključni alati za društveni uspon.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Anatomija Varna sustava -->
+            <div class="mt-24 space-y-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-800 dark:text-white mb-6 tracking-tight">Anatomija indijskog kastinskog sustava</h2>
+                    <p class="text-stone-600 dark:text-slate-400 leading-relaxed text-sm">
+                        Prema hinduističkoj tradiciji (Rigveda), kaste su nastale iz različitih dijelova tijela prvotnog bića, Puruše. Ovaj sustav nije samo društvena podjela, već i kozmički red koji određuje dužnost (Dharmu) svakog pojedinca prema stupnju ritualne čistoće.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <!-- Brahmani -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-stone-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-sky-400">
+                        <div class="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🧠</div>
+                        <h4 class="font-bold text-sky-600 dark:text-sky-400 text-xs uppercase mb-2">Brahmani</h4>
+                        <p class="text-[11px] font-bold text-stone-800 dark:text-white mb-2">Svećenici i učitelji</p>
+                        <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Nastali iz Purušinih usta. Čuvari su svetog znanja, izvode rituale i tumače Vede. Predstavljaju najviši stupanj ritualne čistoće i duhovne autoritete.
+                        </p>
+                    </div>
+
+                    <!-- Kšatriye -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-stone-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-rose-500">
+                        <div class="w-12 h-12 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">⚔️</div>
+                        <h4 class="font-bold text-rose-500 text-xs uppercase mb-2">Kšatriye</h4>
+                        <p class="text-[11px] font-bold text-stone-800 dark:text-white mb-2">Ratnici i vladari</p>
+                        <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Nastali iz Purušinih ruku. Njihova je dužnost zaštita društva, vođenje države i provođenje zakona. Simboliziraju snagu, hrabrost i političku moć.
+                        </p>
+                    </div>
+
+                    <!-- Vaišye -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-stone-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-amber-500">
+                        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🌾</div>
+                        <h4 class="font-bold text-amber-500 text-xs uppercase mb-2">Vaišye</h4>
+                        <p class="text-[11px] font-bold text-stone-800 dark:text-white mb-2">Trgovci i obrtnici</p>
+                        <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Nastali iz Purušinih bedara. Čine ekonomsku bazu društva: trgovci, zemljoposjednici i bankari. Osiguravaju materijalni opstanak zajednice.
+                        </p>
+                    </div>
+
+                    <!-- Šudre -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-stone-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-emerald-500">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🛠️</div>
+                        <h4 class="font-bold text-emerald-500 text-xs uppercase mb-2">Šudre</h4>
+                        <p class="text-[11px] font-bold text-stone-800 dark:text-white mb-2">Sluge i radnici</p>
+                        <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Nastali iz Purušinih stopala. Njihova je uloga služiti gornjim trima kastama kroz fizički rad. Jedini su koji nisu "dvaput rođeni" u duhovnom smislu.
+                        </p>
+                    </div>
+
+                    <!-- Daliti -->
+                    <div class="bg-slate-100 dark:bg-slate-900 p-6 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-slate-600 grayscale hover:grayscale-0">
+                        <div class="w-12 h-12 bg-slate-200 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🌑</div>
+                        <h4 class="font-bold text-slate-600 dark:text-slate-400 text-xs uppercase mb-2">Daliti</h4>
+                        <p class="text-[11px] font-bold text-stone-800 dark:text-white mb-2">Nedodirljivi</p>
+                        <p class="text-[10px] text-stone-500 dark:text-slate-400 leading-relaxed">
+                            Potpuno izvan sustava varna. Obavljaju "nečiste" poslove (čišćenje, kožarstvo). Stoljećima su bili društveno izopćeni i lišeni osnovnih ljudskih prava.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-2xl border border-amber-100 dark:border-amber-800/30 flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-4xl">☸️</div>
+                    <div>
+                        <h5 class="text-sm font-bold text-amber-800 dark:text-amber-200 mb-1 uppercase tracking-wider">Dharma i Karma: Motor sustava</h5>
+                        <p class="text-xs text-amber-700 dark:text-amber-300/70 leading-relaxed">
+                            Sustav se održava vjerovanjem da je trenutni položaj rezultat postupaka iz prošlog života (<strong>Karma</strong>), a miran kozmički poredak zahtijeva strogo pridržavanje dužnosti kaste u kojoj se osoba rodila (<strong>Dharma</strong>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jeste li znali? -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-800/30 group hover:bg-indigo-100 dark:hover:bg-indigo-900/20 transition-all">
+                    <div class="text-2xl mb-4 group-hover:scale-110 transition-transform">🧬</div>
+                    <h5 class="text-sm font-bold text-indigo-800 dark:text-indigo-200 mb-2 uppercase tracking-wider">Genetska izolacija</h5>
+                    <p class="text-[10px] text-indigo-700 dark:text-indigo-300/70 leading-relaxed">
+                        Istraživanja pokazuju da je miješanje kasta prestalo oko 500. n.e. Stoljeća endogamije stvorila su veće genetske razlike između kasta u istom selu nego između nekih europskih naroda.
+                    </p>
+                </div>
+                <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-800/30 group hover:bg-indigo-100 dark:hover:bg-indigo-900/20 transition-all">
+                    <div class="text-2xl mb-4 group-hover:scale-110 transition-transform">🕌</div>
+                    <h5 class="text-sm font-bold text-indigo-800 dark:text-indigo-200 mb-2 uppercase tracking-wider">Izvan Hinduizma</h5>
+                    <p class="text-[10px] text-indigo-700 dark:text-indigo-300/70 leading-relaxed">
+                        Kastinski identitet prožima gotovo sve religije u Indiji. Čak 98% indijskih muslimana, kršćana i sikha i dalje se identificira s kastom, unatoč tome što te religije propovijedaju jednakost.
+                    </p>
+                </div>
+                <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-800/30 group hover:bg-indigo-100 dark:hover:bg-indigo-900/20 transition-all">
+                    <div class="text-2xl mb-4 group-hover:scale-110 transition-transform">🎓</div>
+                    <h5 class="text-sm font-bold text-indigo-800 dark:text-indigo-200 mb-2 uppercase tracking-wider">Rezervacijski sustav</h5>
+                    <p class="text-[10px] text-indigo-700 dark:text-indigo-300/70 leading-relaxed">
+                        Indija ima jedan od najvećih sustava afirmativne akcije. Određeni postotak mjesta na fakultetima i u državnim službama zakonski je rezerviran za povijesno zakinute zajednice (Dalite).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Deep Dive: Kastinski sustav i slični oblici -->
+            <div class="bg-stone-900 dark:bg-slate-950 rounded-[2.5rem] p-12 md:p-20 text-white overflow-hidden relative mt-24 shadow-2xl">
+                <!-- Spartan Hero Image Background -->
+                <div class="absolute top-0 right-0 w-full h-full z-0 opacity-30 select-none pointer-events-none">
+                    <img src="assets/spartan_warrior_cinematic_1778834544184.png" alt="Spartan Warrior" class="w-full h-full object-cover object-right-top mix-blend-luminosity scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-l from-transparent via-stone-900/80 to-stone-900"></div>
+                </div>
+                
+                <h3 class="text-2xl md:text-4xl font-bold mb-10 tracking-tight">Spartanski poredak: Militarizirana hijerarhija</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-indigo-400 font-bold uppercase text-xs tracking-widest mb-6">Mistični nadzornici: Spartanski Efori</h4>
+                            <div class="space-y-6">
+                                <p class="text-stone-400 text-sm leading-relaxed">
+                                    Vijeće od pet efora bilo je stvarni čuvar spartanskog poretka. Birani na samo godinu dana, imali su moć nadzirati čak i kraljeve.
+                                </p>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-3 text-xs text-stone-500">
+                                        <span class="text-indigo-500 font-bold mt-1">🗡️</span>
+                                        <span><strong>Rat protiv Helota:</strong> Efori su imali ovlast proglasiti rat Helotima (državnim robovima) kako bi omogućili njihovo nekažnjeno ubijanje i održali strah u trenucima nemira.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-xs text-stone-500">
+                                        <span class="text-indigo-500 font-bold mt-1">⚖️</span>
+                                        <span><strong>Geruzija (Vijeće staraca):</strong> Činila su je 28 staraca (starijih od 60 godina) i 2 kralja. Služili su kao vrhovni sud i pripremali sve zakone o kojima se glasalo.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-xs text-stone-500">
+                                        <span class="text-indigo-500 font-bold mt-1">🤝</span>
+                                        <span><strong>Bez deference:</strong> Efori su bili jedini koji nisu morali klečati pred kraljevima, simbolizirajući vrhovnu moć zakona nad pojedincem.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-indigo-500/20 blur-3xl group-hover:bg-indigo-500/30 transition-all"></div>
+                        <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-[2rem] overflow-hidden">
+                            <h5 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-sm italic">S</span>
+                                Hijerarhija moći
+                            </h5>
+                            <div class="space-y-2">
+                                <div class="p-3 bg-indigo-500/20 rounded-xl border border-indigo-500/30">
+                                    <span class="block text-[9px] uppercase font-bold text-indigo-400 mb-1">Politička Moć</span>
+                                    <span class="text-[11px] font-bold text-white">Efori & Geruzija</span>
+                                    <p class="text-[9px] text-indigo-300/70 mt-1 italic">Vrhovni sud i zakonodavstvo</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-xl border border-white/20 ml-4">
+                                    <span class="block text-[9px] uppercase font-bold text-stone-400 mb-1">Elita (Homoioi)</span>
+                                    <span class="text-[11px] font-bold text-stone-200">Spartijati</span>
+                                    <p class="text-[9px] text-stone-500 mt-1">Puni građani, ratnici i zemljoposjednici</p>
+                                </div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/10 ml-8">
+                                    <span class="block text-[9px] uppercase font-bold text-stone-500 mb-1">Slobodni ljudi</span>
+                                    <span class="text-[11px] font-bold text-stone-400">Perijeki</span>
+                                    <p class="text-[9px] text-stone-600 mt-1">Trgovci i obrtnici (bez pol. prava)</p>
+                                </div>
+                                <div class="p-3 bg-red-500/5 rounded-xl border border-red-500/10 ml-12">
+                                    <span class="block text-[9px] uppercase font-bold text-red-400 mb-1">Baza</span>
+                                    <span class="text-[11px] font-bold text-red-300">Heloti</span>
+                                    <p class="text-[9px] text-red-400/50 mt-1">Državni robovi (bez slobode)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platonova Idealna Država -->
+            <div class="mt-24 relative">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-5xl font-black text-stone-800 dark:text-white mb-4 tracking-tighter">Platonova vizija: Funkcionalna stratifikacija</h3>
+                    <p class="text-stone-500 dark:text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
+                        U svom djelu "Država", Platon predlaže uređenje temeljeno na <strong>plemenitoj laži</strong> o različitim metalima u ljudskim dušama.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl h-[400px] lg:h-[500px]">
+                        <img src="assets/plato_ideal_state_cinematic_1778834871237.png" alt="Plato's Ideal State" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <p class="text-xs text-stone-300 italic">"Svaki čovjek trebao bi obavljati onaj posao za koji je po prirodi najsposobniji." — Platon</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="p-6 bg-amber-500/10 rounded-2xl border border-amber-500/20">
+                            <h4 class="text-xl font-bold text-amber-600 mb-3 flex items-center gap-2">
+                                <span class="w-8 h-8 bg-amber-500 text-white rounded-lg flex items-center justify-center text-xs">1</span>
+                                Vrh: Vladari-filozofi
+                            </h4>
+                            <p class="text-sm text-stone-600 dark:text-slate-400">
+                                Dominira racionalni dio duše: <strong>Razum</strong> (Logistikon). Oni jedini posjeduju pravo znanje i mudrost potrebnu za vođenje države.
+                            </p>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-bold rounded-full mt-2 uppercase">VRLINA: MUDROST</div>
+                        </div>
+
+                        <div class="p-6 bg-slate-400/10 rounded-2xl border border-slate-400/20">
+                            <h4 class="text-xl font-bold text-slate-500 mb-3 flex items-center gap-2">
+                                <span class="w-8 h-8 bg-slate-400 text-white rounded-lg flex items-center justify-center text-xs">2</span>
+                                Sredina: Čuvari/Ratnici
+                            </h4>
+                            <p class="text-sm text-stone-600 dark:text-slate-400">
+                                Dominira srčani dio duše: <strong>Hrabrost/Volja</strong> (Thymoeides). Njihova zadaća je obrana države i održavanje unutarnjeg reda.
+                            </p>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-[10px] font-bold rounded-full mt-2 uppercase">VRLINA: HRABROST</div>
+                        </div>
+
+                        <div class="p-6 bg-orange-700/10 rounded-2xl border border-orange-700/20">
+                            <h4 class="text-xl font-bold text-orange-800 dark:text-orange-600 mb-3 flex items-center gap-2">
+                                <span class="w-8 h-8 bg-orange-800 text-white rounded-lg flex items-center justify-center text-xs">3</span>
+                                Baza: Proizvođači
+                            </h4>
+                            <p class="text-sm text-stone-600 dark:text-slate-400">
+                                Dominira dio duše: <strong>Požuda/Apetit</strong> (Epithymetikon). To su poljoprivrednici, obrtnici i trgovci koji opskrbljuju državu materijalnim dobrima.
+                            </p>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-600 text-[10px] font-bold rounded-full mt-2 uppercase">VRLINA: UMJERENOST</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teorije" class="scroll-mt-20">
+            <div class="mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl h-[300px] group">
+                        <img src="assets/marx_vs_weber_symbolic_1778834906706.png" alt="Marx vs Weber" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="space-y-6">
+                        <h2 class="text-3xl font-bold text-stone-800 dark:text-white">Velika debata: Marx vs. Weber</h2>
+                        <p class="text-stone-600 dark:text-slate-400">Dvojica giganata sociologije ponudili su različite odgovore na pitanje zašto nejednakost postoji i kako je mjeriti.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                    <!-- Marx -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border-t-4 border-rose-500 shadow-sm">
+                        <h3 class="text-2xl font-extrabold text-rose-500 mb-6 uppercase tracking-tighter">Karl Marx</h3>
+                        <p class="font-bold mb-4">Klasa je određena isključivo odnosom prema sredstvima za proizvodnju.</p>
+                        <div class="space-y-4 text-sm text-stone-600 dark:text-slate-400">
+                            <p>Postoje samo dvije glavne klase: <strong>Buržoazija</strong> (vlasnici) i <strong>Proletarijat</strong> (radnici).</p>
+                            <p>Povijest je borba klasa. Sve ostalo (religija, pravo, kultura) je "nadogradnja" koja služi održavanju ekonomske dominacije.</p>
+                        </div>
+                    </div>
+                    <!-- Weber -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border-t-4 border-indigo-500 shadow-sm">
+                        <h3 class="text-2xl font-extrabold text-indigo-500 mb-6 uppercase tracking-tighter">Max Weber</h3>
+                        <p class="font-bold mb-4">Stratifikacija je multidimenzionalna i ne ovisi samo o ekonomiji.</p>
+                        <div class="grid grid-cols-1 gap-4 text-xs">
+                            <div class="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
+                                <span class="font-bold block text-indigo-600 mb-1">Klasa (Ekonomija)</span>
+                                Položaj na tržištu rada, vlasništvo i vještine.
+                            </div>
+                            <div class="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
+                                <span class="font-bold block text-indigo-600 mb-1">Status (Ugled/Socijalna čast)</span>
+                                Stil života, profesija, obrazovanje. Ljudi istog statusa čine "staleške skupine".
+                            </div>
+                            <div class="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
+                                <span class="font-bold block text-indigo-600 mb-1">Stranka (Moć)</span>
+                                Sposobnost pojedinca ili grupe da nametnu svoju volju usprkos otporu drugih.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mobilnost" class="scroll-mt-20">
+            <div class="mb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">Kretanje kroz slojeve</div>
+                        <h2 class="text-3xl font-bold text-stone-800 dark:text-white mb-6">Društvena pokretljivost (Mobilnost)</h2>
+                        <p class="text-lg text-stone-600 dark:text-slate-400 leading-relaxed">
+                            Mobilnost označava kretanje pojedinaca ili skupina unutar sustava stratifikacije. Koliko je sustav prohodan, ključno je pitanje pravednosti svakog društva.
+                        </p>
+                    </div>
+                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl h-[350px]">
+                        <img src="assets/social_mobility_ladder_fancy_1778834890903.png" alt="Social Mobility" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-transparent mix-blend-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <p class="text-lg text-stone-600 dark:text-slate-400 leading-relaxed">
+                            Mobilnost označava kretanje pojedinaca ili skupina unutar sustava stratifikacije. Koliko je sustav prohodan, ključno je pitanje pravednosti svakog društva.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="font-bold text-indigo-600 mb-2">Vertikalna mobilnost</h4>
+                                <p class="text-xs text-stone-500">Kretanje gore ili dolje po ljestvici (npr. radnik postane direktor ili obrnuto).</p>
+                            </div>
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="font-bold text-indigo-600 mb-2">Horizontalna mobilnost</h4>
+                                <p class="text-xs text-stone-500">Promjena položaja bez promjene sloja (npr. rad u drugoj firmi za istu plaću).</p>
+                            </div>
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="font-bold text-indigo-600 mb-2">Intergeneracijska</h4>
+                                <p class="text-xs text-stone-500">Usporedba položaja djeteta s položajem roditelja.</p>
+                            </div>
+                            <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-stone-100 dark:border-slate-700">
+                                <h4 class="font-bold text-indigo-600 mb-2">Intrageneracijska</h4>
+                                <p class="text-xs text-stone-500">Napredak ili pad pojedinca tijekom vlastite karijere.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-8 rounded-3xl border border-indigo-100 dark:border-indigo-800/30">
+                        <h4 class="text-lg font-bold text-indigo-900 dark:text-indigo-200 mb-4">❓ Je li mobilnost mit?</h4>
+                        <p class="text-sm text-indigo-800/80 dark:text-indigo-300/80 leading-relaxed italic mb-4">
+                            "Može li se od čistača cipela postati milijunaš?"
+                        </p>
+                        <p class="text-xs text-indigo-800/70 dark:text-indigo-400/70 leading-relaxed">
+                            Iako moderna društva propagiraju meritokraciju (vladavinu sposobnih), statistika pokazuje da je najjači prediktor budućeg bogatstva upravo - <strong>početno obiteljsko bogatstvo</strong>. Kulturni kapital i društvene mreže često su važniji od sirovog talenta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 dark:bg-slate-950 text-stone-400 dark:text-slate-500 py-8 text-center text-sm mt-auto">
+        <p>Interaktivni vodič za sociologiju &copy; 2026</p>
+    </footer>
+
+    <script>
+        (function() {
+            // Theme toggle logic
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+            const themeToggleGreenIcon = document.getElementById('theme-toggle-green-icon');
+            const themeTogglePinkIcon = document.getElementById('theme-toggle-pink-icon');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            function setTheme(theme) {
+                themeToggleDarkIcon.classList.add('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+                themeToggleGreenIcon.classList.add('hidden');
+                if (themeTogglePinkIcon) themeTogglePinkIcon.classList.add('hidden');
+                
+                document.documentElement.classList.remove('dark', 'theme-green', 'theme-pink');
+
+                if (theme === 'dark') {
+                    themeToggleLightIcon.classList.remove('hidden');
+                    document.documentElement.classList.add('dark');
+                } else if (theme === 'green') {
+                    themeToggleGreenIcon.classList.remove('hidden');
+                    document.documentElement.classList.add('dark', 'theme-green');
+                } else if (theme === 'pink') {
+                    if (themeTogglePinkIcon) themeTogglePinkIcon.classList.remove('hidden');
+                    document.documentElement.classList.add('dark', 'theme-pink');
+                } else {
+                    themeToggleDarkIcon.classList.remove('hidden');
+                }
+                localStorage.setItem('color-theme', theme);
+            }
+
+            const currentTheme = localStorage.getItem('color-theme') || 'light';
+            setTheme(currentTheme);
+
+            themeToggleBtn.addEventListener('click', function() {
+                const currentTheme = localStorage.getItem('color-theme');
+                if (currentTheme === 'light') setTheme('dark');
+                else if (currentTheme === 'dark') setTheme('green');
+                else if (currentTheme === 'green') setTheme('pink');
+                else setTheme('light');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Navigation highlighting
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
